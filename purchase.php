@@ -137,6 +137,7 @@
                 <div class="form-group">
                   <select id="dis" class="form-control">
 
+                  <option value="0">-----------</option>
                   <option value="10">10%</option>
                   <option value="15">15%</option>
                   <option value="20">20%</option>
