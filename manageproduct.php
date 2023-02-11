@@ -67,8 +67,10 @@
                       <th style="width: 10px">#Sl.No</th>
                       <th>Asset Name</th>
                       <th>Inventory Id</th>
+                      <th>Specification</th>
                       <th>Serial No</th>
                       <th>Username</th>
+                      <th style="display:none;">PF</th>
                       <th>Department</th>
                       <th>Action</th>
                     </tr>
@@ -87,30 +89,49 @@
 
                           if ($row["product_cat"] == 1) {
                             $product_cat = 'CPU';
+                            $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."HDD-".$row["hdd"];
                           }
                           elseif ($row["product_cat"] == 2) {
                             $product_cat = 'Laptop';
+                            $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."HDD-".$row["hdd"];
                           }
                           elseif ($row["product_cat"] == 3) {
                             $product_cat = 'Monitor';
+                            $spec = $row["mon_size"].'"';
                           }
                           elseif ($row["product_cat"] == 4) {
                             $product_cat = 'Printer';
+
+                                  if (empty($row["toner"]) || $row["toner"] === "NULL") {
+                                      $spec =  $row["toner"];
+                                  } else {
+                                      $spec = 'Toner : '. $row["toner"];
+                                  }       
+
                           }
                           elseif ($row["product_cat"] == 5) {
                             $product_cat = 'Mouse';
+                            $spec = "";
                           }
                           elseif ($row["product_cat"] == 6) {
                             $product_cat = 'Keyboard';
+                            $spec = "";                            
                           }
                           elseif ($row["product_cat"] == 7) {
                             $product_cat = 'UPS';
+                            $spec = $row["va"]."VA";
                           }
                           elseif ($row["product_cat"] == 8) {
                             $product_cat = 'Cash Drawer';
+                            $spec = "N/A";                            
+                          }
+                          elseif ($row["product_cat"] == 9) {
+                            $product_cat = 'POS Terminal';
+                            $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."HDD-".$row["hdd"];
                           }
                           else{
                             $product_cat = 'Not Defiend';
+                            $spec = "";                            
                           }
                           
                          ?>
@@ -119,8 +140,13 @@
                               <td><?php echo $sl ?></td>
                               <td><?php echo $product_cat ?></td>
                               <td><?php echo $row["inv_id"]; ?></td>
+
+                              <td><?php echo $spec ?></td>
+
+
                               <td><?php echo $row["sl_no"]; ?></td>
                               <td><?php echo $row["user"]; ?></td>
+                              <td style="display:none;"><?php echo $row["PF"]; ?></td>
                               <td><?php echo $row["dept"]; ?></td>
                               <td><a href="productEdit.php?id=<?php echo $row['inv_id'];  ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
 

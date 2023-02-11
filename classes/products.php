@@ -108,7 +108,8 @@ class Product
        (SELECT COUNT( *) FROM tbl_products WHERE `mouse`=1) AS mouse,
        (SELECT COUNT( *) FROM tbl_products WHERE `keyboard`=1) AS keyboard,
        (SELECT COUNT( *) FROM tbl_products WHERE `product_cat`=7) AS ups,
-       (SELECT COUNT( *) FROM tbl_products WHERE `product_cat`=8) AS cash_drawer;");
+       (SELECT COUNT( *) FROM tbl_products WHERE `product_cat`=8) AS cash_drawer,
+       (SELECT COUNT( *) FROM tbl_products WHERE `product_cat`=9) AS pos;");
 			return $sql;			
 		}
 

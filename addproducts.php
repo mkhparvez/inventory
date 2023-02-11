@@ -78,6 +78,8 @@
                       <option value="6">Keyboard</option>
                       <option value="7">UPS</option>
                       <option value="8">Cash Drawer</option>
+                      <option value="9">POS Terminal</option>
+
                     </select>
                   </div>
                   <div class="form-group">
@@ -161,6 +163,9 @@
                       <option value="9">Mechanical</option>
                       <option value="10">SCD</option>
                       <option value="11">Security</option>
+                      <option value="12">Toggi Fun World</option>
+                      <option value="13">Store</option>
+                      
                     </select>
                   </div>
 

@@ -169,6 +169,29 @@
         </div>
         <!-- /.row -->
 
+
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fa-solid fa-tv"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Pos Terminal</span>
+                <span class="info-box-number">
+                  <?php echo $row["pos"]; ?>
+                  <small></small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
             <?php  }
                       }
                       else{ ?>
