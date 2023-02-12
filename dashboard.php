@@ -176,7 +176,7 @@
               <span class="info-box-icon bg-danger elevation-1"><i class="fa-solid fa-tv"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Pos Terminal</span>
+                <span class="info-box-text">POS Terminal</span>
                 <span class="info-box-number">
                   <?php echo $row["pos"]; ?>
                   <small></small>
@@ -186,7 +186,54 @@
             </div>
             <!-- /.info-box -->
           </div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-success elevation-1"><i class="fa-regular fa-square-check"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Workable</span>
+                <span class="info-box-number">
+                  <?php echo $row["useable"]; ?>
+                  <small></small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
           <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger elevation-1"><i class="fa-solid fa-circle-exclamation"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Damaged</span>
+                <span class="info-box-number">
+                  <?php echo $row["damaged"]; ?>
+                  <small></small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fa-solid fa-screwdriver-wrench"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Need to Repair</span>
+                <span class="info-box-number">
+                  <?php echo $row["repair"]; ?>
+                  <small></small>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+
 
           <!-- /.col -->
         </div>

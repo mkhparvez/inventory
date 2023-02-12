@@ -1,12 +1,44 @@
   
   jQuery( document ).ready(function() {
 
+
+             
+            jQuery('.processor').hide(); 
+            jQuery('.ram').hide(); 
+            jQuery('.hdd').hide(); 
+            jQuery('.mon_size').hide(); 
+            jQuery('.toner').hide(); 
+            jQuery('.va').hide(); 
+
+            jQuery('.brand').hide(); 
+            jQuery('.model').hide(); 
+            jQuery('.sl_no').hide();
+            jQuery('.user').hide(); 
+            jQuery('.user_designation').hide(); 
+            jQuery('.PF').hide(); 
+            jQuery('.dept_id').hide(); 
+            jQuery('.location').hide(); 
+            jQuery('.status').hide(); 
+            jQuery('.remarks').hide(); 
+
+
     if(jQuery('#product_cat').val() == 'Monitor') {
             jQuery('.mon_size').show(); 
             jQuery('.toner').hide(); 
+            jQuery('.va').hide(); 
             jQuery('.hdd').hide(); 
             jQuery('.processor').hide(); 
             jQuery('.ram').hide(); 
+            jQuery('.brand').show(); 
+            jQuery('.model').show(); 
+            jQuery('.sl_no').show();
+            jQuery('.user').show(); 
+            jQuery('.user_designation').show(); 
+            jQuery('.PF').show(); 
+            jQuery('.dept_id').show(); 
+            jQuery('.location').show(); 
+            jQuery('.status').show(); 
+            jQuery('.remarks').show(); 
 
         } 
 
@@ -14,8 +46,19 @@
           jQuery('.mon_size').hide(); 
             jQuery('.toner').show(); 
             jQuery('.hdd').hide(); 
+            jQuery('.va').hide(); 
             jQuery('.processor').hide(); 
             jQuery('.ram').hide(); 
+            jQuery('.brand').show(); 
+            jQuery('.model').show(); 
+            jQuery('.sl_no').show();
+            jQuery('.user').show(); 
+            jQuery('.user_designation').show(); 
+            jQuery('.PF').show(); 
+            jQuery('.dept_id').show(); 
+            jQuery('.location').show(); 
+            jQuery('.status').show(); 
+            jQuery('.remarks').show(); 
 
         }
 
@@ -24,8 +67,39 @@
             jQuery('.toner').hide(); 
             jQuery('.hdd').show(); 
             jQuery('.processor').show(); 
-            jQuery('.ram').show(); 
+            jQuery('.ram').show();
+            jQuery('.va').hide(); 
+            jQuery('.brand').show(); 
+            jQuery('.model').show(); 
+            jQuery('.sl_no').show();
+            jQuery('.user').show(); 
+            jQuery('.user_designation').show(); 
+            jQuery('.PF').show(); 
+            jQuery('.dept_id').show(); 
+            jQuery('.location').show(); 
+            jQuery('.status').show(); 
+            jQuery('.remarks').show(); 
 
+        }
+
+        else if (jQuery('#product_cat').val() == 'UPS') {
+          jQuery('.mon_size').hide(); 
+            jQuery('.toner').hide(); 
+            jQuery('.hdd').hide(); 
+            jQuery('.processor').hide(); 
+            jQuery('.ram').show();
+            jQuery('.va').show(); 
+            jQuery('.brand').show(); 
+            jQuery('.model').show(); 
+            jQuery('.sl_no').show();
+            jQuery('.user').show(); 
+            jQuery('.user_designation').show(); 
+            jQuery('.PF').show(); 
+            jQuery('.dept_id').show(); 
+            jQuery('.location').show(); 
+            jQuery('.status').show(); 
+            jQuery('.remarks').show(); 
+    
         }
   
   else {
@@ -46,7 +120,18 @@
             jQuery('.toner').hide(); 
             jQuery('.hdd').hide(); 
             jQuery('.processor').hide(); 
+            jQuery('.va').hide(); 
             jQuery('.ram').hide(); 
+            jQuery('.brand').show(); 
+            jQuery('.model').show(); 
+            jQuery('.sl_no').show();
+            jQuery('.user').show(); 
+            jQuery('.user_designation').show(); 
+            jQuery('.PF').show(); 
+            jQuery('.dept_id').show(); 
+            jQuery('.location').show(); 
+            jQuery('.status').show(); 
+            jQuery('.remarks').show(); 
 
         } 
 
@@ -55,7 +140,18 @@
             jQuery('.toner').show(); 
             jQuery('.hdd').hide(); 
             jQuery('.processor').hide(); 
+            jQuery('.va').hide(); 
             jQuery('.ram').hide(); 
+            jQuery('.brand').show(); 
+            jQuery('.model').show(); 
+            jQuery('.sl_no').show();
+            jQuery('.user').show(); 
+            jQuery('.user_designation').show(); 
+            jQuery('.PF').show(); 
+            jQuery('.dept_id').show(); 
+            jQuery('.location').show(); 
+            jQuery('.status').show(); 
+            jQuery('.remarks').show(); 
 
         }
 
@@ -64,7 +160,58 @@
             jQuery('.toner').hide(); 
             jQuery('.hdd').show(); 
             jQuery('.processor').show(); 
+            jQuery('.va').hide(); 
             jQuery('.ram').show(); 
+            jQuery('.brand').show(); 
+            jQuery('.model').show(); 
+            jQuery('.sl_no').show();
+            jQuery('.user').show(); 
+            jQuery('.user_designation').show(); 
+            jQuery('.PF').show(); 
+            jQuery('.dept_id').show(); 
+            jQuery('.location').show(); 
+            jQuery('.status').show(); 
+            jQuery('.remarks').show(); 
+
+        }
+
+        else if (jQuery('#product_cat').val() == '7') {
+          jQuery('.mon_size').hide(); 
+            jQuery('.toner').hide(); 
+            jQuery('.hdd').hide(); 
+            jQuery('.processor').hide(); 
+            jQuery('.ram').hide(); 
+            jQuery('.va').show(); 
+            jQuery('.brand').show(); 
+            jQuery('.model').show(); 
+            jQuery('.sl_no').show();
+            jQuery('.user').show(); 
+            jQuery('.user_designation').show(); 
+            jQuery('.PF').show(); 
+            jQuery('.dept_id').show(); 
+            jQuery('.location').show(); 
+            jQuery('.status').show(); 
+            jQuery('.remarks').show(); 
+
+        }
+
+        else if (jQuery('#product_cat').val() == '9') {
+          jQuery('.mon_size').hide(); 
+            jQuery('.toner').hide(); 
+            jQuery('.hdd').show(); 
+            jQuery('.processor').show(); 
+            jQuery('.va').hide(); 
+            jQuery('.ram').show(); 
+            jQuery('.brand').show(); 
+            jQuery('.model').show(); 
+            jQuery('.sl_no').show();
+            jQuery('.user').show(); 
+            jQuery('.user_designation').show(); 
+            jQuery('.PF').show(); 
+            jQuery('.dept_id').show(); 
+            jQuery('.location').show(); 
+            jQuery('.status').show(); 
+            jQuery('.remarks').show(); 
 
         }
   
@@ -74,6 +221,7 @@
             jQuery('.hdd').hide(); 
             jQuery('.processor').hide(); 
             jQuery('.ram').hide(); 
+            jQuery('.va').hide(); 
  
         } 
     });

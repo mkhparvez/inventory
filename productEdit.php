@@ -93,6 +93,9 @@
                           elseif ($row['product_cat'] == 8) {
                             $product_cat = 'Cash Drawer';
                           }
+                          elseif ($row['product_cat'] == 9) {
+                            $product_cat = 'POS Terminal';
+                          }
 
                ?>
  
@@ -176,30 +179,43 @@
                     <label for="toner">Toner Number</label>
                       <input type="text" class="form-control" name="toner" id="toner" placeholder="Input Printer Toner Number" value="<?php echo $row['toner'] ?>">
                   </div>  
+                  <div class="form-group va">
+                    <label for="va">UPS Capacity(KVA)</label>
+                      <input type="text" class="form-control" name="va" id="va" placeholder="Input UPS Capacity">
+                  </div>
 
                   <div class="form-group">
                     <label for="user">User Name</label>
                       <input type="text" class="form-control" name="user" id="user" placeholder="Enter Asset Users Name" value="<?php echo $row['user'] ?>">
                   </div>
+                  <div class="form-group user_designation">
+                    <label for="user_designation">User Designation</label>
+                      <input type="text" class="form-control" name="user_designation" id="user_designation" placeholder="Enter Users Designation" value="<?php echo $row['user_designation'] ?>">
+                  </div>
+
+                  <div class="form-group PF">
+                    <label for="PF">PF No</label>
+                      <input type="text" class="form-control" name="PF" id="PF" placeholder="Enter Users PF Number" value="<?php echo $row['PF'] ?>">
+                  </div>
 
 
                   <div class="form-group">
-                    <label for="dept_id">User Department</label>
-                      <select class="form-control" id="dept_id" name="dept_id">
+                    <label for="dept">User Department</label>
+                      <select class="form-control" id="dept" name="dept">
                       <option><?php echo $row['dept'] ?></option>
-                      <option value="1">Admin</option>
-                      <option value="2">Accounts</option>
-                      <option value="3">Care & Clean</option>
-                      <option value="4">Carparking</option>
-                      <option value="5">Civil</option>
-                      <option value="6">Electrical</option>
-                      <option value="7">Fire</option>
-                      <option value="8">IT</option>
-                      <option value="9">Mechanical</option>
-                      <option value="10">SCD</option>
-                      <option value="11">Security</option>
-                      <option value="12">Toggi Fun World</option>
-                      <option value="13">Store</option>
+                      <option value="Admin">Admin</option>
+                      <option value="Accounts">Accounts</option>
+                      <option value="Care & Clean">Care & Clean</option>
+                      <option value="Carparking">Carparking</option>
+                      <option value="Civil">Civil</option>
+                      <option value="Electrical">Electrical</option>
+                      <option value="Fire">Fire</option>
+                      <option value="IT">IT</option>
+                      <option value="Mechanical">Mechanical</option>
+                      <option value="SCD">SCD</option>
+                      <option value="Security">Security</option>
+                      <option value="Toggi Fun World">Toggi Fun World</option>
+                      <option value="Store">Store</option>
                     </select>
                   </div>
 
@@ -223,11 +239,17 @@
                           ?>
 
                       <option><?php echo $status ?></option>
-                      <option value="1">Useable</option>
-                      <option value="2">Damaged</option>
-                      <option value="3">Need to Repair</option>
+                      <option value="Useable">Useable</option>
+                      <option value="Damaged">Damaged</option>
+                      <option value="Need to Repair">Need to Repair</option>
                     </select>
-                  </div>          
+                  </div>
+
+
+                  <div class="form-group remarks">
+                    <label for="remarks">Remarks</label>
+                      <textarea class="form-control" name="remarks" id="remarks"><?php echo $row['remarks'] ?></textarea>
+                  </div>           
 
 
 

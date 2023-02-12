@@ -82,15 +82,15 @@
 
                     </select>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group brand">
                     <label for="brand">Brand</label>
                     <input type="text" class="form-control" name="brand" id="brand" placeholder="Enter Brand">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group model">
                     <label for="model">Model</label>
                     <input type="text" class="form-control" name="model" id="model" placeholder="Enter Model">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group sl_no">
                     <label for="sl_no">Serial Number</label>
                     <input type="text" class="form-control" name="sl_no" id="slNo" placeholder="Enter Serial Number">
                   </div>
@@ -133,6 +133,13 @@
                       <input type="text" class="form-control" name="hdd" id="hdd" placeholder="Enter HDD/SSD Size">
                   </div> 
 
+                  <div class="form-group mouse">
+                    <label for="mouse">Mouse</label>                      
+                      <input type="checkbox" id="mouse" name="mouse" value="1">
+                    <label for="keyboard">Keyboard</label>                      
+                      <input type="checkbox" id="keyboard" name="keyboard" value="1">
+                  </div> 
+
                   <div class="form-group mon_size">
                     <label for="mon_size">Monitor Size</label>
                       <input type="text" class="form-control" name="mon_size" id="mon_size" placeholder="Monitor Size in Inch">
@@ -140,15 +147,29 @@
                   <div class="form-group toner">
                     <label for="toner">Toner Number</label>
                       <input type="text" class="form-control" name="toner" id="toner" placeholder="Input Printer Toner Number">
+                  </div>    
+                  <div class="form-group va">
+                    <label for="va">UPS Capacity(KVA)</label>
+                      <input type="text" class="form-control" name="va" id="va" placeholder="Input UPS Capacity">
                   </div>  
 
-                  <div class="form-group">
+                  <div class="form-group user">
                     <label for="user">User Name</label>
                       <input type="text" class="form-control" name="user" id="user" placeholder="Enter Asset Users Name">
                   </div>
 
+                  <div class="form-group user_designation">
+                    <label for="user_designation">User Designation</label>
+                      <input type="text" class="form-control" name="user_designation" id="user_designation" placeholder="Enter Users Designation">
+                  </div>
 
-                  <div class="form-group">
+                  <div class="form-group PF">
+                    <label for="PF">PF No</label>
+                      <input type="text" class="form-control" name="PF" id="PF" placeholder="Enter Users PF Number">
+                  </div>
+
+
+                  <div class="form-group dept_id">
                     <label for="dept_id">User Department</label>
                       <select class="form-control" id="dept_id" name="dept_id">
                       <option>Select Option</option>
@@ -169,13 +190,13 @@
                     </select>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group location">
                     <label for="location">Current Location</label>
                       <input type="text" class="form-control" name="location" id="location" placeholder="Enter Current Location">
                   </div>
 
 
-                  <div class="form-group">
+                  <div class="form-group status">
                     <label for="status">Asset Status</label>
                       <select class="form-control" id="status" name="status">
                       <option>Select Option</option>
@@ -183,12 +204,20 @@
                       <option value="2">Damaged</option>
                       <option value="3">Need to Repair</option>
                     </select>
-                  </div>          
+                  </div> 
+
+
+
+
+                  <div class="form-group remarks">
+                    <label for="remarks">Remarks</label>
+                      <textarea class="form-control" name="remarks" id="remarks" placeholder=""></textarea>
+                  </div>         
 
                 </div>
                 <!-- /.card-body -->
 
-                <div class="card-footer">
+                <div class="card-footer submit">
                   <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                 </div>
               </form>
