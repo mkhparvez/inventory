@@ -79,10 +79,10 @@
                     <?php 
                       include "classes/products.php";
                       $product = new Product;
-                      // if (isset($_GET['id'])) {
-                      //   $id =$_GET['id'];
-                      //   $product->delete($id); 
-                      // }
+                      if (isset($_GET['id'])) {
+                        $id =$_GET['id'];
+                        $product->delete($id); 
+                      }
                       $obj = $product->allProduct();
                       if($obj->num_rows > 0){ $sl=1;
                         while($row = $obj->fetch_assoc()){ 

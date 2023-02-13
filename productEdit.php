@@ -140,21 +140,21 @@
                     <label for="processor">Processor Type</label>
                       <select class="form-control" id="processor" name="processor" value="<?php echo $processor?>">
                       <option><?php echo $row['processor'] ?></option>
-                      <option value="9">Core i9</option>
-                      <option value="7">Core i7</option>
-                      <option value="5">Core i5</option>
-                      <option value="3">Core i3</option>
-                      <option value="4">Pentium</option>
-                      <option value="2">Dual Core</option>
-                      <option value="8">Core 2 Duo</option>
-                      <option value="1">Celeron</option>
+                      <option value="Core i9">Core i9</option>
+                      <option value="Core i7">Core i7</option>
+                      <option value="Core i5">Core i5</option>
+                      <option value="Core i3">Core i3</option>
+                      <option value="Pentium">Pentium</option>
+                      <option value="Dual Core">Dual Core</option>
+                      <option value="Core 2 Duo">Core 2 Duo</option>
+                      <option value="Celeron">Celeron</option>
                       </select>
                   </div>
 
                   <div class="form-group ram">
                     <label for="ram">RAM Size</label>
                       <select class="form-control" id="ram" name="ram">
-                      <option><?php echo $row['ram'] ?></option>
+                      <option><?php echo $row['ram']." GB" ?></option>
                       <option value="512">512 MB</option>
                       <option value="1">1 GB</option>
                       <option value="2">2 GB</option>
@@ -195,7 +195,7 @@
 
                   <div class="form-group PF">
                     <label for="PF">PF No</label>
-                      <input type="text" class="form-control" name="PF" id="PF" placeholder="Enter Users PF Number" value="<?php echo $row['PF'] ?>">
+                      <input type="text" class="form-control" name="PF" id="PF" placeholder="Enter Users PF Number" value="<?php if($row['PF']==0){ echo "";} else {echo $row['PF'];} ?>">
                   </div>
 
 

@@ -62,7 +62,7 @@
 
         }
 
-        else if (jQuery('#product_cat').val() == 'CPU') {
+        else if (jQuery('#product_cat').val() == 'CPU' || jQuery('#product_cat').val() == 'Laptop' || jQuery('#product_cat').val() == 'POS Terminal') {
           jQuery('.mon_size').hide(); 
             jQuery('.toner').hide(); 
             jQuery('.hdd').show(); 
@@ -155,7 +155,7 @@
 
         }
 
-        else if (jQuery('#product_cat').val() == '1') {
+        else if (jQuery('#product_cat').val() == '1' || jQuery('#product_cat').val() == '2' || jQuery('#product_cat').val() == '9') {
           jQuery('.mon_size').hide(); 
             jQuery('.toner').hide(); 
             jQuery('.hdd').show(); 
@@ -195,25 +195,25 @@
 
         }
 
-        else if (jQuery('#product_cat').val() == '9') {
-          jQuery('.mon_size').hide(); 
-            jQuery('.toner').hide(); 
-            jQuery('.hdd').show(); 
-            jQuery('.processor').show(); 
-            jQuery('.va').hide(); 
-            jQuery('.ram').show(); 
-            jQuery('.brand').show(); 
-            jQuery('.model').show(); 
-            jQuery('.sl_no').show();
-            jQuery('.user').show(); 
-            jQuery('.user_designation').show(); 
-            jQuery('.PF').show(); 
-            jQuery('.dept_id').show(); 
-            jQuery('.location').show(); 
-            jQuery('.status').show(); 
-            jQuery('.remarks').show(); 
+        // else if (jQuery('#product_cat').val() == '9') {
+        //   jQuery('.mon_size').hide(); 
+        //     jQuery('.toner').hide(); 
+        //     jQuery('.hdd').show(); 
+        //     jQuery('.processor').show(); 
+        //     jQuery('.va').hide(); 
+        //     jQuery('.ram').show(); 
+        //     jQuery('.brand').show(); 
+        //     jQuery('.model').show(); 
+        //     jQuery('.sl_no').show();
+        //     jQuery('.user').show(); 
+        //     jQuery('.user_designation').show(); 
+        //     jQuery('.PF').show(); 
+        //     jQuery('.dept_id').show(); 
+        //     jQuery('.location').show(); 
+        //     jQuery('.status').show(); 
+        //     jQuery('.remarks').show(); 
 
-        }
+        // }
   
   else {
             jQuery('.mon_size').hide(); 

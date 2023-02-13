@@ -245,32 +245,32 @@ class Product
 
 
 
-          if ($product_cat == 'CPU') {
+          if ($product_cat == 'CPU' || $product_cat == '1') {
                             $product_cat = '1';
                           }
-                          elseif ($product_cat == 'Laptop') {
+                          elseif ($product_cat == 'Laptop' || $product_cat == '2') {
                             $product_cat = '2';
                           }
-                          elseif ($product_cat == 'Monitor') {
+                          elseif ($product_cat == 'Monitor' || $product_cat == '3') {
                             $product_cat = '3';
                           }
 
-                          elseif ($product_cat == 'Printer') {
+                          elseif ($product_cat == 'Printer' || $product_cat == '4') {
                             $product_cat = '4';
                           }
-                          elseif ($product_cat == 'Mouse') {
+                          elseif ($product_cat == 'Mouse' || $product_cat == '5') {
                             $product_cat = '5';
                           }
-                          elseif ($product_cat == 'Keyboard') {
+                          elseif ($product_cat == 'Keyboard' || $product_cat == '6') {
                             $product_cat = '6';
                           }
-                          elseif ($product_cat == 'UPS') {
+                          elseif ($product_cat == 'UPS' || $product_cat == '7') {
                             $product_cat = '7';
                           }
-                          elseif ($product_cat == 'Cash Drawer') {
+                          elseif ($product_cat == 'Cash Drawer' || $product_cat == '8') {
                             $product_cat = '8';
                           }
-                          elseif ($product_cat == 'POS Terminal') {
+                          elseif ($product_cat == 'POS Terminal' || $product_cat == '9') {
                             $product_cat = '9';
                           }
                           else{
