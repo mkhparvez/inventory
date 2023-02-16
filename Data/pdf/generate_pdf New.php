@@ -25,6 +25,16 @@ class PDF extends FPDF
         $this->Cell(80, 10, 'Employee List', 1, 0, 'C');
         // Line break
         $this->Ln(20);
+         // Centered text
+        $this->SetFont('Arial', 'B', 15);
+        $this->Cell(0, 10, 'Bashundhara City Development Ltd.', 0, 1, 'C');
+        // Line break
+        $this->Ln(2);
+
+        $this->SetFont('Arial', '', 10);
+        $this->Cell(0, 5, 'Panthapath, Dhaka-1215', 0, 1, 'C');
+        // Line break
+        $this->Ln(10);
     }
 
     // Page footer
@@ -46,42 +56,27 @@ $pdf->SetFont('Arial', 'B', 12);
 
 $result = $pdf->con->query("SELECT * FROM employee");
 
-// $display_heading = array('id' => 'ID', 'employee_name' => 'Name', 'employee_age' => 'Age', 'employee_salary' => 'Salary');
-
-// foreach ($display_heading as $heading) {
-//     $pdf->Cell(40, 12, $heading, 1);
-// }
-
-while($row = $result->fetch_assoc()){ 
-
-    var_dump($row);
-
-
 // Set column widths
 $column1_width = 30;
 $column2_width = 60;
 $column3_width = 40;
+$column4_width = 40;
 
 // Output table headers
 $pdf->SetFont('Arial', 'B', 12);
 $pdf->Cell($column1_width, 10, 'ID', 1, 0, 'C');
 $pdf->Cell($column2_width, 10, 'Name', 1, 0, 'C');
-$pdf->Cell($column3_width, 10, 'Age', 1, 1, 'C');
+$pdf->Cell($column3_width, 10, 'Age', 1, 0, 'C');
+$pdf->Cell($column4_width, 10, 'Salary', 1, 1, 'C');
 
 // Output table data
 $pdf->SetFont('Arial', '', 10);
-foreach ($row as $row) {
+while ($row = $result->fetch_assoc()) {
     $pdf->Cell($column1_width, 10, $row['id'], 1, 0, 'C');
-    $pdf->Cell($column2_width, 10, $row['name'], 1, 0, 'L');
-    $pdf->Cell($column3_width, 10, $row['age'], 1, 1, 'C');
+    $pdf->Cell($column2_width, 10, $row['employee_name'], 1, 0, 'L');
+    $pdf->Cell($column3_width, 10, $row['employee_age'], 1, 0, 'C');
+    $pdf->Cell($column4_width, 10, $row['employee_salary'], 1, 1, 'C');
 }
-}
-
-// while ($row = $result->fetch_assoc()) {
-//     $pdf->Ln();
-//     foreach ($row as $column)
-//         $pdf->Cell(40, 12, $column, 1);
-// }
 
 $pdf->Output();
 ?>
