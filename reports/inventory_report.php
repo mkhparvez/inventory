@@ -95,7 +95,7 @@ $pdf->AddPage();
 // $pdf->SetFont('Arial', 'B', 12);
 $sl=0;
 
-$result = $pdf->con->query("SELECT * FROM tbl_products");
+$result = $pdf->con->query("SELECT * FROM tbl_products ORDER BY `dept` ASC, `user` ASC;");
 
 
 

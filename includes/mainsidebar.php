@@ -99,6 +99,34 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <!-- <i class="nav-icon fas fa-shopping-cart"></i> -->
+              <i class="nav-icon fas fa-random"></i>
+              <p>
+                Reports
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">2</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              <li class="nav-item">
+                <a href="reports/inventory_report.php" target="_blank" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Inventory Report</p>
+                </a>
+              </li>
+
+              <!-- <li class="nav-item">
+                <a href="transfer_history.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Asset Transfer History</p>
+                </a>
+              </li> -->
+              </li>
+            </ul>
+          </li>
 
  <!--          <li class="nav-item">
             <a href="#" class="nav-link">
