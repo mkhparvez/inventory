@@ -101,8 +101,8 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <!-- <i class="nav-icon fas fa-shopping-cart"></i> -->
-              <i class="nav-icon fas fa-random"></i>
+              <i class="nav-icon fas fa-file-alt"></i>
+              <!-- <i class="nav-icon fas fa-random"></i> -->
               <p>
                 Reports
                 <i class="fas fa-angle-left right"></i>
