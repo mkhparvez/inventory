@@ -281,6 +281,11 @@ $(document).ready(function(){
 
 $(document).ready(function () {
   // Data Table
+    // $('#active_con').DataTable();
+    $('#active_con').DataTable({
+        order: [[ 2, 'asc' ], [ 3, 'asc' ]],
+    });
+
     $('#assets').DataTable();
 
     // Asset History Slowloading

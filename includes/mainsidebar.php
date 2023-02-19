@@ -128,6 +128,38 @@
             </ul>
           </li>
 
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-cubes"></i>
+              <p>
+                Internet Connections
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">2</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="addconnection.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add New Connection</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="active_con.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Active Connections</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="inactive_con.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Inactive Connections</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
  <!--          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-shopping-bag"></i>
