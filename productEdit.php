@@ -96,6 +96,27 @@
                           elseif ($row['product_cat'] == 9) {
                             $product_cat = 'POS Terminal';
                           }
+                          elseif ($row['product_cat'] == 10) {
+                            $product_cat = 'Scanner';
+                          }
+                          elseif ($row['product_cat'] == 11) {
+                            $product_cat = 'Barcode Scanner';
+                          }
+                          elseif ($row['product_cat'] == 12) {
+                            $product_cat = 'Photocopier';
+                          }
+                          elseif ($row['product_cat'] == 13) {
+                            $product_cat = 'External HDD';
+                          }
+                          elseif ($row['product_cat'] == 14) {
+                            $product_cat = 'External SSD';
+                          }
+                          elseif ($row['product_cat'] == 15) {
+                            $product_cat = 'Pendrive';
+                          }
+                          elseif ($row['product_cat'] == 16) {
+                            $product_cat = 'Camera';
+                          }
 
                ?>
  

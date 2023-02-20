@@ -175,6 +175,46 @@
 
         }
 
+        else if (jQuery('#product_cat').val() == '10' || jQuery('#product_cat').val() == '11' || jQuery('#product_cat').val() == '12' || jQuery('#product_cat').val() == '16') {
+          jQuery('.mon_size').hide(); 
+            jQuery('.toner').hide(); 
+            jQuery('.hdd').hide(); 
+            jQuery('.processor').hide(); 
+            jQuery('.va').hide(); 
+            jQuery('.ram').hide(); 
+            jQuery('.brand').show(); 
+            jQuery('.model').show(); 
+            jQuery('.sl_no').show();
+            jQuery('.user').show(); 
+            jQuery('.user_designation').show(); 
+            jQuery('.PF').show(); 
+            jQuery('.dept_id').show(); 
+            jQuery('.location').show(); 
+            jQuery('.status').show(); 
+            jQuery('.remarks').show(); 
+
+        }
+
+        else if (jQuery('#product_cat').val() == '13' || jQuery('#product_cat').val() == '14' || jQuery('#product_cat').val() == '15') {
+          jQuery('.mon_size').hide(); 
+            jQuery('.toner').hide(); 
+            jQuery('.hdd').show(); 
+            jQuery('.processor').hide(); 
+            jQuery('.va').hide(); 
+            jQuery('.ram').hide(); 
+            jQuery('.brand').show(); 
+            jQuery('.model').show(); 
+            jQuery('.sl_no').show();
+            jQuery('.user').show(); 
+            jQuery('.user_designation').show(); 
+            jQuery('.PF').show(); 
+            jQuery('.dept_id').show(); 
+            jQuery('.location').show(); 
+            jQuery('.status').show(); 
+            jQuery('.remarks').show(); 
+
+        }
+
         else if (jQuery('#product_cat').val() == '7') {
           jQuery('.mon_size').hide(); 
             jQuery('.toner').hide(); 

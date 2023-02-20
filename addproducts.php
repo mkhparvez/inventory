@@ -79,6 +79,13 @@
                       <option value="7">UPS</option>
                       <option value="8">Cash Drawer</option>
                       <option value="9">POS Terminal</option>
+                      <option value="10">Scanner</option>
+                      <option value="11">Barcode Scanner</option>
+                      <option value="12">Photocopier</option>
+                      <option value="13">External HDD</option>
+                      <option value="14">External SSD</option>
+                      <option value="15">Pendrive</option>
+                      <option value="16">Camera</option>
 
                     </select>
                   </div>

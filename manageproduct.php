@@ -129,6 +129,34 @@
                             $product_cat = 'POS Terminal';
                             $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."HDD-".$row["hdd"];
                           }
+                          elseif ($row["product_cat"] == 10) {
+                            $product_cat = 'Scanner';
+                            $spec = "N/A";
+                          }
+                          elseif ($row["product_cat"] == 11) {
+                            $product_cat = 'Barcode Scanner';
+                            $spec = "N/A";
+                          }
+                          elseif ($row["product_cat"] == 12) {
+                            $product_cat = 'Photocopier';
+                            $spec = "N/A";
+                          }
+                          elseif ($row["product_cat"] == 13) {
+                            $product_cat = 'External HDD';
+                            $spec =$row["hdd"];
+                          }
+                          elseif ($row["product_cat"] == 14) {
+                            $product_cat = 'External SSD';
+                            $spec =$row["hdd"];
+                          }
+                          elseif ($row["product_cat"] == 15) {
+                            $product_cat = 'Pendrive';
+                            $spec =$row["hdd"];
+                          }
+                          elseif ($row["product_cat"] == 16) {
+                            $product_cat = 'Camera';
+                            $spec = "N/A";
+                          }
                           else{
                             $product_cat = 'Not Defiend';
                             $spec = "";                            
