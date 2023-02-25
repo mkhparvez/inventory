@@ -49,10 +49,10 @@ class PDF extends FPDF
         $this->Ln(6);
 
         // Set column widths
-$column1_width = 25;
+$column1_width = 35;
 $column2_width = 53;
-$column3_width = 40;
-$column4_width = 20;
+$column3_width = 42;
+$column4_width = 21;
 $column5_width = 25;
 
 
@@ -62,16 +62,16 @@ $this->SetFont('Arial', 'B', 10);
 $this->Cell(12, 10, 'Sl.', 1, 0, 'C');
 $this->Cell(20, 10, 'INV-ID', 1, 0, 'C');
 $this->Cell($column3_width, 10, 'User Name', 1, 0, 'C');
-$this->Cell($column1_width, 10, 'Designation', 1, 0, 'C');
 $this->Cell(26, 10, 'Department', 1, 0, 'C');
-$this->Cell($column4_width, 10, 'PF No', 1, 0, 'C');
+$this->Cell($column1_width, 10, 'Location', 1, 0, 'C');
+// $this->Cell($column4_width, 10, 'PF No', 1, 0, 'C');
 // $this->Cell($column4_width, 10, 'Salary Unit', 1, 0, 'C');
 $this->Cell($column4_width, 10, 'Brand', 1, 0, 'C');
 $this->Cell(28, 10, 'Model', 1, 0, 'C');
 $this->Cell(50, 10, 'Serial No.', 1, 0, 'C');
 $this->Cell($column2_width, 10, 'Specification', 1, 0, 'C');
-$this->Cell(22, 10, 'Status', 1, 0, 'C');
-$this->Cell(28, 10, 'Remarks', 1, 1, 'C');
+// $this->Cell(22, 10, 'Status', 1, 0, 'C');
+$this->Cell(60, 10, 'Remarks', 1, 1, 'C');
 
 
 
@@ -192,10 +192,10 @@ else {
 
 
 // Set column widths
-$column1_width = 25;
+$column1_width = 35;
 $column2_width = 53;
-$column3_width = 40;
-$column4_width = 20;
+$column3_width = 42;
+$column4_width = 21;
 $column5_width = 25;
 
 $pdf->SetFont('Arial', '', 8.5);
@@ -204,16 +204,16 @@ $pdf->SetFont('Arial', '', 8.5);
     $pdf->Cell(12, 10, $sl, 1, 0, 'C');
     $pdf->Cell(20, 10, $row['inv_id'], 1, 0, 'C');
     $pdf->Cell($column3_width, 10, $row['user'], 1, 0, 'L');
-    $pdf->Cell($column1_width, 10, $user_designation, 1, 0, 'C');
     $pdf->Cell(26, 10, $row['dept'], 1, 0, 'C');
-    $pdf->Cell($column4_width, 10, $row['PF'], 1, 0, 'C');
+    $pdf->Cell($column1_width, 10, $row['location'], 1, 0, 'C');
+    // $pdf->Cell($column4_width, 10, $row['PF'], 1, 0, 'C');
     // $pdf->Cell($column4_width, 10, 'BCDL', 1, 0, 'C');
     $pdf->Cell($column4_width, 10, $row['brand'], 1, 0, 'C');
     $pdf->Cell(28, 10, $row['model'], 1, 0, 'C');
     $pdf->Cell(50, 10, $row['sl_no'], 1, 0, 'C');
     $pdf->Cell($column2_width, 10, $spec, 1, 0, 'C');
-    $pdf->Cell(22, 10, $status, 1, 0, 'C');
-    $pdf->Cell(28, 10, $row['remarks'], 1, 1, 'C');
+    // $pdf->Cell(22, 10, $status, 1, 0, 'C');
+    $pdf->Cell(60, 10, $row['remarks'], 1, 1, 'C');
 
     }
 

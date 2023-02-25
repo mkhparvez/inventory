@@ -87,7 +87,7 @@
             jQuery('.toner').hide(); 
             jQuery('.hdd').hide(); 
             jQuery('.processor').hide(); 
-            jQuery('.ram').show();
+            jQuery('.ram').hide();
             jQuery('.va').show(); 
             jQuery('.brand').show(); 
             jQuery('.model').show(); 
