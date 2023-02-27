@@ -208,7 +208,7 @@
               <span class="info-box-icon bg-danger elevation-1"><i class="fa-solid fa-circle-exclamation"></i></span>
 
               <div class="info-box-content">
-                <a style="color:#fff" href="reports/damaged.php">
+                <a style="color:#fff" href="reports/damaged.php" target="_blank">
                 <span class="info-box-text">Damaged</span>
                 <span class="info-box-number">
                   <?php echo $row["damaged"]; ?>
@@ -225,7 +225,7 @@
               <span class="info-box-icon bg-warning elevation-1"><i class="fa-solid fa-screwdriver-wrench"></i></span>
 
               <div class="info-box-content">
-                <a style="color:#fff" href="reports/repairable.php">
+                <a style="color:#fff" href="reports/repairable.php" target="_blank">
                 <span class="info-box-text">Need to Repair</span>
                 <span class="info-box-number">
                   <?php echo $row["repair"]; ?>

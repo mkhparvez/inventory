@@ -198,7 +198,7 @@ $column3_width = 40;
 $column4_width = 20;
 $column5_width = 25;
 
-$pdf->SetFont('Arial', '', 8.5);
+$pdf->SetFont('Arial', '', 8);
 
 
     $pdf->Cell(12, 10, $sl, 1, 0, 'C');

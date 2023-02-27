@@ -113,6 +113,7 @@
                       <option value="Core i7">Core i7</option>
                       <option value="Core i5">Core i5</option>
                       <option value="Core i3">Core i3</option>
+                      <option value="Ryzen 3">Ryzen 3</option>
                       <option value="Pentium">Pentium</option>
                       <option value="Dual Core">Dual Core</option>
                       <option value="Core 2 Duo">Core 2 Duo</option>
@@ -193,6 +194,7 @@
                       <option value="11">Security</option>
                       <option value="12">Toggi Fun World</option>
                       <option value="13">Store</option>
+                      <option value="14">Food Court</option>
                       
                     </select>
                   </div>

@@ -73,6 +73,9 @@ class Product
                           elseif ($dept_id == 13) {
                             $dept = 'Store';
                           }
+                          elseif ($dept_id == 14) {
+                            $dept = 'Food Court';
+                          }
                           else{
                             $dept = 'Not Defiend';
                           }
@@ -239,6 +242,9 @@ class Product
                           elseif ($dept == 'Store') {
                             $dept_id = 13;
                           }
+                          elseif ($dept == 'Food Court') {
+                            $dept_id = 14;
+                          }
                           else{
                             $dept_id = '0';
                           }
@@ -362,6 +368,15 @@ function transfer($allData){
                           }
                           elseif ($new_dept == 11) {
                             $newDept = 'Security';
+                          }
+                          elseif ($dept == 'Toggi Fun World') {
+                            $dept_id = 12;
+                          }
+                          elseif ($dept == 'Store') {
+                            $dept_id = 13;
+                          }
+                          elseif ($dept == 'Food Court') {
+                            $dept_id = 14;
                           }
                           else{
                             $newDept = 'Not Defiend';
