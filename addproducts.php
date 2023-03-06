@@ -186,6 +186,7 @@
                       <option value="3">Care & Clean</option>
                       <option value="4">Carparking</option>
                       <option value="5">Civil</option>
+                      <option value="5">Civil</option>
                       <option value="6">Electrical</option>
                       <option value="7">Fire</option>
                       <option value="8">IT</option>
@@ -195,6 +196,9 @@
                       <option value="12">Toggi Fun World</option>
                       <option value="13">Store</option>
                       <option value="14">Food Court</option>
+                      <option value="15">Transport</option>
+                      <option value="16">Customar Service</option>
+                      <option value="17">Branding & Mkt.</option>
                       
                     </select>
                   </div>

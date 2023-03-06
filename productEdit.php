@@ -239,6 +239,9 @@
                       <option value="Toggi Fun World">Toggi Fun World</option>
                       <option value="Store">Store</option>
                       <option value="Food Court">Food Court</option>
+                      <option value="Transport">Transport</option>
+                      <option value="Customar Service">Customar Service</option>
+                      <option value="Branding & Mkt.">Branding & Mkt.</option>
                     </select>
                   </div>
 

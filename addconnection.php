@@ -59,31 +59,31 @@
                 <div class="card-body">
 
               <?php 
-              include 'classes/products.php';
-              $product = new Product;
+              include 'classes/shop.php';
+              $shop = new Shop;
               if (isset($_POST['submit'])) {
-               echo $product->addNewProduct($_POST);
+               echo $shop->addNewConn($_POST);
               }
                ?>
 
                   <div class="form-group">
-                    <label for="product_cat">Level</label>
-                    <select class="form-control" id="product_cat" name="product_cat">
-                      <option>Select Option</option>
-                      <option value="1">Level-01</option>
-                      <option value="2">Level-02</option>
-                      <option value="3">Level-03</option>
-                      <option value="4">Level-04</option>
-                      <option value="5">Level-05</option>
-                      <option value="6">Level-06</option>
-                      <option value="7">Level-07</option>
-                      <option value="8">Level-08</option>
+                    <label for="Level">Level</label>
+                    <select class="form-control" id="Level" name="Level">
+                      <option value="">Select Option</option>
+                      <option value="L01">Level-01</option>
+                      <option value="L02">Level-02</option>
+                      <option value="L03">Level-03</option>
+                      <option value="L04">Level-04</option>
+                      <option value="L05">Level-05</option>
+                      <option value="L06">Level-06</option>
+                      <option value="L07">Level-07</option>
+                      <option value="L08">Level-08</option>
                     </select>
                   </div>
 
                   <div class="form-group">
-                    <label for="block">Block</label>
-                    <select class="form-control" id="block" name="block">
+                    <label for="Block">Block</label>
+                    <select class="form-control" id="Block" name="Block">
                       <option>Select Option</option>
                       <option value="A">Block-A</option>
                       <option value="B">Block-B</option>
@@ -97,55 +97,67 @@
                   </div>
                   <div class="form-group Shop_Name">
                     <label for="Shop_Name">Shop_Name</label>
-                    <input type="text" class="form-control" name="Shop_Name" id="Shop_Name" placeholder="Enter Shop Number">
+                    <input type="text" class="form-control" name="Shop_Name" id="Shop_Name" placeholder="Enter Shop Name">
                   </div>
                   <div class="form-group POP">
                     <label for="POP">POP</label>
-                    <input type="text" class="form-control" name="POP" id="POP" placeholder="Enter Shop Number">
+                    <input type="text" class="form-control" name="POP" id="POP" placeholder="Enter POP Name">
                   </div>
                   <div class="form-group Bandwidth">
                     <label for="Bandwidth">Bandwidth</label>
-                    <input type="text" class="form-control" name="Bandwidth" id="Bandwidth" placeholder="Enter Shop Number">
+                    <input type="text" class="form-control" name="Bandwidth" id="Bandwidth" placeholder="Enter Bandwidth Package">
                   </div>
                   <div class="form-group IP_Address">
                     <label for="IP_Address">IP_Address</label>
-                    <input type="text" class="form-control" name="IP_Address" id="IP_Address" placeholder="Enter Shop Number">
+                    <input type="text" class="form-control" name="IP_Address" id="IP_Address" placeholder="Enter IP Address">
                   </div>
                   <div class="form-group Subnet">
                     <label for="Subnet">Subnet</label>
-                    <input type="text" class="form-control" name="Subnet" id="Subnet" placeholder="Enter Shop Number">
+                    <input type="text" class="form-control" name="Subnet" id="Subnet" placeholder="Enter Subnet Mask">
                   </div>
                   <div class="form-group Gateway">
                     <label for="Gateway">Gateway</label>
-                    <input type="text" class="form-control" name="Gateway" id="Gateway" placeholder="Enter Shop Number">
+                    <input type="text" class="form-control" name="Gateway" id="Gateway" placeholder="Enter Gateway">
                   </div>
                   <div class="form-group Connection_Date">
                     <label for="Connection_Date">Connection_Date</label>
-                    <input type="text" class="form-control" name="Connection_Date" id="Connection_Date" placeholder="Enter Shop Number">
+                    <input type="text" class="form-control" name="Connection_Date" id="Connection_Date" placeholder="Enter Connection Date">
                   </div>
-                  <div class="form-group Connection_Type">
+                  <div class="form-group">
                     <label for="Connection_Type">Connection_Type</label>
-                    <input type="text" class="form-control" name="Connection_Type" id="Connection_Type" placeholder="Enter Shop Number">
+                    <select class="form-control" id="Connection_Type" name="Connection_Type">
+                      <!-- <option>Select Option</option> -->
+                      <option value="Shared">Shared</option>
+                      <option value="Dedicated">Dedicated</option>
+                    </select>
                   </div>
+
+
+                  <!-- <input type="date" value=""> -->
+
+                <!--   <div class="form-group">
+        <input type="date" class="form-control datepicker" placeholder="Select Date"/>
+                  </div> -->
+
                   <div class="form-group Bill_Month">
-                    <label for="Bill_Month">Bill_Month</label>
-                    <input type="text" class="form-control" name="Bill_Month" id="Bill_Month" placeholder="Enter Shop Number">
+                    <label for="Bill_Month">Bill Per Month (Amount)</label>
+                    <input type="text" class="form-control" name="Bill_Month" id="Bill_Month" placeholder="Enter Bill Month">
                   </div>
                   <div class="form-group ONU_MAC">
                     <label for="ONU_MAC">ONU_MAC</label>
-                    <input type="text" class="form-control" name="ONU_MAC" id="ONU_MAC" placeholder="Enter Shop Number">
+                    <input type="text" class="form-control" name="ONU_MAC" id="ONU_MAC" placeholder="Enter ONU MAC Address">
                   </div>
                   <div class="form-group ONU_Serial">
                     <label for="ONU_Serial">ONU_Serial</label>
-                    <input type="text" class="form-control" name="ONU_Serial" id="ONU_Serial" placeholder="Enter Shop Number">
+                    <input type="text" class="form-control" name="ONU_Serial" id="ONU_Serial" placeholder="Enter ONU Serial Number">
                   </div>
                   <div class="form-group TJB">
                     <label for="TJB">TJB</label>
-                    <input type="text" class="form-control" name="TJB" id="TJB" placeholder="Enter Shop Number">
+                    <input type="text" class="form-control" name="TJB" id="TJB" placeholder="Enter TJ Box Number">
                   </div>
                   <div class="form-group OLT_Port">
                     <label for="OLT_Port">OLT_Port</label>
-                    <input type="text" class="form-control" name="OLT_Port" id="OLT_Port" placeholder="Enter Shop Number">
+                    <input type="text" class="form-control" name="OLT_Port" id="OLT_Port" placeholder="Enter OLT Port Number">
                   </div>
 
                   <div class="form-group Remarks">

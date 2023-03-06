@@ -3,7 +3,7 @@
 /**
  * 
  */
-class Product 
+class Shop 
 {
 	private $con="";
 	function __construct()
@@ -12,91 +12,57 @@ class Product
 
 	}
 
-	function addNewProduct($allData){
-		$product_cat = $allData["product_cat"];
-		$brand = $allData["brand"];
-		$model = $allData["model"];
-		$sl_no = $allData["sl_no"];
-		$inv_id = $allData["inv_id"];
-		$processor = $allData["processor"];
-		$ram = $allData["ram"];
-		$hdd = $allData["hdd"];
-		$mon_size = $allData["mon_size"];
-		$toner = $allData["toner"];
-		$va = $allData["va"];;
-		$user = $allData["user"];
-		$user_designation = $allData["user_designation"];
-		$PF = $allData["PF"];
+	function addNewConn($allData){
+		$Level = $allData["Level"];
+		$Block = $allData["Block"];
+		$Shop_Number = $allData["Shop_Number"];
+		$Shop_Name = $allData["Shop_Name"];
+		$POP = $allData["POP"];
+		$Bandwidth = $allData["Bandwidth"];
+		$IP_Address = $allData["IP_Address"];
+		$Subnet = $allData["Subnet"];
+		$Gateway = $allData["Gateway"];
+		$Connection_Date = $allData["Connection_Date"];
+		$Connection_Type = $allData["Connection_Type"];;
+		$Bill_Month = $allData["Bill_Month"];
+		$ONU_MAC = $allData["ONU_MAC"];
+		$ONU_Serial = $allData["ONU_Serial"];
 		$entry_user = $_SESSION['mName'];
-		$dept_id = $allData["dept_id"];
-		$location = $allData["location"];
-		$status = $allData["status"];
-		$remarks = $allData["remarks"];
+		$TJB = $allData["TJB"];
+		$OLT_Port = $allData["OLT_Port"];
+		$Remarks = $allData["Remarks"];
+    // $status = $allData["status"];
+    date_default_timezone_set('Asia/Dhaka'); 
+      $date = date("Y-m-d H:m:s");
 
 
-						if ($dept_id == 1) {
-                            $dept = 'Admin';
-                          }
-                          elseif ($dept_id == 2) {
-                            $dept = 'Accounts';
-                          }
-                          elseif ($dept_id == 3) {
-                            $dept = 'Care & Clean';
-                          }
-                          elseif ($dept_id == 4) {
-                            $dept = 'Carparking';
-                          }
-                          elseif ($dept_id == 5) {
-                            $dept = 'Civil';
-                          }
-                          elseif ($dept_id == 6) {
-                            $dept = 'Electrical';
-                          }
-                          elseif ($dept_id == 7) {
-                            $dept = 'Fire';
-                          }
-                          elseif ($dept_id == 8) {
-                            $dept = 'IT';
-                          }
-                          elseif ($dept_id == 9) {
-                            $dept = 'Mechanical';
-                          }
-                          elseif ($dept_id == 10) {
-                            $dept = 'SCD';
-                          }
-                          elseif ($dept_id == 11) {
-                            $dept = 'Security';
-                          }
-                          elseif ($dept_id == 12) {
-                            $dept = 'Toggi Fun World';
-                          }
-                          elseif ($dept_id == 13) {
-                            $dept = 'Store';
-                          }
-                          else{
-                            $dept = 'Not Defiend';
-                          }
+						
+ if ($IP_Address == "") {
+    $field_name = "IP_Address";
+} elseif ($Subnet == "") {
+    $field_name = "Subnet Mask";
+} elseif ($Gateway == "") {
+    $field_name = "Gateway";
+} elseif ($POP == "") {
+    $field_name = "POP Location";
+} elseif ($Shop_Name== "") {
+    $field_name = "Shop_Name";
+} 
 
-         if ($product_cat=="" || $dept_id=="" || $status=="" || $location=="" || $status=="" || $inv_id== "") {
+if (isset($field_name)) {
+    return "<div class='alert alert-danger'><strong>Error:</strong> Please fill $field_name fields.</div>";
 
-         	return '<div class="alert alert-danger"><strong>Error: </strong>Please fill out all required fields.</div>';	
+} else {
+    $sql = $this->con->query("INSERT INTO shop (Level,Block,Shop_Number,Shop_Name,POP,Bandwidth,IP_Address ,Subnet,Gateway,Connection_Date,Connection_Type,Bill_Month,ONU_MAC,ONU_Serial,entry_user,TJB,OLT_Port,status,Remarks,entry_date) VALUES ('$Level','$Block','$Shop_Number','$Shop_Name','$POP','$Bandwidth','$IP_Address' ,'$Subnet','$Gateway','$Connection_Date','$Connection_Type','$Bill_Month','$ONU_MAC','$ONU_Serial','$entry_user','$TJB','$OLT_Port','1','$Remarks','$date')");
 
-         }
+    if ($sql) {
+        return '<div class="alert alert-success"><strong>Success: </strong>Asset Successfully Added</div>';
+    } 
+    else {
+        return '<div class="alert alert-danger"><strong>Failed: </strong>Product Not Added</div>';      
+    }
+}
 
-         else {
-
-
-		$sql = $this->con->query("INSERT INTO tbl_products (product_cat,brand,model,sl_no,inv_id,processor,ram ,hdd,mon_size,toner,va,user,user_designation,PF,entry_user,dept_id,dept,location,status,remarks) VALUES ('$product_cat','$brand','$model','$sl_no','$inv_id','$processor','$ram' ,'$hdd','$mon_size','$toner','$va','$user','$user_designation','$PF','$entry_user','$dept_id','$dept','$location','$status','$remarks')");
-
-
-		if ($sql) {
-			return '<div class="alert alert-success"><strong>Success: </strong>Asset Successfully Added</div>';
-		}
-
-		else {
-			return '<div class="alert alert-danger"><strong>Failed: </strong>Product Not Added</div>';			
-		}
-	}
 
 	}
 
