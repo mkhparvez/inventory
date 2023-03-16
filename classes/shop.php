@@ -66,10 +66,20 @@ if (isset($field_name)) {
 
 	}
 
-	function allProduct(){
-			$sql = $this->con->query("SELECT * FROM tbl_products");
+	function allConnection(){
+			$sql = $this->con->query("SELECT * FROM `shop` ");
 			return $sql;			
 		}
+
+  function findActive(){
+      $sql = $this->con->query("SELECT * FROM `shop` WHERE status='1' ORDER BY `Level` ASC, `Block` ASC,`Shop_Number` ASC");
+      return $sql;      
+    }
+
+  function findInactive(){
+      $sql = $this->con->query("SELECT * FROM `shop` WHERE status='0' ORDER BY `Level` ASC, `Block` ASC,`Shop_Number` ASC");
+      return $sql;      
+    }
 
 	function history($id){
 			$sql = $this->con->query("SELECT * FROM tbl_history WHERE inv_id='$id' ORDER BY id ASC");
@@ -93,15 +103,15 @@ if (isset($field_name)) {
 		}
 
 		function active($id){
-			$sql = $this->con->query("UPDATE tbl_products SET status='0' WHERE id='$id'");
+			$sql = $this->con->query("UPDATE shop SET status='0' WHERE id='$id'");
 			return $sql;
-			echo "<script>window.location.replace('manageproduct.php')</script>";		
+			echo "<script>window.location.replace('dashboard.php')</script>";		
 		}
 
 		function inactive($id){
-			$sql = $this->con->query("UPDATE tbl_products SET status='1' WHERE id='$id'");
+			$sql = $this->con->query("UPDATE shop SET status='1' WHERE id='$id'");
 			return $sql;	
-			echo "<script>window.location.replace('manageproduct.php')</script>";		
+			echo "<script>window.location.replace('dashboard.php')</script>";		
 		}
 
 		function delete($inv_id){
@@ -126,8 +136,8 @@ if (isset($field_name)) {
 			
 		}
 
-		function findProducts($id){
-			$sql = $this->con->query("SELECT * FROM tbl_products WHERE inv_id='$id'");
+		function findConn($id){
+			$sql = $this->con->query("SELECT * FROM shop WHERE id='$id'");
 			$sql = $sql->fetch_assoc();
 			return $sql;
 

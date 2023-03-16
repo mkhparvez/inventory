@@ -43,15 +43,37 @@
 
 
     <?php
-$con=mysqli_connect('localhost','root','','inventory');
-$res=mysqli_query($con,"SELECT * FROM `shop` WHERE status='0' ORDER BY `Level` ASC, `Block` ASC,`Shop_Number` ASC;");
+// $con=mysqli_connect('localhost','root','','inventory');
+// $res=mysqli_query($con,"SELECT * FROM `shop` WHERE status='0' ORDER BY `Level` ASC, `Block` ASC,`Shop_Number` ASC;");
 
-if ($res->num_rows > 0) {
-  // code...
+// if ($res->num_rows > 0) {
+//   // code...
 
+    include "classes/shop.php";
+                      $shop = new Shop;
+                      if (isset($_GET['active'])) {
+                        $id =$_GET['active'];
+                        $shop->active($id); 
+                      }
+                      if (isset($_GET['inactive'])) {
+                        $id =$_GET['inactive'];
+                        $shop->inactive($id); 
+                      }
+                      if (isset($_GET['id'])) {
+                        $id =$_GET['id'];
+                        $shop->delete($id); 
+                      }
+                      $obj = $shop->findInactive();
+                      if($obj->num_rows > 0){ $sl=1;
+                        while($row = $obj->fetch_assoc()){ 
+                          if ($row["status"] == 1) {
+                            $status = '<a href="inactive_con.php?active='.$row["id"].'" name="active" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>';
+                          }
+                          else{
+                            $status = '<a href="inactive_con.php?inactive='.$row["id"].'" name="inactive" class="btn btn-success btn-sm">Activate</a>';
+                          }
 
-
-?>
+                          ?>
 
     <table id="active_con" class="table table-dark table-responsive">
     <thead>
@@ -66,15 +88,16 @@ if ($res->num_rows > 0) {
         <th>Gateway</th>
         <th>ONU_MAC</th>
         <th>ONU_Serial</th>
-        <th>OLT_Port</th>
+        <th>OLT Port</th>
+        <th>Action</th>
         <!-- <th style="display:none;">Address</th> -->
         <!-- <th>City</th> -->
       </tr>
     </thead>
     <tbody>
       
-      <?php while($row=mysqli_fetch_assoc($res)){?>
-      <tr>
+     
+       <tr>
         <td><?php echo $row['Shop_Name']?></td>
         <td><?php echo $row['Shop_Number']?></td>
         <td><?php echo $row['Level']?></td>
@@ -86,9 +109,10 @@ if ($res->num_rows > 0) {
         <td><?php echo $row['ONU_MAC']?></td>
         <td><?php echo $row['ONU_Serial']?></td>
         <td><?php echo $row['OLT_Port']?></td>
+        <td><?php echo $status?></td>
         <!-- <td style="display:none;"><?php echo $row['sl_no']?></td> -->
       </tr>
-      <?php } ?>
+      <?php }  ?>
     </thead>
     </table>
    </div>

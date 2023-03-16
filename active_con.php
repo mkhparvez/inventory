@@ -40,7 +40,7 @@
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <div class="container" style="margin-top:50px;">
-    <table id="active_con" class="table table-dark table-responsive">
+    <table  id="active_con" class="table text-center table-dark table-responsive">
     <thead>
       <tr>
         <th>Shop Name</th>
@@ -53,17 +53,43 @@
         <th>Gateway</th>
         <th>ONU_MAC</th>
         <th>ONU_Serial</th>
-        <th>OLT_Port</th>
+        <th>OLT Port</th>
+        <th>Action</th>
         <!-- <th style="display:none;">Address</th> -->
         <!-- <th>City</th> -->
       </tr>
     </thead>
     <tbody>
       <?php
-$con=mysqli_connect('localhost','root','','inventory');
-$res=mysqli_query($con,"SELECT * FROM `shop` WHERE status='1' ORDER BY `Level` ASC, `Block` ASC,`Shop_Number` ASC;");
-?>
-      <?php while($row=mysqli_fetch_assoc($res)){?>
+
+                      include "classes/shop.php";
+                      $shop = new Shop;
+                      if (isset($_GET['active'])) {
+                        $id =$_GET['active'];
+                        $shop->active($id); 
+                      }
+                      if (isset($_GET['inactive'])) {
+                        $id =$_GET['inactive'];
+                        $shop->inactive($id); 
+                      }
+                      if (isset($_GET['id'])) {
+                        $id =$_GET['id'];
+                        $shop->delete($id); 
+                      }
+                      $obj = $shop->findActive();
+                      if($obj->num_rows > 0){ $sl=1;
+                        while($row = $obj->fetch_assoc()){ 
+                          if ($row["status"] == 1) {
+                            $status = '<a style="font-size:14px" href="active_con.php?active='.$row["id"].'" name="active" class="btn btn-warning btn-sm">
+                            Inactive</a>';
+                          }
+                          else{
+                            $status = '<a href="usercontrol.php?inactive='.$row["id"].'" name="inactive" class="btn btn-secondary btn-sm"><i class="fas fa-eye-slash"></i></a>';
+                          }
+
+                          ?>
+                        
+
       <tr>
         <td><?php echo $row['Shop_Name']?></td>
         <td><?php echo $row['Shop_Number']?></td>
@@ -76,12 +102,22 @@ $res=mysqli_query($con,"SELECT * FROM `shop` WHERE status='1' ORDER BY `Level` A
         <td><?php echo $row['ONU_MAC']?></td>
         <td><?php echo $row['ONU_Serial']?></td>
         <td><?php echo $row['OLT_Port']?></td>
+        <td><?php echo $status?> <a href="EditConn.php?id=<?php echo $row['id'];  ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a></td>
         <!-- <td style="display:none;"><?php echo $row['sl_no']?></td> -->
       </tr>
-      <?php } ?>
+      <?php }  ?>
     </thead>
     </table>
    </div>
+
+    <?php 
+   } else {
+    ?>
+  <h5 class="text-center bg-danger mt-3">Data Not Found</h5>
+
+<?php
+}
+?>
 
               </div>
               <!-- /.card-body -->
