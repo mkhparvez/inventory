@@ -87,8 +87,8 @@
 
                   <div class="form-group">
                     <label for="Block">Block</label>
-                    <select class="form-control" id="Block" name="Block">
-                      <option>Select Option</option>
+                    <select class="form-control" id="Block" name="Block"  value= <?php echo $row['Block'] ?>>
+                      <option value=""><?php echo $row['Block'] ?></option>
                       <option value="A">Block-A</option>
                       <option value="B">Block-B</option>
                       <option value="C">Block-C</option>
@@ -97,40 +97,40 @@
                   </div>
                   <div class="form-group Shop_Number">
                     <label for="Shop_Number">Shop_Number</label>
-                    <input type="text" class="form-control" name="Shop_Number" id="Shop_Number" placeholder="Enter Shop Number">
+                    <input type="text" class="form-control" name="Shop_Number" id="Shop_Number" placeholder="Enter Shop Number" value= <?php echo $row['Shop_Number'] ?>>
                   </div>
                   <div class="form-group Shop_Name">
                     <label for="Shop_Name">Shop_Name</label>
-                    <input type="text" class="form-control" name="Shop_Name" id="Shop_Name" placeholder="Enter Shop Name">
+                    <input type="text" class="form-control" name="Shop_Name" id="Shop_Name" placeholder="Enter Shop Name" value= <?php echo $row['Shop_Name'] ?>>
                   </div>
                   <div class="form-group POP">
                     <label for="POP">POP</label>
-                    <input type="text" class="form-control" name="POP" id="POP" placeholder="Enter POP Name">
+                    <input type="text" class="form-control" name="POP" id="POP" placeholder="Enter POP Name" value= <?php echo $row['POP'] ?>>
                   </div>
                   <div class="form-group Bandwidth">
                     <label for="Bandwidth">Bandwidth</label>
-                    <input type="text" class="form-control" name="Bandwidth" id="Bandwidth" placeholder="Enter Bandwidth Package">
+                    <input type="text" class="form-control" name="Bandwidth" id="Bandwidth" placeholder="Enter Bandwidth Package" value= <?php echo $row['Bandwidth'] ?>>
                   </div>
                   <div class="form-group IP_Address">
                     <label for="IP_Address">IP_Address</label>
-                    <input type="text" class="form-control" name="IP_Address" id="IP_Address" placeholder="Enter IP Address">
+                    <input type="text" class="form-control" name="IP_Address" id="IP_Address" placeholder="Enter IP Address" value= <?php echo $row['IP_Address'] ?>>
                   </div>
                   <div class="form-group Subnet">
                     <label for="Subnet">Subnet</label>
-                    <input type="text" class="form-control" name="Subnet" id="Subnet" placeholder="Enter Subnet Mask">
+                    <input type="text" class="form-control" name="Subnet" id="Subnet" placeholder="Enter Subnet Mask" value= <?php echo $row['Subnet'] ?>>
                   </div>
                   <div class="form-group Gateway">
                     <label for="Gateway">Gateway</label>
-                    <input type="text" class="form-control" name="Gateway" id="Gateway" placeholder="Enter Gateway">
+                    <input type="text" class="form-control" name="Gateway" id="Gateway" placeholder="Enter Gateway" value= <?php echo $row['Gateway'] ?>>
                   </div>
                   <div class="form-group Connection_Date">
                     <label for="Connection_Date">Connection_Date</label>
-                    <input type="text" class="form-control" name="Connection_Date" id="Connection_Date" placeholder="Enter Connection Date">
+                    <input type="text" class="form-control" name="Connection_Date" id="Connection_Date" placeholder="Enter Connection Date" value= <?php echo $row['Connection_Date'] ?>>
                   </div>
                   <div class="form-group">
                     <label for="Connection_Type">Connection_Type</label>
-                    <select class="form-control" id="Connection_Type" name="Connection_Type">
-                      <!-- <option>Select Option</option> -->
+                    <select class="form-control" id="Connection_Type" name="Connection_Type" value= <?php echo $row['Connection_Type'] ?>>
+                      <option><?php echo $row['Connection_Type'] ?></option>
                       <option value="Shared">Shared</option>
                       <option value="Dedicated">Dedicated</option>
                     </select>
@@ -145,28 +145,28 @@
 
                   <div class="form-group Bill_Month">
                     <label for="Bill_Month">Bill Per Month (Amount)</label>
-                    <input type="text" class="form-control" name="Bill_Month" id="Bill_Month" placeholder="Enter Bill Month">
+                    <input type="text" class="form-control" name="Bill_Month" id="Bill_Month" placeholder="Enter Bill Month" value= <?php echo $row['Bill_Month'] ?>>
                   </div>
                   <div class="form-group ONU_MAC">
                     <label for="ONU_MAC">ONU_MAC</label>
-                    <input type="text" class="form-control" name="ONU_MAC" id="ONU_MAC" placeholder="Enter ONU MAC Address">
+                    <input type="text" class="form-control" name="ONU_MAC" id="ONU_MAC" placeholder="Enter ONU MAC Address" value= <?php echo $row['ONU_MAC'] ?>>
                   </div>
                   <div class="form-group ONU_Serial">
                     <label for="ONU_Serial">ONU_Serial</label>
-                    <input type="text" class="form-control" name="ONU_Serial" id="ONU_Serial" placeholder="Enter ONU Serial Number">
+                    <input type="text" class="form-control" name="ONU_Serial" id="ONU_Serial" placeholder="Enter ONU Serial Number" value= <?php echo $row['ONU_Serial'] ?>>
                   </div>
                   <div class="form-group TJB">
                     <label for="TJB">TJB</label>
-                    <input type="text" class="form-control" name="TJB" id="TJB" placeholder="Enter TJ Box Number">
+                    <input type="text" class="form-control" name="TJB" id="TJB" placeholder="Enter TJ Box Number" value= <?php echo $row['TJB'] ?>>
                   </div>
                   <div class="form-group OLT_Port">
                     <label for="OLT_Port">OLT_Port</label>
-                    <input type="text" class="form-control" name="OLT_Port" id="OLT_Port" placeholder="Enter OLT Port Number">
+                    <input type="text" class="form-control" name="OLT_Port" id="OLT_Port" placeholder="Enter OLT Port Number" value= <?php echo $row['OLT_Port'] ?>>
                   </div>
 
                   <div class="form-group Remarks">
                     <label for="Remarks">Remarks</label>
-                      <textarea class="form-control" name="Remarks" id="Remarks" placeholder=""></textarea>
+                      <textarea class="form-control" name="Remarks" id="Remarks" placeholder="" value= <?php echo $row['Remarks'] ?>></textarea>
                   </div>         
 
                 </div>
