@@ -154,6 +154,13 @@
                       <option value="9">Mechanical</option>
                       <option value="10">SCD</option>
                       <option value="11">Security</option>
+                      <option value="12">Toggi Fun World</option>
+                      <option value="13">Store</option>
+                      <option value="14">Food Court</option>
+                      <option value="15">Transport</option>
+                      <option value="16">Customar Service</option>
+                      <option value="17">Branding & Mkt.</option>
+                      <option value="20">No Department</option>
                     </select>
                   </div>
 
@@ -170,6 +177,7 @@
                       <option value="1">Workable</option>
                       <option value="2">Damaged</option>
                       <option value="3">Need to Repair</option>
+                      <option value="4">Scrap</option>
                     </select>
                   </div>
 

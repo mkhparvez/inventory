@@ -125,6 +125,13 @@
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a href="reports/scrap.php" target="_blank" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Scrap Asset Report</p>
+                </a>
+              </li>
+
               <!-- <li class="nav-item">
                 <a href="transfer_history.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

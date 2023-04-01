@@ -104,7 +104,7 @@ class Product
 	}
 
 	function allProduct(){
-			$sql = $this->con->query("SELECT * FROM tbl_products");
+			$sql = $this->con->query("SELECT * FROM tbl_products WHERE status IN ('1','2','3');");
 			return $sql;			
 		}
 
@@ -369,18 +369,32 @@ function transfer($allData){
                           elseif ($new_dept == 11) {
                             $newDept = 'Security';
                           }
-                          elseif ($dept == 'Toggi Fun World') {
-                            $dept_id = 12;
+                          elseif ($new_dept == 12) {
+                            $newDept = 'Toggi Fun World';
                           }
-                          elseif ($dept == 'Store') {
-                            $dept_id = 13;
+                          elseif ($new_dept == 13) {
+                            $newDept = 'Store';
                           }
-                          elseif ($dept == 'Food Court') {
-                            $dept_id = 14;
+                          elseif ($new_dept == 14) {
+                            $newDept = 'Food Court';
+                          }
+                          elseif ($new_dept == 15) {
+                            $newDept = 'Transport';
+                          }
+                          elseif ($new_dept == 16) {
+                            $newDept = 'Customar Service';
+                          }
+                          elseif ($new_dept == 17) {
+                            $newDept = 'Branding & Mkt.';
+                          }
+                          elseif ($new_dept == 20) {
+                            $newDept = 'No Department';
                           }
                           else{
                             $newDept = 'Not Defiend';
                           }
+
+           
 
 
          if ($new_user=="" || $new_dept=="" || $newDept=="" || $new_location=="" || $status=="" || $inv_id== "") {
@@ -394,7 +408,10 @@ function transfer($allData){
          	$sql = $this->con->query("UPDATE tbl_products SET user = '$new_user', dept_id = '$new_dept', dept = '$newDept', location = '$new_location', status = '$status' WHERE inv_id='$inv_id'");
 
 
-        $sql = $this->con->query("INSERT INTO tbl_history (inv_id ,curr_user,pre_user,curr_loc,pre_loc,remarks,entry_user,trnsfr_date) VALUES ('$inv_id ','$new_user','$user','$new_location','$location','$remarks','$entry_user','$date')");
+
+
+
+        $sql = $this->con->query("INSERT INTO tbl_history (inv_id ,curr_user,pre_user,curr_dept,pre_dept,curr_loc,pre_loc,remarks,entry_user,trnsfr_date) VALUES ('$inv_id ','$new_user','$user','$newDept','$dept','$new_location','$location','$remarks','$entry_user','$date')");
         // $sql = $this->history($inv_id,$new_user,$user,$new_location,$location,$remarks,$entry_user,$date);
 
 			echo "<script>window.location.replace('manageproduct.php')</script>";
