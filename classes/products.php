@@ -104,7 +104,7 @@ class Product
 	}
 
 	function allProduct(){
-			$sql = $this->con->query("SELECT * FROM tbl_products WHERE status IN ('1','2','3');");
+			$sql = $this->con->query("SELECT * FROM tbl_products WHERE status !='4';");
 			return $sql;			
 		}
 
@@ -403,18 +403,33 @@ function transfer($allData){
 
          }
 
-         else {
+  else {
 
-         	$sql = $this->con->query("UPDATE tbl_products SET user = '$new_user', dept_id = '$new_dept', dept = '$newDept', location = '$new_location', status = '$status' WHERE inv_id='$inv_id'");
+         if ($status == '4') {
+
+          $sql = $this->con->query("UPDATE tbl_products SET user = '$new_user', dept_id = '$new_dept', dept = '$newDept', location = '$new_location', status = '$status' WHERE inv_id='$inv_id'");
+
+
+        $sql = $this->con->query("INSERT INTO tbl_history (inv_id, curr_user, pre_user, curr_dept, pre_dept, curr_loc, pre_loc, remarks, entry_user, trnsfr_date,scrap) VALUES ('$inv_id', '$new_user', '$user', '$new_dept', '$dept', '$new_location', '$location', '$remarks', '$entry_user', '$date','1')");
+        // return '<div class="alert alert-warning"><strong>Warning: </strong>Asset transfer failed because status is 4</div>';
+    
+    }
+
+
+    else {
+
+  $sql = $this->con->query("UPDATE tbl_products SET user = '$new_user', dept_id = '$new_dept', dept = '$newDept', location = '$new_location', status = '$status' WHERE inv_id='$inv_id'");
 
 
 
-
-
-        $sql = $this->con->query("INSERT INTO tbl_history (inv_id ,curr_user,pre_user,curr_dept,pre_dept,curr_loc,pre_loc,remarks,entry_user,trnsfr_date) VALUES ('$inv_id ','$new_user','$user','$newDept','$dept','$new_location','$location','$remarks','$entry_user','$date')");
+  $sql = $this->con->query("INSERT INTO tbl_history (inv_id ,curr_user,pre_user,curr_dept,pre_dept,curr_loc,pre_loc,remarks,entry_user,trnsfr_date,scrap) VALUES ('$inv_id ','$new_user','$user','$newDept','$dept','$new_location','$location','$remarks','$entry_user','$date','0')");
         // $sql = $this->history($inv_id,$new_user,$user,$new_location,$location,$remarks,$entry_user,$date);
 
-			echo "<script>window.location.replace('manageproduct.php')</script>";
+      echo "<script>window.location.replace('manageproduct.php')</script>";
+
+    }
+
+  }
 
 
 
@@ -426,14 +441,13 @@ function transfer($allData){
 			return '<div class="alert alert-danger"><strong>Error: </strong>Asset Transfer Failed</div>';			
 		}
 
-         }
+         
 
-        
+
 			
 			
-		}
 
-
+}
 
 		}
  ?>

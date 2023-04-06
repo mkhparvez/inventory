@@ -52,9 +52,10 @@
         <th>Subnet</th>
         <th>Gateway</th>
         <th>ONU_MAC</th>
+        <th>Action</th>
+        <th>Edit</th>
         <th>ONU_Serial</th>
         <th>OLT Port</th>
-        <th>Action</th>
         <!-- <th style="display:none;">Address</th> -->
         <!-- <th>City</th> -->
       </tr>
@@ -100,9 +101,11 @@
         <td><?php echo $row['Subnet']?></td>
         <td><?php echo $row['Gateway']?></td>
         <td><?php echo $row['ONU_MAC']?></td>
+        <td><?php echo $status?> </td>
+
+        <td><a href="EditConn.php?id=<?php echo $row['id'];  ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a></td>
         <td><?php echo $row['ONU_Serial']?></td>
         <td><?php echo $row['OLT_Port']?></td>
-        <td><?php echo $status?> <a href="EditConn.php?id=<?php echo $row['id'];  ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a></td>
         <!-- <td style="display:none;"><?php echo $row['sl_no']?></td> -->
       </tr>
       <?php }  ?>

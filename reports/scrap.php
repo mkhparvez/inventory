@@ -101,7 +101,7 @@ $sl=0;
 
 $result = $pdf->con->query("SELECT h.*,p.*, p.remarks as product_remarks, h.remarks as history_remarks
 FROM tbl_history  h 
-JOIN tbl_products p ON h.inv_id = p.inv_id WHERE status='4'
+JOIN tbl_products p ON h.inv_id = p.inv_id WHERE status='4' and scrap='1' 
 ORDER BY h.trnsfr_date ASC, h.inv_id, h.curr_user, h.pre_user ASC;");
 
 
