@@ -121,7 +121,7 @@
                   </div>
                   <div class="form-group Connection_Date">
                     <label for="Connection_Date">Connection_Date</label>
-                    <input type="text" class="form-control" name="Connection_Date" id="Connection_Date" placeholder="Enter Connection Date">
+                    <input type="date" class="form-control" name="Connection_Date" id="Connection_Date" placeholder="Enter Connection Date">
                   </div>
                   <div class="form-group">
                     <label for="Connection_Type">Connection_Type</label>

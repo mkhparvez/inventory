@@ -68,12 +68,61 @@
               $obj = $shop->findConn($id);
               $row = $obj;
 
+              if ($row['Level'] == 'L01') {
+                            $Level = 'Level-01';
+                          }
+                          elseif ($row['Level'] == 'L02') {
+                             $Level = 'Level-02';
+                          }
+                          elseif ($row['Level'] == 'L03') {
+                             $Level = 'Level-03';
+                          }
+                          elseif ($row['Level'] == 'L03') {
+                             $Level = 'Level-03';
+                          }
+                          elseif ($row['Level'] == 'L04') {
+                             $Level = 'Level-04';
+                          }
+                          elseif ($row['Level'] == 'L05') {
+                             $Level = 'Level-05';
+                          }
+                          elseif ($row['Level'] == 'L06') {
+                             $Level = 'Level-06';
+                          }
+                          elseif ($row['Level'] == 'L07') {
+                             $Level = 'Level-07';
+                          }
+                          elseif ($row['Level'] == 'L08') {
+                             $Level = 'Level-08';
+                          }
+                          else {
+                            $Level = 'Not Defiend';
+                          }
+
+
+
+                 if ($row['Block'] == 'A') {
+                            $Block = 'Block-A';
+                          }
+                          elseif ($row['Block'] == 'B') {
+                             $Block = 'Block-B';
+                          }
+                          elseif ($row['Block'] == 'C') {
+                             $Block = 'Block-C';
+                          }
+                          elseif ($row['Block'] == 'D') {
+                             $Block = 'Block-D';
+                          }
+                          else {
+                             $Block = 'Undefined';
+                          }
+
                ?>
 
                   <div class="form-group">
                     <label for="Level">Level</label>
-                    <select class="form-control" id="Level" name="Level" value= <?php echo $row['Level'] ?>>
-                      <option value=""><?php echo $row['Level'] ?></option>
+                    <select class="form-control" id="Level" name="Level" value= <?php echo $Level ?>>
+                      <option value=""><?php echo $Level ?></option>
                       <option value="L01">Level-01</option>
                       <option value="L02">Level-02</option>
                       <option value="L03">Level-03</option>
@@ -87,8 +136,8 @@
 
                   <div class="form-group">
                     <label for="Block">Block</label>
-                    <select class="form-control" id="Block" name="Block"  value= <?php echo $row['Block'] ?>>
-                      <option value=""><?php echo $row['Block'] ?></option>
+                    <select class="form-control" id="Block" name="Block"  value= <?php echo $Block ?>>
+                      <option value=""><?php echo $Block ?></option>
                       <option value="A">Block-A</option>
                       <option value="B">Block-B</option>
                       <option value="C">Block-C</option>
@@ -125,7 +174,7 @@
                   </div>
                   <div class="form-group Connection_Date">
                     <label for="Connection_Date">Connection_Date</label>
-                    <input type="text" class="form-control" name="Connection_Date" id="Connection_Date" placeholder="Enter Connection Date" value= <?php echo $row['Connection_Date'] ?>>
+                    <input type="date" class="form-control" name="Connection_Date" id="Connection_Date" placeholder="Enter Connection Date" value= <?php echo $row['Connection_Date'] ?>>
                   </div>
                   <div class="form-group">
                     <label for="Connection_Type">Connection_Type</label>

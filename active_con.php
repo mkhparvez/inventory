@@ -82,7 +82,7 @@
                         while($row = $obj->fetch_assoc()){ 
                           if ($row["status"] == 1) {
                             $status = '<a style="font-size:14px" href="active_con.php?active='.$row["id"].'" name="active" class="btn btn-warning btn-sm">
-                            Inactive</a>';
+                            Deactive</a>';
                           }
                           else{
                             $status = '<a href="usercontrol.php?inactive='.$row["id"].'" name="inactive" class="btn btn-secondary btn-sm"><i class="fas fa-eye-slash"></i></a>';

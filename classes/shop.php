@@ -143,143 +143,38 @@ if (isset($field_name)) {
 
 		}
 
-		function updateProduct($allData, $id){
-			// $name = $allData["name"];
-			// $des = $allData["des"];
-			// $size = $allData["size"];
-			// $color = $allData["color"];
-			// $barcode = $allData["barcode"];
-			// $costPrice = $allData["costPrice"];
-			// $salePrice = $allData["salePrice"];
-
-			// $sql = $this->con->query("UPDATE tbl_products SET name = '$name', des = '$des', size = '$size', color = '$color', barcode = '$barcode', costPrice = '$costPrice', salePrice = '$salePrice' WHERE inv_id='$id'");
-
-		
-		$product_cat = $allData["product_cat"];
-		$brand = $allData["brand"];
-		$model = $allData["model"];
-		$sl_no = $allData["sl_no"];
-		$inv_id = $allData["inv_id"];
-		$processor = $allData["processor"];
-		$ram = $allData["ram"];
-		$hdd = $allData["hdd"];
-		$mon_size = $allData["mon_size"];
-		$toner = $allData["toner"];
-		$va = $allData["va"];;
-		$user = $allData["user"];
-		$user_designation = $allData["user_designation"];
-		$PF = $allData["PF"];
-		$entry_user = $_SESSION['mName'];
-		$dept = $allData["dept"];
-		$location = $allData["location"];
-		$status = $allData["status"];
-		$remarks = $allData["remarks"];
+		function updateCon($allData, $id){
 
 
-						if ($dept == 'Admin') {
-                            $dept_id = 1;
-                          }
-                          elseif ($dept == 'Accounts') {
-                            $dept_id = 2;
-                          }
-                          elseif ($dept == 'Care & Clean') {
-                            $dept_id = 3;
-                          }
-                          elseif ($dept == 'Carparking') {
-                            $dept_id = 4;
-                          }
-                          elseif ($dept == 'Civil') {
-                            $dept_id = 5;
-                          }
-                          elseif ($dept == 'Electrical') {
-                            $dept_id = 6;
-                          }
-                          elseif ($dept == 'Fire') {
-                            $dept_id = 7;
-                          }
-                          elseif ($dept == 'IT') {
-                            $dept_id = 8;
-                          }
-                          elseif ($dept == 'Mechanical') {
-                            $dept_id = 9;
-                          }
-                          elseif ($dept == 'SCD') {
-                            $dept_id = 10;
-                          }
-                          elseif ($dept == 'Security') {
-                            $dept_id = 11;
-                          }
-                          elseif ($dept == 'Toggi Fun World') {
-                            $dept_id = 12;
-                          }
-                          elseif ($dept == 'Store') {
-                            $dept_id = 13;
-                          }
-                          else{
-                            $dept_id = '0';
-                          }
-
-
-
-          if ($product_cat == 'CPU' || $product_cat == '1') {
-                            $product_cat = '1';
-                          }
-                          elseif ($product_cat == 'Laptop' || $product_cat == '2') {
-                            $product_cat = '2';
-                          }
-                          elseif ($product_cat == 'Monitor' || $product_cat == '3') {
-                            $product_cat = '3';
-                          }
-
-                          elseif ($product_cat == 'Printer' || $product_cat == '4') {
-                            $product_cat = '4';
-                          }
-                          elseif ($product_cat == 'Mouse' || $product_cat == '5') {
-                            $product_cat = '5';
-                          }
-                          elseif ($product_cat == 'Keyboard' || $product_cat == '6') {
-                            $product_cat = '6';
-                          }
-                          elseif ($product_cat == 'UPS' || $product_cat == '7') {
-                            $product_cat = '7';
-                          }
-                          elseif ($product_cat == 'Cash Drawer' || $product_cat == '8') {
-                            $product_cat = '8';
-                          }
-                          elseif ($product_cat == 'POS Terminal' || $product_cat == '9') {
-                            $product_cat = '9';
-                          }
-                          else{
-                            $product_cat = 'Not Defiend';
-                          }
-
-
-       if ($status == 'Useable') {
-                            $status = '1';
-                          }
-                          elseif ($status == 'Damaged') {
-                            $status = '2';
-                          }
-                          elseif ($status == 'Need to Repair') {
-                            $status = '3';
-                          }
-                          else{
-                            $status = 'Not Defiend';
-                          }
+		$Level = $allData["Level"];
+    $Block = $allData["Block"];
+    $Shop_Number = $allData["Shop_Number"];
+    $Shop_Name = $allData["Shop_Name"];
+    $POP = $allData["POP"];
+    $Bandwidth = $allData["Bandwidth"];
+    $IP_Address = $allData["IP_Address"];
+    $Subnet = $allData["Subnet"];
+    $Gateway = $allData["Gateway"];
+    $Connection_Date = $allData["Connection_Date"];
+    $Connection_Type = $allData["Connection_Type"];;
+    $Bill_Month = $allData["Bill_Month"];
+    $ONU_MAC = $allData["ONU_MAC"];
+    $ONU_Serial = $allData["ONU_Serial"];
+    $entry_user = $_SESSION['mName'];
+    $TJB = $allData["TJB"];
+    $OLT_Port = $allData["OLT_Port"];
+    $Remarks = $allData["Remarks"];
+    // $status = $allData["status"];
+    date_default_timezone_set('Asia/Dhaka'); 
+      $date = date("Y-m-d H:m:s");
 
 
 
 
 
+        $sql = $this->con->query("UPDATE shop SET Level = '$Level', Block = '$Block', Shop_Number = '$Shop_Number', Shop_Name = '$Shop_Name', POP = '$POP', Bandwidth = '$Bandwidth', IP_Address = '$IP_Address', Subnet = '$Subnet', Gateway = '$Gateway', Connection_Date = '$Connection_Date', Connection_Type = '$Connection_Type', Bill_Month = '$Bill_Month', ONU_MAC = '$ONU_MAC', ONU_Serial = '$ONU_Serial', entry_user = '$entry_user', TJB = '$TJB', OLT_Port = '$OLT_Port', Remarks = '$Remarks', updateDate = '$date' WHERE id='$id'");
 
-
-
-
-        $sql = $this->con->query("UPDATE tbl_products SET product_cat = '$product_cat', brand = '$brand', model = '$model', sl_no = '$sl_no', processor = '$processor', ram = '$ram', hdd = '$hdd', mon_size = '$mon_size', toner = '$toner', va = '$va', user = '$user', user_designation = '$user_designation', PF = '$PF', dept_id = '$dept_id', dept = '$dept', location = '$location', status = '$status', remarks = '$remarks' WHERE inv_id='$id'");
-
-
-
-			echo "<script>window.location.replace('manageproduct.php')</script>";
+			echo "<script>window.location.replace('active_con.php')</script>";
 			
 		}
 
