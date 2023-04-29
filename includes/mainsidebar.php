@@ -166,6 +166,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="reports/active_conncetion.php" target="_blank" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Connection Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="inactive_con.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Inactive Connections</p>

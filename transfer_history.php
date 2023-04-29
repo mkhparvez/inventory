@@ -122,7 +122,8 @@
 
 
         <th><?php echo $product_cat." : ".$row['brand']." ".$row['model']?></th>
-        
+
+        <td class="bg-secondary"><?php echo $his_row['pre_user']." "."(".$row['dept'].")"."&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;"."Date: ".$date?></td>        
         
       </tr>
     </thead>
@@ -137,8 +138,15 @@
         ?>
 
         <tr>
-          <td><i class="fas fa-arrow-circle-down text-info h2"></i></td>
+        
         </tr>
+
+        <tr>
+
+          <td><i class="fas fa-arrow-circle-down text-info h2"></i></td>
+
+        </tr>
+        
       <tr>
 
         <td class="bg-secondary"><?php echo $his_row['curr_user']." "."(".$row['dept'].")"."&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;"."Date: ".$date?></td>

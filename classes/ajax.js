@@ -296,10 +296,63 @@ jQuery(document).ready(function() {
 				"inv_id":inv_id
 			},
 			success:function(response) {
-				jQuery("#sl_no").val(response.sl_no);
-				jQuery("#user").val(response.user);
-				jQuery("#dept").val(response.dept);
-				jQuery("#location").val(response.location);
+
+
+				if (response.product_cat == 1) {
+    var spec = `Processor: ${response.processor}, RAM: ${response.ram}GB, HDD: ${response.hdd}`;
+    var product_cat = 'CPU';
+}
+else if (response.product_cat == 2) {
+    var product_cat = 'Laptop';
+    var spec = response.processor + ", RAM-" + response.ram + "GB, HDD-" + response.hdd;
+}
+else if (response.product_cat == 3) {
+    var product_cat = 'Monitor';
+    var spec = response.mon_size + '"';
+}
+else if (response.product_cat == 4) {
+    var product_cat = 'Printer';
+    var spec = "";
+}
+else if (response.product_cat == 5) {
+    var product_cat = 'Mouse';
+    var spec = "";
+}
+else if (response.product_cat == 6) {
+    var product_cat = 'Keyboard';
+    var spec = "";                            
+}
+else if (response.product_cat == 7) {
+    var product_cat = 'UPS';
+    var spec = response.va + "VA";
+}
+else if (response.product_cat == 8) {
+    var product_cat = 'Cash Drawer';
+    var spec = "N/A";                            
+}
+else if (response.product_cat == 9) {
+    var product_cat = 'POS Terminal';
+    var spec = response.processor + ", RAM-" + response.ram + "GB, HDD-" + response.hdd;
+}
+
+if (response.product_cat == '1' || response.product_cat == '2') {
+    jQuery("#brand").val(response.brand);
+    jQuery("#model").val(response.model);
+    jQuery("#sl_no").val(response.sl_no);
+    jQuery("#spec").val(spec);
+    jQuery("#user").val(response.user);
+    jQuery("#dept").val(response.dept);
+    jQuery("#location").val(response.location);
+}
+else {
+    jQuery("#brand").val(response.brand);
+    jQuery("#model").val(response.model);
+    jQuery("#sl_no").val(response.sl_no);
+    jQuery("#spec").val(product_cat);
+    jQuery("#user").val(response.user);
+    jQuery("#dept").val(response.dept);
+    jQuery("#location").val(response.location);
+}
 			}
 		})
 	});
