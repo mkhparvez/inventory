@@ -123,7 +123,23 @@
 
         <th><?php echo $product_cat." : ".$row['brand']." ".$row['model']?></th>
 
-        <td class="bg-secondary"><?php echo $his_row['pre_user']." "."(".$row['dept'].")"."&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;"."Date: ".$date?></td>        
+         <?php
+        $obj = $product->history($inv_id,1);
+          if($obj->num_rows > 0){
+           $his_row_p = $obj->fetch_assoc();{
+              $datetime = $his_row_p['trnsfr_date'];
+              $date = date('d-M-Y',strtotime($datetime));
+
+        ?>
+
+        <tr>
+          <td class="bg-secondary"><?php echo $his_row_p['pre_user']." "."(".$his_row_p['pre_dept'].")"."&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;"."Date: ".$date?></td>
+        </tr>
+
+        <?php
+      } }
+      ?>
+        
         
       </tr>
     </thead>
@@ -138,18 +154,20 @@
         ?>
 
         <tr>
-        
-        </tr>
-
-        <tr>
 
           <td><i class="fas fa-arrow-circle-down text-info h2"></i></td>
 
         </tr>
+
+        <tr>
+        <td class="bg-secondary"><?php echo $his_row['curr_user']." "."(".$his_row['curr_dept'].")"."&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;"."Date: ".$date?></td>
+        </tr>
+
+        
         
       <tr>
 
-        <td class="bg-secondary"><?php echo $his_row['curr_user']." "."(".$row['dept'].")"."&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;"."Date: ".$date?></td>
+        
         
               </tr>
       <?php }

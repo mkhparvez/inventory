@@ -449,5 +449,74 @@ function transfer($allData){
 
 }
 
+
+  function g_pass($id){
+      $sql = $this->con->query("SELECT * FROM `tbl_gpass` WHERE gp_id='$id' ORDER BY id ASC");
+      return $sql;      
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  function addItem($pdate, $gp_id, $inv_id, $brand, $model, $sl_no, $spec){
+
+    if ($pdate=="" || $gp_id=="" || $inv_id=="" || $brand=="" || $model=="" || $sl_no== "") {
+
+      return "400";
+    }
+
+    else {
+      $sql = $this->con->query("INSERT INTO tbl_gpass (pdate, gp_id, inv_id, brand, model, sl_no, spec) VALUES ('$pdate', '$gp_id', '$inv_id','$brand', '$model', '$sl_no', '$spec')");
+    // $sql = $this->stockupdateInsert($product_id,$qnt,$br_id);
+
+
+    if ($sql) {
+      return "200";
+    }
+    else{
+      return "400";
+    }
+
+    }
+
+  }
+
+
+
+  function showItem($gp_id){
+    $sql = $this->con->query("SELECT * FROM tbl_gpass WHERE gp_id = '$gp_id'");
+    return $sql;
+
+  }
+
+
+
+  function removeItem($id){
+    $sql = $this->con->query("DELETE FROM tbl_gpass WHERE id = '$id'");
+    return $sql;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 		}
  ?>

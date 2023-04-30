@@ -285,6 +285,7 @@ jQuery(document).ready(function() {
 		var inv_id = jQuery(this).val();
 		var action = "findProduct";
 		var history = "history";
+
 		// console.log(inv_id);
 		$.ajax ({
 			url:"classes/ajax.php",
@@ -358,6 +359,90 @@ else {
 	});
 
 
+
+	jQuery(document).on("click", ".addItem", function(){
+		var pdate = jQuery("#pdate").val();
+		var gp_id = jQuery("#gp_id").val();
+		var inv_id = jQuery("#inv_id").val();
+		var brand = jQuery("#brand").val();
+		var model = jQuery("#model").val();
+		var sl_no = jQuery("#sl_no").val();
+		var spec = jQuery("#spec").val();
+		
+		$.ajax({
+			url: "././classes/ajax.php",
+			type: "POST",
+			data: {
+				'pdate':pdate,
+				'gp_id':gp_id,
+				'inv_id':inv_id,
+				'brand':brand,
+				'model':model,
+				'sl_no':sl_no,
+				'spec':spec,
+				'action': "addItem" 
+			},
+
+			success: function(response) {
+				if (response=="200") {
+					showItem();
+					// qntCal();
+					// amountCal();
+					alert("Item Added");
+				}
+				else {
+					alert ("Something went wrong");
+				}
+			}
+		})
+	});
+
+
+
+	function showItem(){
+		var gp_id = jQuery("#gp_id").val();
+		var action = "showItem";
+
+		$.ajax({
+			url: "././classes/ajax.php",
+			type: "POST",
+			data: {
+				'gp_id':gp_id,
+				'action':action
+			},
+			success:function(response){
+				jQuery(".tdata").html(response);
+			}
+		});
+	}
+
+
+	jQuery(document).on("click", ".removeItem", function(){
+		var id = jQuery(this).val();
+		var action = "removeItem";
+
+		$.ajax({
+			url: "././classes/ajax.php",
+			type: "POST",
+			data: {
+				"id": id,
+				"action": action
+			},
+			success:function(response){
+				showItem();
+				alert("Item Removed");
+
+			}
+		})
+
+	})
+
+
+
+
 });
+
+
+
 
 
