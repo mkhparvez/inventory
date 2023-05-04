@@ -458,21 +458,11 @@ function transfer($allData){
 
 
 
-
-
-
-
-
-
-
-
-
-
-  function addItem($pdate, $gp_id, $inv_id, $brand, $model, $sl_no, $spec){
+function addItem($pdate, $gp_id, $inv_id, $brand, $model, $sl_no, $spec){
 
     if ($pdate=="" || $gp_id=="" || $inv_id=="" || $brand=="" || $model=="" || $sl_no== "") {
 
-      return "400";
+      return json_encode(array("status" => "error", "message" => "Missing required fields"));
     }
 
     else {
@@ -481,15 +471,40 @@ function transfer($allData){
 
 
     if ($sql) {
-      return "200";
+      return json_encode(array("status" => "success", "message" => "Item added successfully"));
     }
     else{
-      return "400";
+      return json_encode(array("status" => "error", "message" => "Failed to add item"));
     }
 
     }
 
-  }
+}
+
+
+
+  // function addItem($pdate, $gp_id, $inv_id, $brand, $model, $sl_no, $spec){
+
+  //   if ($pdate=="" || $gp_id=="" || $inv_id=="" || $brand=="" || $model=="" || $sl_no== "") {
+
+  //     return "400";
+  //   }
+
+  //   else {
+  //     $sql = $this->con->query("INSERT INTO tbl_gpass (pdate, gp_id, inv_id, brand, model, sl_no, spec) VALUES ('$pdate', '$gp_id', '$inv_id','$brand', '$model', '$sl_no', '$spec')");
+  //   // $sql = $this->stockupdateInsert($product_id,$qnt,$br_id);
+
+
+  //   if ($sql) {
+  //     return "200";
+  //   }
+  //   else{
+  //     return "400";
+  //   }
+
+  //   }
+
+  // }
 
 
 

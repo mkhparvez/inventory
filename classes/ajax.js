@@ -383,17 +383,30 @@ else {
 				'action': "addItem" 
 			},
 
-			success: function(response) {
-				if (response=="200") {
-					showItem();
-					// qntCal();
-					// amountCal();
-					alert("Item Added");
-				}
-				else {
-					alert ("Something went wrong");
-				}
-			}
+			// success: function(response) {
+			// 	if (response=="200") {
+			// 		showItem();
+			// 		// qntCal();
+			// 		// amountCal();
+			// 		alert("Item Added");
+			// 	}
+			// 	else {
+			// 		alert ("Something went wrong");
+			// 	}
+			// }
+
+
+	success: function(response) {
+    var data = JSON.parse(response);
+    if (data.status === "success") {
+        showItem();
+        alert(data.message);
+    }
+    else {
+        alert(data.message);
+    }
+}
+
 		})
 	});
 
