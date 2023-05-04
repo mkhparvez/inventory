@@ -451,6 +451,19 @@ else {
 	})
 
 
+	 $(document).ready(function() {
+        $('#gp_id').on('input', function() {
+            var gp_id = $(this).val();
+            var url = 'reports/gate_pass.php?id=' + gp_id;
+            $('#print-btn').attr('href', url);
+        });
+    });
+
+
+
+
+
+
 
 
 });

@@ -117,9 +117,7 @@ $pdf->AddPage();
 // $pdf->SetFont('Arial', 'B', 12);
 $sl=0;
 
-$result = $pdf->con->query("SELECT * FROM tbl_products ORDER BY `dept` ASC, `user` ASC;");
-
-
+$result = $pdf->con->query("SELECT * FROM `tbl_gpass` WHERE gp_id='2/23';");
 
 
 
@@ -138,7 +136,7 @@ $result = $pdf->con->query("SELECT * FROM tbl_products ORDER BY `dept` ASC, `use
 // $pdf->Cell($column4_width, 10, 'Status', 1, 0, 'C');
 // $pdf->Cell($column4_width, 10, 'Remarks', 1, 1, 'C');
 
-// Output table data
+// // Output table data
 // while ($row = $result->fetch_assoc()) {
 //    $sl++;
 
@@ -226,13 +224,57 @@ $column5_width = 25;
 
 
 
+// $pdf->SetFont('Arial', '', 8.5);
+// $pdf->Cell(15, 60, 'SL. NO', 1, 0, 'C');
+// $pdf->Cell(50, 60, 'DESCRIPTION', 1, 0, 'T');
+// $pdf->Cell($column3_width, 60, 'QUANTITY', 1, 0, 'C');
+// $pdf->Cell($column1_width, 60, 'FROM', 1, 0, 'C');
+// $pdf->Cell($column1_width, 60, 'TO', 1, 0, 'C');
+// $pdf->Cell(26, 60, 'Remarks', 1, 1, 'C');
+
+
+// Output table data
+$row = $result->fetch_assoc(); {
+   $sl++;
+
+
+
+
 $pdf->SetFont('Arial', '', 8.5);
-$pdf->Cell(15, 60, 'SL. NO', 1, 0, 'C');
-$pdf->Cell(50, 60, 'DESCRIPTION', 1, 0, 'T');
-$pdf->Cell($column3_width, 60, 'QUANTITY', 1, 0, 'C');
-$pdf->Cell($column1_width, 60, 'FROM', 1, 0, 'C');
-$pdf->Cell($column1_width, 60, 'TO', 1, 0, 'C');
-$pdf->Cell(26, 60, 'Remarks', 1, 1, 'C');
+$pdf->Cell(15, 40, $sl, 1, 0, 'C');
+
+// // $pdf->Cell(50, 10, "Brand : " . $row['brand'], 0, 0, 'T');
+// $pdf->Text($pdf->GetX() + 10, $pdf->GetY() + 3, "Brand : " . $row['brand']);
+
+
+$pdf->SetXY(25, 50);
+
+// add text for Brand
+$pdf->Cell(50, 10, "Brand : " . $row['brand'], 1, 0);
+
+// move to next line
+// $pdf->Ln();
+
+// add text for Model No
+$pdf->Cell(50, 10, "Model No : " . $row['model'], 1, 0);
+
+// $pdf->Text(50, 10, "Model : " . $row['model'], 0, 0, 'T');
+// $pdf->Text(10, 50, 'Hello, world!');
+// $pdf->Cell(50, 40, "Brand : " . $row['brand'] . " <br/>" , 1, 0, 'T');
+// $pdf->Cell(50, 10, 'Brand:', 1, 0, 'L', false);
+
+
+
+$pdf->Cell($column3_width, 40, 'QUANTITY', 1, 0, 'C');
+$pdf->Cell($column1_width, 40, 'FROM', 1, 0, 'C');
+$pdf->Cell($column1_width, 40, 'TO', 1, 0, 'C');
+$pdf->Cell(26, 40, 'Remarks', 1, 1, 'C');
+
+
+
+
+
+}
 
 
 $pdf->Cell(15, 8, '', 1, 0, 'C');

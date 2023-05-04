@@ -184,7 +184,9 @@
                 </div>
               </div>
  -->
-
+<div class="form-group">
+                  <a href="reports/gate_pass.php?id=" class="btn btn-primary" id="print-btn" target="_blank">Print</a>
+                </div>
 
 
 
