@@ -126,8 +126,7 @@ $this->Cell(26, 6, 'Remarks', 1, 1, 'C');
         $this->Cell(15,9,$sl,"LR",0);
         // $this->Cell(80,9,$row["brand"]."\n".$row["model"]."\n".$row["sl_no"],"R",0);
 // $this->Cell(80, 9, $row["brand"] . "\n" . $row["model"] . "\n" . $row["sl_no"], "R", 0);
-$this->MultiCell(50, 6,"Brand : ". $row["brand"] . "\n" . "Model : ". $row["model"] . "\n" . "Sl : ". $row["sl_no"], 1, 'L');
-$this->SetXY(80,120);
+$this->Cell(80, 6,"Brand : ". $row["brand"] . "\n" . "Model : ". $row["model"] . "\n" . "SL : ". $row["sl_no"], 1, 'L');
 
         $this->Cell(40,9,$row["model"],"R",0,"C");
         $this->Cell(30,9,$row["sl_no"],"R",0,"C");
