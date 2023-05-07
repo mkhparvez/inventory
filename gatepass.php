@@ -72,7 +72,7 @@
 
               <div class="col-md-2">
                 <div class="form-group">
-                  <input type="text" id="brand" class="form-control" placeholder="Enter Brand Name">
+                  <input type="text" readonly id="brand" class="form-control" placeholder="Enter Brand Name">
                 </div>
               </div>
 
@@ -84,15 +84,68 @@
 
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" name="sl_no" id="sl_no" class="form-control" placeholder="Enter Serial Number">
+                  <input type="text" readonly name="sl_no" id="sl_no" class="form-control" placeholder="Enter Serial Number">
                 </div>
               </div>
-
-              <input readonly type="hidden" id="product_id" class="form-control" placeholder="Product id">
 
               <div class="col-md-4">
                 <div class="form-group">
                   <input type="text" readonly name="spec" id="spec" class="form-control" placeholder="Assets Specification">
+                </div>
+                </div>
+           </div>
+
+            <div class="row">
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input type="text" readonly id="location" class="form-control" placeholder="Location">
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" id="new_loc" class="form-control" placeholder="New Location">
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" readonly name="dept" id="dept" class="form-control" placeholder="Department">
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" name="new_dept" id="new_dept" class="form-control" placeholder="New Department">
+                </div>
+                </div>
+           </div>
+
+
+            <div class="row">
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input type="text" id="r_name" class="form-control" placeholder="Receiver Name">
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" id="r_desig" class="form-control" placeholder="Receiver Deisgnation">
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" name="company" id="company" class="form-control" placeholder="Company Name">
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" name="remarks" id="remarks" class="form-control" placeholder="Remarks">
                 </div>
                   <button class="addItem btn btn-info mt-1">Add Item</button>
                 </div>
@@ -185,7 +238,7 @@
               </div>
  -->
 <div class="form-group">
-                  <a href="reports/gate_pass.php?id=" class="btn btn-primary" id="print-btn" target="_blank">Print</a>
+                  <a href="reports/multicell-table.php?id=" class="btn btn-primary" id="print-btn" target="_blank">Print</a>
                 </div>
 
 

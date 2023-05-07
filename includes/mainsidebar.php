@@ -96,6 +96,13 @@
                   <p>Asset Transfer History</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="gatepass.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gatepass</p>
+                </a>
+              </li>
               </li>
             </ul>
           </li>

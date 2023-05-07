@@ -19,6 +19,14 @@
 
 	}
 
+	// function history1(){
+	// $product = new Product;
+	// $id = $_POST['inv_id'];
+	// $sql = $product->history1($id);
+	// echo json_encode($sql);
+
+	// }
+
 
 	// function g_pass(){
 	// $product = new Product;
@@ -38,11 +46,19 @@
 		$model =$_POST['model'];
 		$sl_no =$_POST['sl_no'];
 		$spec =$_POST['spec'];
+		$location =$_POST['location'];
+		$new_loc =$_POST['new_loc'];
+		$dept =$_POST['dept'];
+		$new_dept =$_POST['new_dept'];
+		$r_name =$_POST['r_name'];
+		$r_desig =$_POST['r_desig'];
+		$company =$_POST['company'];
+		$remarks =$_POST['remarks'];
 		// session_start();
 		// $br_id = $_SESSION['id'];
 
 		$product = new Product;
-		$sql = $product->addItem($pdate, $gp_id, $inv_id, $brand, $model, $sl_no, $spec);
+		$sql = $product->addItem($pdate, $gp_id, $inv_id, $brand, $model, $sl_no, $spec, $location, $new_loc, $dept, $new_dept, $r_name, $r_desig, $company, $remarks);
 		echo $sql;
 	}
 

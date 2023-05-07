@@ -113,6 +113,14 @@ class Product
 			return $sql;			
 		}
 
+//   function history1($id){
+//       $sql = $this->con->query("SELECT h.*,p.*, p.remarks as product_remarks, h.remarks as history_remarks
+// FROM tbl_history h 
+// JOIN tbl_products p ON h.inv_id = p.inv_id
+// ORDER BY h.trnsfr_date ASC, h.inv_id, h.curr_user, h.pre_user ASC;");
+//       return $sql;      
+//     }
+
 	function ProductCount(){
 			$sql = $this->con->query("SELECT (SELECT COUNT( *) FROM tbl_products WHERE `product_cat`=1) AS cpu,
        (SELECT COUNT( *) FROM tbl_products WHERE `product_cat`=2) AS laptop,
@@ -458,7 +466,7 @@ function transfer($allData){
 
 
 
-function addItem($pdate, $gp_id, $inv_id, $brand, $model, $sl_no, $spec){
+function addItem($pdate, $gp_id, $inv_id, $brand, $model, $sl_no, $spec, $location, $new_loc, $dept, $new_dept, $r_name, $r_desig, $company, $remarks){
 
     if ($pdate=="" || $gp_id=="" || $inv_id=="" || $brand=="" || $model=="" || $sl_no== "") {
 
@@ -466,7 +474,7 @@ function addItem($pdate, $gp_id, $inv_id, $brand, $model, $sl_no, $spec){
     }
 
     else {
-      $sql = $this->con->query("INSERT INTO tbl_gpass (pdate, gp_id, inv_id, brand, model, sl_no, spec) VALUES ('$pdate', '$gp_id', '$inv_id','$brand', '$model', '$sl_no', '$spec')");
+      $sql = $this->con->query("INSERT INTO tbl_gpass (pdate, gp_id, inv_id, brand, model, sl_no, spec, pre_loc, new_loc, dept, new_dept, r_name, r_desig, company, remarks) VALUES ('$pdate', '$gp_id', '$inv_id', '$brand', '$model', '$sl_no', '$spec', '$location', '$new_loc', '$dept', '$new_dept', '$r_name', '$r_desig', '$company', '$remarks')");
     // $sql = $this->stockupdateInsert($product_id,$qnt,$br_id);
 
 

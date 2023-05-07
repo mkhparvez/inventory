@@ -309,7 +309,7 @@ else if (response.product_cat == 2) {
 }
 else if (response.product_cat == 3) {
     var product_cat = 'Monitor';
-    var spec = response.mon_size + '"';
+    var spec = "Size : " +response.mon_size + '"';
 }
 else if (response.product_cat == 4) {
     var product_cat = 'Printer';
@@ -349,7 +349,7 @@ else {
     jQuery("#brand").val(response.brand);
     jQuery("#model").val(response.model);
     jQuery("#sl_no").val(response.sl_no);
-    jQuery("#spec").val(product_cat);
+    jQuery("#spec").val(spec);
     jQuery("#user").val(response.user);
     jQuery("#dept").val(response.dept);
     jQuery("#location").val(response.location);
@@ -368,6 +368,14 @@ else {
 		var model = jQuery("#model").val();
 		var sl_no = jQuery("#sl_no").val();
 		var spec = jQuery("#spec").val();
+		var location = jQuery("#location").val();
+		var new_loc = jQuery("#new_loc").val();
+		var dept = jQuery("#dept").val();
+		var new_dept = jQuery("#new_dept").val();
+		var r_name = jQuery("#r_name").val();
+		var r_desig = jQuery("#r_desig").val();
+		var company = jQuery("#company").val();
+		var remarks = jQuery("#remarks").val();
 		
 		$.ajax({
 			url: "././classes/ajax.php",
@@ -380,6 +388,14 @@ else {
 				'model':model,
 				'sl_no':sl_no,
 				'spec':spec,
+				'location':location,
+				'new_loc':new_loc,
+				'dept':dept,
+				'new_dept':new_dept,
+				'r_name':r_name,
+				'r_desig':r_desig,
+				'company':company,
+				'remarks':remarks,
 				'action': "addItem" 
 			},
 
@@ -454,7 +470,7 @@ else {
 	 $(document).ready(function() {
         $('#gp_id').on('input', function() {
             var gp_id = $(this).val();
-            var url = 'reports/gate_pass.php?id=' + gp_id;
+            var url = 'reports/multicell-table.php?id=' + gp_id;
             $('#print-btn').attr('href', url);
         });
     });
