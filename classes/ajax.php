@@ -1,6 +1,7 @@
 <?php
 	include 'products.php';
 	$action = $_POST['action'];
+	echo $action;
 	$action();
 	
 	function findProduct(){
@@ -18,6 +19,8 @@
 	echo json_encode($sql);
 
 	}
+
+	
 
 	// function history1(){
 	// $product = new Product;

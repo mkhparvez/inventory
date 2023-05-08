@@ -25,12 +25,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard v2</h1>
+            <h1 class="m-0">Gatepass</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v2</li>
+              <li class="breadcrumb-item active">Gatepass</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -62,7 +62,7 @@
 
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" id="inv_id" class="form-control" placeholder="Enter Inventory Id">
+                  <input type="text" id="inv_id" class="form-control inv_id" placeholder="Enter Inventory Id">
                 </div>
               </div>
 

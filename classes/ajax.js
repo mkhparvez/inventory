@@ -259,25 +259,33 @@
 // });
 
 jQuery(document).ready(function() {
-	jQuery(document).on("keyup", "#inv_id", function() {
+	jQuery(document).on("keyup", ".inv_id", function() {
 		var inv_id = jQuery(this).val();
 		var action = "history";
 		// console.log(inv_id);
 		$.ajax ({
-			url:"classes/ajax.php",
-			type: "POST",
-			dataType: "JSON",
-			data: {
-				"action":action,
-				"inv_id":inv_id
-			},
-			success:function(response) {
-				jQuery("#sl_no").val(response.sl_no);
-				jQuery("#user").val(response.user);
-				jQuery("#dept").val(response.dept);
-				jQuery("#location").val(response.location);
-			}
-		})
+    url:"classes/ajax.php",
+    type: "POST",
+    dataType: "JSON", // Make sure to set the dataType to "JSON"
+    data: {
+        "action":action,
+        "inv_id":inv_id
+    },
+    success:function(response) {
+        console.log(response);
+        // Loop through the response data and use it as needed
+        for (var i = 0; i < response.length; i++) {
+            console.log(response[i].id);
+            console.log(response[i].date);
+            console.log(response[i].pre_loc);
+            // etc.
+        }
+        // jQuery("#sl_no").val(response.sl_no);
+        // jQuery("#user").val(response.user);
+        // jQuery("#dept").val(response.dept);
+        jQuery("#new_loc").val(response.pre_loc);
+    }
+});
 	});
 
 
@@ -297,6 +305,8 @@ jQuery(document).ready(function() {
 				"inv_id":inv_id
 			},
 			success:function(response) {
+
+
 
 
 				if (response.product_cat == 1) {
