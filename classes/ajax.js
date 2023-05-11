@@ -259,34 +259,30 @@
 // });
 
 jQuery(document).ready(function() {
-	jQuery(document).on("keyup", ".inv_id", function() {
-		var inv_id = jQuery(this).val();
-		var action = "history";
-		// console.log(inv_id);
-		$.ajax ({
-    url:"classes/ajax.php",
-    type: "POST",
-    dataType: "JSON", // Make sure to set the dataType to "JSON"
-    data: {
-        "action":action,
-        "inv_id":inv_id
-    },
-    success:function(response) {
-        console.log(response);
-        // Loop through the response data and use it as needed
-        for (var i = 0; i < response.length; i++) {
-            console.log(response[i].id);
-            console.log(response[i].date);
-            console.log(response[i].pre_loc);
-            // etc.
-        }
-        // jQuery("#sl_no").val(response.sl_no);
-        // jQuery("#user").val(response.user);
-        // jQuery("#dept").val(response.dept);
-        jQuery("#new_loc").val(response.pre_loc);
-    }
-});
-	});
+  // Add keyup event listener to input
+  $('#inv_id').keyup(function() {
+    // Get the value of inv_id from the input
+    var id = $('#inv_id').val();
+
+    // Send an AJAX request to fetch data from the search.php file
+    $.ajax({
+      url: 'classes/search.php',  // URL of server-side script
+      type: 'POST',  // HTTP method
+      data: {id: id},  // Data to be sent to the server
+      dataType: 'json',  // Expected data type of the response
+      success: function(response) {
+        // Extract the required data from the response and set it as the value of the new_loc element
+        $('#curr_loc').val(response.curr_loc);
+        $('#pre_loc').val(response.pre_loc);
+        $('#curr_dept').val(response.curr_dept);
+        $('#pre_dept').val(response.pre_dept);
+      },
+      error: function(xhr, status, error) {
+        // Handle errors
+        console.log(error);
+      }
+    });
+  });
 
 
 	jQuery(document).on("keyup", "#inv_id", function() {
@@ -305,66 +301,39 @@ jQuery(document).ready(function() {
 				"inv_id":inv_id
 			},
 			success:function(response) {
-
-
-
-
-				if (response.product_cat == 1) {
-    var spec = `Processor: ${response.processor}, RAM: ${response.ram}GB, HDD: ${response.hdd}`;
-    var product_cat = 'CPU';
+  if (response) {
+    if (response.product_cat) {
+      var spec = '';
+      if (response.product_cat == 1) {
+        spec = `Processor: ${response.processor}, RAM: ${response.ram}GB, HDD: ${response.hdd}`;
+      } else if (response.product_cat == 2 || response.product_cat == 9) {
+        spec = `${response.processor}, RAM-${response.ram}GB, HDD-${response.hdd}`;
+      } else if (response.product_cat == 3) {
+        spec = `Size : ${response.mon_size}"`;
+      } else if (response.product_cat == 7) {
+        spec = `${response.va}VA`;
+      }
+      
+      jQuery("#brand").val(response.brand);
+      jQuery("#model").val(response.model);
+      jQuery("#sl_no").val(response.sl_no);
+      jQuery("#spec").val(spec);
+      jQuery("#user").val(response.user);
+      jQuery("#dept").val(response.dept);
+      jQuery("#location").val(response.location);
+    } else {
+      jQuery("#brand").val("");
+      jQuery("#model").val("");
+      jQuery("#sl_no").val("");
+      jQuery("#spec").val("");
+      jQuery("#user").val("");
+      jQuery("#dept").val("");
+      jQuery("#location").val("");
+    }
+  } else {
+    // handle error
+  }
 }
-else if (response.product_cat == 2) {
-    var product_cat = 'Laptop';
-    var spec = response.processor + ", RAM-" + response.ram + "GB, HDD-" + response.hdd;
-}
-else if (response.product_cat == 3) {
-    var product_cat = 'Monitor';
-    var spec = "Size : " +response.mon_size + '"';
-}
-else if (response.product_cat == 4) {
-    var product_cat = 'Printer';
-    var spec = "";
-}
-else if (response.product_cat == 5) {
-    var product_cat = 'Mouse';
-    var spec = "";
-}
-else if (response.product_cat == 6) {
-    var product_cat = 'Keyboard';
-    var spec = "";                            
-}
-else if (response.product_cat == 7) {
-    var product_cat = 'UPS';
-    var spec = response.va + "VA";
-}
-else if (response.product_cat == 8) {
-    var product_cat = 'Cash Drawer';
-    var spec = "N/A";                            
-}
-else if (response.product_cat == 9) {
-    var product_cat = 'POS Terminal';
-    var spec = response.processor + ", RAM-" + response.ram + "GB, HDD-" + response.hdd;
-}
-
-if (response.product_cat == '1' || response.product_cat == '2') {
-    jQuery("#brand").val(response.brand);
-    jQuery("#model").val(response.model);
-    jQuery("#sl_no").val(response.sl_no);
-    jQuery("#spec").val(spec);
-    jQuery("#user").val(response.user);
-    jQuery("#dept").val(response.dept);
-    jQuery("#location").val(response.location);
-}
-else {
-    jQuery("#brand").val(response.brand);
-    jQuery("#model").val(response.model);
-    jQuery("#sl_no").val(response.sl_no);
-    jQuery("#spec").val(spec);
-    jQuery("#user").val(response.user);
-    jQuery("#dept").val(response.dept);
-    jQuery("#location").val(response.location);
-}
-			}
 		})
 	});
 
@@ -378,10 +347,10 @@ else {
 		var model = jQuery("#model").val();
 		var sl_no = jQuery("#sl_no").val();
 		var spec = jQuery("#spec").val();
-		var location = jQuery("#location").val();
-		var new_loc = jQuery("#new_loc").val();
-		var dept = jQuery("#dept").val();
-		var new_dept = jQuery("#new_dept").val();
+		var location = jQuery("#pre_loc").val();
+		var new_loc = jQuery("#curr_loc").val();
+		var dept = jQuery("#pre_dept").val();
+		var new_dept = jQuery("#curr_dept").val();
 		var r_name = jQuery("#r_name").val();
 		var r_desig = jQuery("#r_desig").val();
 		var company = jQuery("#company").val();

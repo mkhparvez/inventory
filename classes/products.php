@@ -108,10 +108,11 @@ class Product
 			return $sql;			
 		}
 
-	function history($id){
-			$sql = $this->con->query("SELECT * FROM tbl_history WHERE inv_id='$id' ORDER BY id ASC");
-			return $sql;			
-		}
+	// function history($id){
+ //    $id = $_POST['id'];
+	// 		$sql = $this->con->query("SELECT * FROM tbl_history WHERE inv_id='$id' ORDER BY id ASC");
+	// 		return $sql;			
+	// 	}
 
 //   function history1($id){
 //       $sql = $this->con->query("SELECT h.*,p.*, p.remarks as product_remarks, h.remarks as history_remarks

@@ -62,7 +62,7 @@
 
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" id="inv_id" class="form-control inv_id" placeholder="Enter Inventory Id">
+                  <input type="text" id="inv_id" class="form-control" placeholder="Enter Inventory Id">
                 </div>
               </div>
 
@@ -99,25 +99,25 @@
 
               <div class="col-md-2">
                 <div class="form-group">
-                  <input type="text" readonly id="location" class="form-control" placeholder="Location">
+                  <input type="text" readonly id="pre_loc" class="form-control" placeholder="Location">
                 </div>
               </div>
 
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" id="new_loc" class="form-control" placeholder="New Location">
+                  <input type="text" id="curr_loc" class="form-control" placeholder="New Location">
                 </div>
               </div>
 
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" readonly name="dept" id="dept" class="form-control" placeholder="Department">
+                  <input type="text" readonly name="dept" id="pre_dept" class="form-control" placeholder="Department">
                 </div>
               </div>
 
               <div class="col-md-4">
                 <div class="form-group">
-                  <input type="text" name="new_dept" id="new_dept" class="form-control" placeholder="New Department">
+                  <input type="text" name="new_dept" id="curr_dept" class="form-control" placeholder="New Department">
                 </div>
                 </div>
            </div>
@@ -274,7 +274,10 @@
 <?php 
       include "includes/scripts.php";
     ?>
-<!-- REQUIRED SCRIPTS -->
+<script>
+  // Add keyup event listener to input
+ 
+</script>
 
 
 </body>

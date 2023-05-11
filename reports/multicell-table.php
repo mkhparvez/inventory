@@ -103,13 +103,13 @@ foreach($res as $item){
    $sl++;
 	//write data using Row() method containing array of values.
 	$pdf->Row(Array(
-		"\n"."\n".$sl,
+		"\n".$sl,
 		// "Brand : ".$item['brand']."\n"."Model : ".$item['model']."\n"."Sl No : ".$item['sl_no']."\n".$item['spec'],
 		"Brand : ".$item['brand']."\n"."Model : ".$item['model']."\n"."SN : ".$item['sl_no']."\n".$item['spec'],
-		"\n"."\n"."01-Pc",
-		"\n"."\n".$item['pre_loc'],
-		"\n"."\n".$item['new_loc'],
-		"\n"."\n".$item['remarks'],
+		"\n"."01-Pc",
+		"\n".$item['pre_loc'],
+		"\n".$item['new_loc'],
+		"\n".$item['remarks'],
 		// $item['gender'],
 		// $item['address'],
 	),10);
