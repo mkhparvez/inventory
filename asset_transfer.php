@@ -112,7 +112,13 @@
                           <i class="display-1 fas fa-angle-double-right"></i>
                           <p>Transfer Asset</p>
                       </button>
+                      <div class="form-group text-center text-success g_pass">
+                        <br>
+                    <label for="g_pass" class="pr-1">Gatepass</label>                      
+                      <input type="checkbox" id="g_pass" name="g_pass">
+                  </div> 
                       </td>
+                      
                     </tr>
                   </tbody>
                 </table>

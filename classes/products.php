@@ -108,11 +108,11 @@ class Product
 			return $sql;			
 		}
 
-	// function history($id){
- //    $id = $_POST['id'];
-	// 		$sql = $this->con->query("SELECT * FROM tbl_history WHERE inv_id='$id' ORDER BY id ASC");
-	// 		return $sql;			
-	// 	}
+	function history($id){
+    // $id = $_POST['id'];
+			$sql = $this->con->query("SELECT * FROM tbl_history WHERE inv_id='$id' ORDER BY id ASC");
+			return $sql;			
+		}
 
 //   function history1($id){
 //       $sql = $this->con->query("SELECT h.*,p.*, p.remarks as product_remarks, h.remarks as history_remarks
@@ -339,8 +339,17 @@ function transfer($allData){
 		$new_location = $allData["new_location"];
 		$status = $allData["status"];
 		$remarks = $allData["remarks"];
+    // $g_pass = $allData["g_pass"];
         date_default_timezone_set('Asia/Dhaka'); 
     	$date = date("Y-m-d H:m:s");
+
+      if(isset($allData["g_pass"])){
+        $g_pass = $allData["g_pass"];
+    } else {
+        $g_pass = 0; // set a default value
+    }
+
+
 
 
 
@@ -434,8 +443,16 @@ function transfer($allData){
   $sql = $this->con->query("INSERT INTO tbl_history (inv_id ,curr_user,pre_user,curr_dept,pre_dept,curr_loc,pre_loc,remarks,entry_user,trnsfr_date,scrap) VALUES ('$inv_id ','$new_user','$user','$newDept','$dept','$new_location','$location','$remarks','$entry_user','$date','0')");
         // $sql = $this->history($inv_id,$new_user,$user,$new_location,$location,$remarks,$entry_user,$date);
 
-      echo "<script>window.location.replace('manageproduct.php')</script>";
+      // echo "<script>window.location.replace('manageproduct.php')</script>";
 
+      if($g_pass) {
+      echo "<script>window.location.replace('gatepass.php')</script>";
+      } else {
+     echo "<script>window.location.replace('manageproduct.php')</script>";
+            }
+
+
+  
     }
 
   }
@@ -528,6 +545,30 @@ function addItem($pdate, $gp_id, $inv_id, $brand, $model, $sl_no, $spec, $locati
   function removeItem($id){
     $sql = $this->con->query("DELETE FROM tbl_gpass WHERE id = '$id'");
     return $sql;
+  }
+
+
+   function generateGPID() {
+    // get current year
+    $currentYear = date('y');
+
+    // query to get the latest GP ID from database
+    $query = "SELECT gp_id FROM tbl_gpass WHERE gp_id LIKE '%/{$currentYear}' ORDER BY gp_id DESC LIMIT 1";
+    $result = mysqli_query($this->con, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        // if there are records, extract the last number and increment it
+        $lastGPID = mysqli_fetch_assoc($result)['gp_id'];
+        $lastNumber = explode('/', $lastGPID)[0];
+        $newNumber = $lastNumber + 1;
+        $newGPID = $newNumber . "/{$currentYear}";
+    } else {
+        // if there are no records, set the GP ID to 1/Current Year
+        $newGPID = "1/{$currentYear}";
+    }
+
+    // return the new GP ID
+    return $newGPID;
   }
 
 

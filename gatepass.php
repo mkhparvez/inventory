@@ -45,11 +45,18 @@
           <div class="col-md-12">
           	<div class="row">
 
+               <?php 
+              include 'classes/products.php';
+              $product = new Product;
+               $GPID= $product->generateGPID();
+              
+               ?>
+
 
 
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" id="gp_id" class="form-control" >
+                  <input type="text" id="gp_id" class="form-control" value="<?php echo $GPID; ?>">
                 </div>
               </div>
 
