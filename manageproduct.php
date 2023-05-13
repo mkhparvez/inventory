@@ -180,7 +180,7 @@
 
                                <!--  <button data-toggle="modal" data-target="#<?php echo $row["inv_id"] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td> -->
 
-                               <a href="transfer.php?id=<?php echo $row['inv_id'];  ?>" class="btn btn-danger btn-sm"><i class="fa-solid fa-arrow-right-long"></i></a>
+                               <a href="asset_transfer.php?id=<?php echo $row['inv_id'];  ?>" class="btn btn-danger btn-sm"><i class="fa-solid fa-arrow-right-long"></i></a>
 
                                 <!-- <button data-toggle="modal" data-target="#<?php echo $row["inv_id"] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button> -->
 

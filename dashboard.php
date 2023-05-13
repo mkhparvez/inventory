@@ -225,7 +225,7 @@
               <span class="info-box-icon bg-warning elevation-1"><i class="fa-solid fa-screwdriver-wrench"></i></span>
 
               <div class="info-box-content">
-                <a style="color:#fff" href="reports/repairable.php" target="_blank">
+                <a style="color:#fff" href="reports/repairable.php?id=<?php echo "repair";  ?>"  target="_blank">
                 <span class="info-box-text">Need to Repair</span>
                 <span class="info-box-number">
                   <?php echo $row["repair"]; ?>

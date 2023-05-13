@@ -49,6 +49,8 @@
               include 'classes/products.php';
               $product = new Product;
                $GPID= $product->generateGPID();
+               // $inv_id=$_GET['id'];
+               // echo $inv_id;
               
                ?>
 
@@ -69,7 +71,7 @@
 
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" id="inv_id" class="form-control" placeholder="Enter Inventory Id">
+                  <input type="text" id="inv_id" class="form-control" placeholder="Enter Inventory Id" value="<?php echo isset($_GET['id']) ? $_GET['id'] : ''; ?>">
                 </div>
               </div>
 

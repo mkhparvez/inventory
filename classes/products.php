@@ -446,7 +446,7 @@ function transfer($allData){
       // echo "<script>window.location.replace('manageproduct.php')</script>";
 
       if($g_pass) {
-      echo "<script>window.location.replace('gatepass.php')</script>";
+      echo "<script>window.location.replace('gatepass.php?id=$inv_id')</script>";
       } else {
      echo "<script>window.location.replace('manageproduct.php')</script>";
             }

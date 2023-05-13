@@ -30,7 +30,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">Asset_Transef</li>
+              <li class="breadcrumb-item active">Asset_Transfer</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -69,7 +69,7 @@
 
                   <div class="form-group">
                     <label for="inv_id">Inventory Id</label>
-                    <input type="text" class="form-control" name="inv_id" id="inv_id" placeholder="Enter Inventory Id">
+                    <input type="text" class="form-control" name="inv_id" id="inv_id" placeholder="Enter Inventory Id" value="<?php echo isset($_GET['id']) ? $_GET['id'] : ''; ?>">
                   </div>
 
 
@@ -112,7 +112,7 @@
                           <i class="display-1 fas fa-angle-double-right"></i>
                           <p>Transfer Asset</p>
                       </button>
-                      <div class="form-group text-center text-success g_pass">
+                      <div style="font-size: 20px;" class="form-group text-center text-success g_pass">
                         <br>
                     <label for="g_pass" class="pr-1">Gatepass</label>                      
                       <input type="checkbox" id="g_pass" name="g_pass">
@@ -231,8 +231,9 @@
 <?php 
       include "includes/scripts.php";
     ?>
-<!-- REQUIRED SCRIPTS -->
-
+<script>
+  window.scrollTo(0, document.body.scrollHeight);
+</script>
 
 
 </body>
