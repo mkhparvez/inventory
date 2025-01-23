@@ -1,222 +1,253 @@
 <?php
-//include connection file
+// Include required files and classes
+// Include required files and classes
+require('mc_table.php');
 
-include_once('../libs/fpdf/fpdf.php');
 
-class PDF extends FPDF
-{
-    public $con = "";
 
-    function __construct()
-    {
-        // parent::__construct();
-        // parent::__construct('L', 'legal');
-         parent::__construct('P', 'mm', 'a4');
-         // $this->SetXY(10000, 0);
-         $this->SetTopMargin(20);
-         // $this->SetLeftMargin(5);
+class PDF extends PDF_MC_Table {
+    public $gp_id;
+    public $formatted_date;
+    public $receiver_name;
+    public $receiver_designation;
+    public $receiver_company;
+    public $con;
+
+    function __construct($gp_id, $formatted_date, $receiver_name, $receiver_designation, $receiver_company) {
+        parent::__construct('P', 'mm', 'A4');
+        $this->SetTopMargin(15);
+        $this->SetLeftMargin(10);
+        $this->SetAutoPageBreak(true, 130);  // Leave space for the footer
         $this->con = new mysqli("localhost", "root", "", "inventory");
+
+        // Store necessary data
+        $this->gp_id = $gp_id;
+        $this->formatted_date = $formatted_date;
+        $this->receiver_name = $receiver_name;
+        $this->receiver_designation = $receiver_designation;
+        $this->receiver_company = $receiver_company;
     }
 
+
+
+    function AcceptPageBreak() {
+        // Set a custom height check before page breaks
+        return $this->GetY() + 40 < $this->PageBreakTrigger;
+    }
+
+
     // Page header
-    function Header()
-    {
-        // Logo
-        // $this->Image('logo.png', 10, -1, 70);
-        // $this->SetFont('Arial', 'B', 13);
-        // // Move to the right
-        // $this->Cell(80);
-        // // Title
-        // $this->Cell(80, 10, 'Employee List', 1, 0, 'C');
-        // // Line break
-        // $this->Ln(20);
-         // Centered text
-         // $this->SetTopMargin(0);
-         // $this->SetXY(0, 0);
+    function Header() {
         $this->SetFont('helvetica', '', 18);
         $this->Cell(0, 5, 'GATEPASS', 0, 1, 'C');
-        // Line break
         $this->Ln(0);
         $this->Cell(0, 10, 'BASHUNDHARA GROUP', 0, 1, 'C');
-        $this->Image('logo.png', 35, 10, 30);
+        $this->Image('logo.png', 37, 5, 28);
         $this->Ln(5);
-        $this->SetFont('helvetica', '', 10);
 
         $this->SetFont('Arial', 'B', 11);
-        $this->SetXY(160,35);
+        $this->SetXY(9, 45);
+        $this->Cell(0, 0, 'Gate Pass No : ', 0, 1, 'L');
+        $this->SetXY(39, 45);
+        $this->Cell(0, 0, $this->gp_id, 0, 1, 'L');
+
+        $this->SetXY(160, 45);
         $this->Cell(0, 0, 'Date : ', 0, 1, 'L');
-
-        $this->SetFont('Arial', 'B', 11);
-        $this->SetXY(171,35);
-        $this->Cell(0, 0, '18.02.2023 ', 0, 1, 'L');
+        $this->SetXY(171, 45);
+        $this->Cell(0, 0, $this->formatted_date, 0, 1, 'L');
 
         $this->Ln(4);
 
-
-
-        // $this->SetFont('Arial', 'B', 15);
-        // $this->Cell(0, 10, 'Bashundhara City Development Ltd.', 0, 1, 'C');
-        // // Line break
-        // $this->Ln(2);
-
-        // $this->SetFont('Arial', '', 10);
-        // $this->Cell(0, 5, 'Panthapath, Dhaka-1215', 0, 1, 'C');
-        // // Line break
-        // $this->Ln(2);
-
-        // $this->SetFont('Arial', 'BU', 11);
-        // $this->Cell(0, 5, 'Inventory of Computer, Printer & Others', 0, 1, 'C');
-        // // Line break
-        // $this->Ln(6);
-
-        // Set column widths
-$column1_width = 30;
-$column2_width = 53;
-$column3_width = 40;
-$column4_width = 20;
-$column5_width = 25;
-
-
-
-// Output table headers
-$this->SetFont('Arial', 'B', 10);
-$this->Cell(15, 6, 'SL. NO', 1, 0, 'C');
-$this->Cell(50, 6, 'DESCRIPTION', 1, 0, 'C');
-$this->Cell($column3_width, 6, 'QUANTITY', 1, 0, 'C');
-$this->Cell($column1_width, 6, 'FROM', 1, 0, 'C');
-$this->Cell($column1_width, 6, 'TO', 1, 0, 'C');
-$this->Cell(26, 6, 'Remarks', 1, 1, 'C');
-// $this->Cell($column4_width, 10, 'PF No', 1, 0, 'C');
-// // $this->Cell($column4_width, 10, 'Salary Unit', 1, 0, 'C');
-// $this->Cell($column4_width, 10, 'Brand', 1, 0, 'C');
-// $this->Cell(28, 10, 'Model', 1, 0, 'C');
-// $this->Cell(50, 10, 'Serial No.', 1, 0, 'C');
-// $this->Cell($column2_width, 10, 'Specification', 1, 0, 'C');
-// $this->Cell(22, 10, 'Status', 1, 0, 'C');
-
-
-
-
+        // Set column headers
+        $this->SetFont('Arial', 'B', 10);
+        $this->Cell(15, 10, 'SL. NO', 1, 0, 'C');
+        $this->Cell(55, 10, 'DESCRIPTION', 1, 0, 'C');
+        $this->Cell(30, 10, 'QUANTITY', 1, 0, 'C');
+        $this->Cell(30, 10, 'FROM', 1, 0, 'C');
+        $this->Cell(35, 10, 'TO', 1, 0, 'C');
+        $this->Cell(26, 10, 'Remarks', 1, 1, 'C');
     }
 
     // Page footer
-    function Footer()
-    {
-        // Position at 1.5 cm from bottom
-        $this->SetY(-15);
-        // Arial italic 8
-        $this->SetFont('Arial', 'I', 8);
-        // Page number
-        $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
+    // Page footer
+function Footer() {
+    // Position at 1.5 cm from bottom
+    $this->SetY(-100);
+
+    // Receiver section
+        $this->SetXY(20, $this->GetY() - 20);
+        $this->SetFont('Arial', 'B', 10);
+        $this->Cell(0, 0, 'Sign.', 0, 1, 'L');
+        $this->Line(20, $this->GetY() + 3, 70, $this->GetY() + 3);
+        $this->SetDrawColor(0, 0, 0);
+        $this->SetXY(20, $this->GetY() + 9);
+ 
+
+       $this->SetFont('Arial', 'B', 10); // Set bold font for the label
+        $this->Cell(28, 0, 'Receiver Name:  ', 0, 0, 'L'); // Use a smaller width for the label
+        $this->SetFont('Arial', '', 10); // Set regular font for the value
+        $this->Cell(0, 0, $this->receiver_name, 0, 1, 'L');
+        $this->SetFont('Arial', '', 10);
+        $this->SetXY(20, $this->GetY() + 7);
+        // $this->Cell(0, 0, 'Designation: ' . $this->receiver_designation, 0, 1, 'L');
+        $this->SetFont('Arial', 'B', 10); // Set bold font for the label
+        $this->Cell(24, 0, 'Designation:   ', 0, 0, 'L'); // Use a smaller width for the label
+        $this->SetFont('Arial', '', 10); // Set regular font for the value
+        $this->Cell(0, 0, $this->receiver_designation, 0, 1, 'L');
+
+        $this->SetXY(20, $this->GetY() + 7);
+        $this->SetFont('Arial', 'B', 10); // Set bold font for the label
+        $this->Cell(29, 0, 'Company Name: ', 0, 0, 'L'); // Use a smaller width for the label
+        $this->SetFont('Arial', '', 10); // Set regular font for the value
+        $this->Cell(0, 0, $this->receiver_company, 0, 1, 'L');
+
+
+
+    // Signature for Department In-Charge
+    $this->SetXY(140, $this->GetY() - 20);
+    $this->SetFont('Arial', 'B', 10);
+    $this->Cell(0, 0, 'Sign.', 0, 1, 'L');
+    $this->Line(140, $this->GetY() + 3, 190, $this->GetY() + 3);
+    $this->SetDrawColor(0, 0, 0);
+    $this->SetXY(140, $this->GetY() + 8);
+    $this->Cell(0, 0, 'Department In-Charge', 0, 1, 'L');
+
+   
+    $this->SetXY(140, $this->GetY() + 5);
+    $this->SetFont('Arial', 'B', 10); // Set bold font for the label
+    $this->Cell(14, 0, 'Name: ', 0, 0, 'L'); // Use a smaller width for the label
+    $this->SetXY(153, $this->GetY());
+    $this->SetFont('Arial', '', 10); // Set regular font for the value
+    $this->Cell(0, 0, 'Md. Tanvir Islam', 0, 1, 'L'); // Add the value, starting right after the label
+
+    $this->SetXY(140, $this->GetY() + 5);
+    $this->SetFont('Arial', 'B', 10); // Set bold font for the label
+    $this->Cell(23, 0, 'Designation: ', 0, 0, 'L'); // Use a smaller width for the label
+    $this->SetFont('Arial', '', 10); // Set regular font for the value
+    $this->Cell(0, 0, 'Dy. Manager', 0, 1, 'L'); // Add the value, starting right after the label
+
+    $this->SetXY(140, $this->GetY() + 5);
+    $this->SetFont('Arial', 'B', 10); // Set bold font for the label
+    $this->Cell(29, 0, 'Company Name:  ', 0, 0, 'L'); // Use a smaller width for the label
+    $this->SetFont('Arial', '', 10); // Set regular font for the value
+    $this->Cell(0, 0, 'BCDL', 0, 1, 'L'); // Add the value, starting right after the label
+
+
+     $this->Ln(10);
+
+    // Signature for Floor In-Charge
+    $this->SetXY(140, $this->GetY() + 10);
+    $this->SetFont('Arial', 'B', 10);
+    $this->Cell(0, 0, 'Sign.', 0, 1, 'L');
+    $this->Line(140, $this->GetY() + 3, 190, $this->GetY() + 3);
+    $this->SetDrawColor(0, 0, 0);
+    // $this->SetXY(140, $this->GetY() + 8);
+    // $this->Cell(0, 0, 'Floor In-Charge', 0, 1, 'L');
+
+
+    $this->SetFont('Arial', '', 10);
+    $this->SetXY(140, $this->GetY() + 7);
+    $this->SetFont('Arial', 'B', 10); // Set bold font for the label
+    $this->Cell(13, 0, 'Name: ', 0, 0, 'L'); // Use a smaller width for the label
+    $this->SetFont('Arial', '', 10); // Set regular font for the value
+    $this->Cell(0, 0, 'Md. Shahidul Islam', 0, 1, 'L'); // Add the value, starting right after the label
+
+
+    $this->SetXY(140, $this->GetY() + 5);
+    $this->SetFont('Arial', 'B', 10); // Set bold font for the label
+    $this->Cell(23, 0, 'Designation: ', 0, 0, 'L'); // Use a smaller width for the label
+    $this->SetFont('Arial', '', 10); // Set regular font for the value
+    $this->Cell(0, 0, 'Dy. Manager', 0, 1, 'L'); // Add the value, starting right after the label
+
+
+    $this->SetXY(140, $this->GetY() + 5);
+    $this->SetFont('Arial', 'B', 10); // Set bold font for the label
+    $this->Cell(29, 0, 'Company Name:  ', 0, 0, 'L'); // Use a smaller width for the label
+    $this->SetFont('Arial', '', 10); // Set regular font for the value
+    $this->Cell(0, 0, 'BCDL', 0, 1, 'L'); // Add the value, starting right after the label
+    
+    // Page number
+    $this->SetY(-15);
+    $this->SetFont('Arial', 'I', 8);
+    $this->Cell(0, 10, 'Page ' . $this->PageNo() . '/{nb}', 0, 0, 'C');
+}
+
+}
+
+// Retrieve gate pass data
+$gp_id = $_GET['id'];
+$con = new mysqli("localhost", "root", "", "inventory");
+$sql = "SELECT * FROM `tbl_gpass` WHERE gp_id='$gp_id'";
+$res = $con->query($sql);
+
+if ($res->num_rows > 0) {
+    $row = $res->fetch_assoc();
+    $date = $row['pdate'];
+    $formatted_date = date('d-M-Y', strtotime($date));
+
+    // Instantiate the PDF with gate pass details
+    $pdf = new PDF($gp_id, $formatted_date, $row['r_name'], $row['r_desig'], $row['company']);
+    $pdf->AliasNbPages();
+    $pdf->AddPage();
+    $pdf->SetFont('Arial', '', 10);
+
+    // Set up data rows
+    $pdf->SetWidths(Array(15, 55, 30, 30, 35, 26));
+    $pdf->SetAligns(Array('C', 'L', 'C', 'L', 'L', 'C'));
+
+    $sl = 0;
+    foreach ($res as $item) {
+        $sl++;
+        $pdf->Row(Array(
+            "" . $sl,
+            "Brand : " . $item['brand'] . "\nModel : " . $item['model'] . "\nSN : " . $item['sl_no'] . "\n" . $item['spec'],
+            "01-Pc",
+             $item['pre_loc']."\n" . $item['dept']." Dept.",
+             $item['r_name']."\n".$item['r_desig']. "\n" . $item['new_dept']." Dept.". "\n" . $item['company'] ,
+            $item['remarks']
+        ), 10);
     }
-}
 
-$pdf = new PDF();
-$pdf->AliasNbPages();
-$pdf->AddPage();
-// $pdf->SetFont('Arial', 'B', 12);
-$sl=0;
-
-$result = $pdf->con->query("SELECT * FROM `tbl_gpass` WHERE gp_id='2/23';");
-
-
-
-// Output table headers
-// $pdf->SetFont('Arial', 'B', 12);
-// $pdf->Cell(20, 10, 'ID', 1, 0, 'C');
-// $pdf->Cell($column3_width, 10, 'User Name', 1, 0, 'C');
-// $pdf->Cell($column1_width, 10, 'Designation', 1, 0, 'C');
-// $pdf->Cell(29, 10, 'Department', 1, 0, 'C');
-// $pdf->Cell($column4_width, 10, 'PF No', 1, 0, 'C');
-// // $pdf->Cell($column4_width, 10, 'Salary Unit', 1, 0, 'C');
-// $pdf->Cell($column4_width, 10, 'Brand', 1, 0, 'C');
-// $pdf->Cell($column4_width, 10, 'Model', 1, 0, 'C');
-// $pdf->Cell(55, 10, 'Serial No.', 1, 0, 'C');
-// $pdf->Cell($column2_width, 10, 'Specification', 1, 0, 'C');
-// $pdf->Cell($column4_width, 10, 'Status', 1, 0, 'C');
-// $pdf->Cell($column4_width, 10, 'Remarks', 1, 1, 'C');
-
-// // Output table data
-// while ($row = $result->fetch_assoc()) {
-//    $sl++;
+    // Display total quantity
+    $total_quantity = $res->num_rows;
+    $unit = $total_quantity == 1 ? "Pc" : "Pcs";
+    $pdf->Cell(15, 8, '', 1, 0, 'C');
+    $pdf->Cell(55, 8, '', 1, 0, 'L');
+    $pdf->Cell(30, 8, 'Total = ' . sprintf("%02d", $total_quantity) . " " . $unit, 1, 0, 'C');
+    $pdf->Cell(30, 8, '', 1, 0, 'C');
+    $pdf->Cell(35, 8, '', 1, 0, 'C');
+    $pdf->Cell(26, 8, '', 1, 1, 'C');
 
 
-//     if ($row["product_cat"] == 1) {
-//                             $product_cat = 'CPU';
-//                             $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."HDD-".$row["hdd"];
-//                           }
-//                           elseif ($row["product_cat"] == 2) {
-//                             $product_cat = 'Laptop';
-//                             $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."HDD-".$row["hdd"];
-//                           }
-//                           elseif ($row["product_cat"] == 3) {
-//                             $product_cat = 'Monitor';
-//                             $spec = $row["mon_size"].'"';
-//                           }
-//                           elseif ($row["product_cat"] == 4) {
-//                             $product_cat = 'Printer';
+//     $pdf->SetFont('Arial', 'B', 10);
+// $pdf->SetXY(20,215);
+// $pdf->Cell(0, 0, 'Sign.', 0, 1, 'L');
+// // $pdf->Line(15);
+// $pdf->Line(20, 218, 70, 218);
+// $pdf->SetDrawColor(0 , 0, 0);
+// $pdf->SetXY(20,223);
+// $pdf->Cell(0, 0, 'Receiver Name :', 0, 1, 'L');
 
-//                                   if (empty($row["toner"]) || $row["toner"] === "NULL") {
-//                                       $spec =  $row["toner"];
-//                                   } else {
-//                                       $spec = 'Toner : '. $row["toner"];
-//                                   }       
-
-//                           }
-//                           elseif ($row["product_cat"] == 5) {
-//                             $product_cat = 'Mouse';
-//                             $spec = "";
-//                           }
-//                           elseif ($row["product_cat"] == 6) {
-//                             $product_cat = 'Keyboard';
-//                             $spec = "";                            
-//                           }
-//                           elseif ($row["product_cat"] == 7) {
-//                             $product_cat = 'UPS';
-//                             $spec = $row["va"]."VA";
-//                           }
-//                           elseif ($row["product_cat"] == 8) {
-//                             $product_cat = 'Cash Drawer';
-//                             $spec = "N/A";                            
-//                           }
-//                           elseif ($row["product_cat"] == 9) {
-//                             $product_cat = 'POS Terminal';
-//                             $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."HDD-".$row["hdd"];
-//                           }
-//                           else{
-//                             $product_cat = 'Not Defiend';
-//                             $spec = "";                            
-//                           }
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(49,223);
+// $pdf->Cell(0, 0, $row['r_name'], 0, 1, 'L');
 
 
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(20,229);
+// $pdf->Cell(0, 0, 'Designation : '.$row['r_desig'], 0, 1, 'L');
 
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(43,229);
+// $pdf->Cell(0, 0, ' ', 0, 1, 'L');
 
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(20,234);
+// $pdf->Cell(0, 0, 'Company Name : '.$row['company'], 0, 1, 'L');
 
-//   if ($row['status']==1) {
-//                            $status="Useable";
-//                          } elseif ($row['status']==2) {
-//                            $status="Damaged";
-//                          } elseif ($row['status']==3) {
-//                            $status="Need to Repair";
-//                          }
-
-
-
-//  if ($row["user_designation"] == "") {
-//         $user_designation = '-';                            
-//          }
-// else {
-//     $user_designation = $row["user_designation"];
-// }
-
-
-
-// Set column widths
-$column1_width = 30;
-$column2_width = 53;
-$column3_width = 40;
-$column4_width = 20;
-$column5_width = 25;
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(49,234);
+// $pdf->Cell(0, 0, ' ', 0, 1, 'L');
 
 
 
@@ -224,51 +255,83 @@ $column5_width = 25;
 
 
 
-// $pdf->SetFont('Arial', '', 8.5);
-// $pdf->Cell(15, 60, 'SL. NO', 1, 0, 'C');
-// $pdf->Cell(50, 60, 'DESCRIPTION', 1, 0, 'T');
-// $pdf->Cell($column3_width, 60, 'QUANTITY', 1, 0, 'C');
-// $pdf->Cell($column1_width, 60, 'FROM', 1, 0, 'C');
-// $pdf->Cell($column1_width, 60, 'TO', 1, 0, 'C');
-// $pdf->Cell(26, 60, 'Remarks', 1, 1, 'C');
-
-
-// Output table data
-$row = $result->fetch_assoc(); {
-   $sl++;
 
 
 
-
-$pdf->SetFont('Arial', '', 8.5);
-$pdf->Cell(15, 40, $sl, 1, 0, 'C');
-
-// // $pdf->Cell(50, 10, "Brand : " . $row['brand'], 0, 0, 'T');
-// $pdf->Text($pdf->GetX() + 10, $pdf->GetY() + 3, "Brand : " . $row['brand']);
-
-
-$pdf->SetXY(25, 50);
-
-// add text for Brand
-$pdf->Cell(50, 10, "Brand : " . $row['brand'], 1, 0);
-
-// move to next line
-// $pdf->Ln();
-
-// add text for Model No
-$pdf->Cell(50, 10, "Model No : " . $row['model'], 1, 0);
-
-// $pdf->Text(50, 10, "Model : " . $row['model'], 0, 0, 'T');
-// $pdf->Text(10, 50, 'Hello, world!');
-// $pdf->Cell(50, 40, "Brand : " . $row['brand'] . " <br/>" , 1, 0, 'T');
-// $pdf->Cell(50, 10, 'Brand:', 1, 0, 'L', false);
+// $pdf->SetFont('Arial', 'B', 10);
+// $pdf->SetXY(140,180);
+// $pdf->Cell(0, 0, 'Sign.', 0, 1, 'L');
+// // $pdf->Line(15);
+// $pdf->Line(140, 183, 190, 183);
+// $pdf->SetDrawColor(0 , 0, 0);
+// $pdf->SetXY(140,186);
+// $pdf->Cell(0, 0, 'Department In-Charge', 0, 1, 'L');
 
 
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(140,192);
+// $pdf->Cell(0, 0, 'Name : ', 0, 1, 'L');
 
-$pdf->Cell($column3_width, 40, 'QUANTITY', 1, 0, 'C');
-$pdf->Cell($column1_width, 40, 'FROM', 1, 0, 'C');
-$pdf->Cell($column1_width, 40, 'TO', 1, 0, 'C');
-$pdf->Cell(26, 40, 'Remarks', 1, 1, 'C');
+// $pdf->SetFont('Arial', '', 9);
+// $pdf->SetXY(153,192);
+// $pdf->Cell(0, 0, 'A.K.M Enamul Haque ', 0, 1, 'L');
+
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(140,198);
+// $pdf->Cell(0, 0, 'Designation : ', 0, 1, 'L');
+
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(163,198);
+// $pdf->Cell(0, 0, 'DGM ', 0, 1, 'L');
+
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(140,204);
+// $pdf->Cell(0, 0, 'Company Name : ', 0, 1, 'L');
+
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(170,204);
+// $pdf->Cell(0, 0, 'BCDL ', 0, 1, 'L');
+
+
+
+
+// $pdf->SetFont('Arial', 'B', 10);
+// $pdf->SetXY(140,225);
+// $pdf->Cell(0, 0, 'Sign.', 0, 1, 'L');
+// // $pdf->Line(15);
+// $pdf->Line(140, 228, 190, 228);
+// $pdf->SetDrawColor(0 , 0, 0);
+// $pdf->SetXY(140,231);
+// $pdf->Cell(0, 0, 'Floor In-Charge', 0, 1, 'L');
+
+
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(140,237);
+// $pdf->Cell(0, 0, 'Name : ', 0, 1, 'L');
+
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(153,237);
+// $pdf->Cell(0, 0, 'Md. Shahidul Islam ', 0, 1, 'L');
+
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(140,243);
+// $pdf->Cell(0, 0, 'Designation : ', 0, 1, 'L');
+
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(163,243);
+// $pdf->Cell(0, 0, 'Dy. Manager ', 0, 1, 'L');
+
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(140,249);
+// $pdf->Cell(0, 0, 'Company Name : ', 0, 1, 'L');
+
+// $pdf->SetFont('Arial', '', 10);
+// $pdf->SetXY(170,249);
+// $pdf->Cell(0, 0, 'BCDL ', 0, 1, 'L');
+
+
+
+
 
 
 
@@ -276,123 +339,7 @@ $pdf->Cell(26, 40, 'Remarks', 1, 1, 'C');
 
 }
 
-
-$pdf->Cell(15, 8, '', 1, 0, 'C');
-$pdf->Cell(50, 8, '', 1, 0, 'L');
-$pdf->Cell($column3_width, 8, 'Total = 01 Pc', 1, 0, 'C');
-$pdf->Cell($column1_width, 8, '', 1, 0, 'C');
-$pdf->Cell($column1_width, 8, '', 1, 0, 'C');
-$pdf->Cell(26, 8, '', 1, 1, 'C');
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->SetXY(20,137);
-$pdf->Cell(0, 0, 'Sign.', 0, 1, 'L');
-// $pdf->Line(15);
-$pdf->Line(20, 140, 70, 140);
-$pdf->SetDrawColor(0 , 0, 0);
-$pdf->SetXY(20,143);
-$pdf->Cell(0, 0, 'Receiver Name :', 0, 1, 'L');
-
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(20,149);
-$pdf->Cell(0, 0, 'Designation : ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(43,149);
-$pdf->Cell(0, 0, ' ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(20,154);
-$pdf->Cell(0, 0, 'Company Name : ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(49,154);
-$pdf->Cell(0, 0, ' ', 0, 1, 'L');
-
-
-
-
-
-
-
-
-
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->SetXY(140,137);
-$pdf->Cell(0, 0, 'Sign.', 0, 1, 'L');
-// $pdf->Line(15);
-$pdf->Line(140, 140, 190, 140);
-$pdf->SetDrawColor(0 , 0, 0);
-$pdf->SetXY(140,143);
-$pdf->Cell(0, 0, 'Department In-Charge', 0, 1, 'L');
-
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(140,149);
-$pdf->Cell(0, 0, 'Name : ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 9);
-$pdf->SetXY(153,149);
-$pdf->Cell(0, 0, 'A.K.M Enamul Haque ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(140,154);
-$pdf->Cell(0, 0, 'Designation : ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(163,154);
-$pdf->Cell(0, 0, 'DGM ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(140,159);
-$pdf->Cell(0, 0, 'Company Name : ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(170,159);
-$pdf->Cell(0, 0, 'BCDL ', 0, 1, 'L');
-
-
-
-
-$pdf->SetFont('Arial', 'B', 10);
-$pdf->SetXY(140,190);
-$pdf->Cell(0, 0, 'Sign.', 0, 1, 'L');
-// $pdf->Line(15);
-$pdf->Line(140, 193, 190, 193);
-$pdf->SetDrawColor(0 , 0, 0);
-$pdf->SetXY(140,196);
-$pdf->Cell(0, 0, 'Floor In-Charge', 0, 1, 'L');
-
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(140,202);
-$pdf->Cell(0, 0, 'Name : ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 9);
-$pdf->SetXY(153,202);
-$pdf->Cell(0, 0, 'Md. Shahidul Islam ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(140,207);
-$pdf->Cell(0, 0, 'Designation : ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(163,207);
-$pdf->Cell(0, 0, 'Dy. Manager ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(140,212);
-$pdf->Cell(0, 0, 'Company Name : ', 0, 1, 'L');
-
-$pdf->SetFont('Arial', '', 10);
-$pdf->SetXY(170,212);
-$pdf->Cell(0, 0, 'BCDL ', 0, 1, 'L');
-
-
-
-    // }
-
+// Output the PDF
 $pdf->Output();
+
 ?>

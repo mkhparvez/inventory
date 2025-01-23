@@ -53,7 +53,10 @@
         <th>Gateway</th>
         <th>ONU_MAC</th>
         <th>Action</th>
+        <?php if ($_SESSION['role'] != 3): ?>  
         <th>Edit</th>
+ <?php endif; ?>
+        
         <th>ONU_Serial</th>
         <th>OLT Port</th>
         <!-- <th style="display:none;">Address</th> -->
@@ -67,11 +70,18 @@
                       $shop = new Shop;
                       if (isset($_GET['active'])) {
                         $id =$_GET['active'];
-                        $shop->active($id); 
+
+                        if ($_SESSION['role'] != 3) {
+                        $shop->active($id);
+                        } 
                       }
+
                       if (isset($_GET['inactive'])) {
                         $id =$_GET['inactive'];
-                        $shop->inactive($id); 
+                        if ($_SESSION['role'] != 3) {
+                         $shop->inactive($id); 
+                        } 
+                       
                       }
                       if (isset($_GET['id'])) {
                         $id =$_GET['id'];
@@ -103,7 +113,10 @@
         <td><?php echo $row['ONU_MAC']?></td>
         <td><?php echo $status?> </td>
 
+<?php if ($_SESSION['role'] != 3): ?>  
         <td><a href="EditConn.php?id=<?php echo $row['id'];  ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a></td>
+ <?php endif; ?>
+
         <td><?php echo $row['ONU_Serial']?></td>
         <td><?php echo $row['OLT_Port']?></td>
         <!-- <td style="display:none;"><?php echo $row['sl_no']?></td> -->

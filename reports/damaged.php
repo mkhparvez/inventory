@@ -1,9 +1,7 @@
 <?php
-//include connection file
+require('mc_table.php');
 
-include_once('../libs/fpdf/fpdf.php');
-
-class PDF extends FPDF
+class PDF extends PDF_MC_Table
 {
     public $con = "";
 
@@ -191,31 +189,26 @@ else {
 
 
 
-// Set column widths
-$column1_width = 35;
-$column2_width = 53;
-$column3_width = 42;
-$column4_width = 21;
-$column5_width = 25;
-
 $pdf->SetFont('Arial', '', 8.5);
 
-
-    $pdf->Cell(12, 10, $sl, 1, 0, 'C');
-    $pdf->Cell(20, 10, $row['inv_id'], 1, 0, 'C');
-    $pdf->Cell($column3_width, 10, $row['user'], 1, 0, 'L');
-    $pdf->Cell(26, 10, $row['dept'], 1, 0, 'C');
-    $pdf->Cell($column1_width, 10, $row['location'], 1, 0, 'C');
-    // $pdf->Cell($column4_width, 10, $row['PF'], 1, 0, 'C');
-    // $pdf->Cell($column4_width, 10, 'BCDL', 1, 0, 'C');
-    $pdf->Cell($column4_width, 10, $row['brand'], 1, 0, 'C');
-    $pdf->Cell(28, 10, $row['model'], 1, 0, 'C');
-    $pdf->Cell(50, 10, $row['sl_no'], 1, 0, 'C');
-    $pdf->Cell($column2_width, 10, $spec, 1, 0, 'C');
-    // $pdf->Cell(22, 10, $status, 1, 0, 'C');
-    $pdf->Cell(60, 10, $row['remarks'], 1, 1, 'C');
-
-    }
+    // Add row to the PDF
+    $pdf->SetWidths([12, 20, 42, 26, 35, 21, 28, 50, 53, 60]);
+    $pdf->SetAligns(['C', 'C', 'L', 'C', 'C', 'C', 'C', 'C', 'C', 'C']);
+    $pdf->Row([
+        $sl,
+        $row['inv_id'],
+        $row['user'],
+        $user_designation,
+        $row['dept'],
+        // $row['PF'],
+        $row['brand'],
+        $row['model'],
+        $row['sl_no'],
+        $spec,
+        // $status,
+        $row['remarks']
+    ]);
+}
 
 $pdf->Output();
 ?>

@@ -22,10 +22,10 @@
     </div>
     <div class="card-body"> 
             <?php 
-          include "Classes/branch.php";
-          $branch = new Branch;
+          include "Classes/user_login.php";
+          $user_login = new Login;
           if (isset($_POST['register'])) {
-              echo $branch->addBranch($_POST);
+              echo $user_login->addLogin($_POST);
           }
 
       ?>

@@ -25,12 +25,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Add Products</h1>
+            <h1 class="m-0">Edit Asset</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
-              <li class="breadcrumb-item active">products</li>
+              <li class="breadcrumb-item active">Edit Asset</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -60,7 +60,9 @@
 
               <?php 
               include 'classes/products.php';
+              include 'classes/setup.php';
               $product = new Product;
+              $setup = new Setup;
               $inv_id = $_GET['id'];
               if (isset($_POST['update'])) {
                echo $product->updateProduct($_POST,$inv_id);
@@ -69,60 +71,13 @@
               $row = $obj;
 
 
-                         if ($row['product_cat'] == 1) {
-                            $product_cat = 'CPU';
-                          }
-                          elseif ($row['product_cat'] == 2) {
-                            $product_cat = 'Laptop';
-                          }
-                          elseif ($row['product_cat'] == 3) {
-                            $product_cat = 'Monitor';
-                          }
-                          elseif ($row['product_cat'] == 4) {
-                            $product_cat = 'Printer';
-                          }
-                          elseif ($row['product_cat'] == 5) {
-                            $product_cat = 'Mouse';
-                          }
-                          elseif ($row['product_cat'] == 6) {
-                            $product_cat = 'Keyboard';
-                          }
-                          elseif ($row['product_cat'] == 7) {
-                            $product_cat = 'UPS';
-                          }
-                          elseif ($row['product_cat'] == 8) {
-                            $product_cat = 'Cash Drawer';
-                          }
-                          elseif ($row['product_cat'] == 9) {
-                            $product_cat = 'POS Terminal';
-                          }
-                          elseif ($row['product_cat'] == 10) {
-                            $product_cat = 'Scanner';
-                          }
-                          elseif ($row['product_cat'] == 11) {
-                            $product_cat = 'Barcode Scanner';
-                          }
-                          elseif ($row['product_cat'] == 12) {
-                            $product_cat = 'Photocopier';
-                          }
-                          elseif ($row['product_cat'] == 13) {
-                            $product_cat = 'External HDD';
-                          }
-                          elseif ($row['product_cat'] == 14) {
-                            $product_cat = 'External SSD';
-                          }
-                          elseif ($row['product_cat'] == 15) {
-                            $product_cat = 'Pendrive';
-                          }
-                          elseif ($row['product_cat'] == 16) {
-                            $product_cat = 'Camera';
-                          }
-
-               ?>
- 
+           // Fetch departments
+                  $dept = $setup->findDept();
+                  $product_type = $setup->allProducts_types();
                  
+                  ?>
 
-
+                  
                   <div class="form-group">
                     <label for="inv_id">Inventory Id</label>
                     <input type="text" readonly class="form-control" name="inv_id" id="inv_id" placeholder="Enter Inventory Id" value="<?php echo $row['inv_id'] ?>">
@@ -132,18 +87,20 @@
                     <label for="product_cat">Product Category</label>
            <!--  -->
                     
-                    <select class="form-control" id="product_cat" name="product_cat" value="<?php echo $product_cat?>">
-                      <option><?php echo $product_cat ?></option>
-                      <option value="1">CPU</option>
-                      <option value="2">Laptop</option>
-                      <option value="3">Monitor</option>
-                      <option value="4">Printer</option>
-                      <option value="5">Mouse</option>
-                      <option value="6">Keyboard</option>
-                      <option value="7">UPS</option>
-                      <option value="8">Cash Drawer</option>
-                      <option value="9">POS Terminal</option>
-                    </select>
+                      <select class="form-control" id="product_cat" name="product_cat">
+                        <?php
+                        // Populate the dropdown
+                        if ($product_type->num_rows > 0) {
+                            while ($row_product = $product_type->fetch_assoc()) {
+                                // Check if the current category matches the one in the database
+                                $selected = ($row['product_cat'] == $row_product['id']) ? 'selected' : '';
+                                echo '<option value="' . $row_product['id'] . '" ' . $selected . '>' . $row_product['type_name'] . '</option>';
+                            }
+                        } else {
+                            echo '<option value="">Not Found</option>';
+                        }
+                        ?>
+                      </select>
                   </div>
                   <div class="form-group">
                     <label for="brand">Brand</label>
@@ -166,6 +123,8 @@
                       <option value="Core i5">Core i5</option>
                       <option value="Core i3">Core i3</option>
                       <option value="Ryzen 3">Ryzen 3</option>
+                      <option value="Ryzen 5">Ryzen 5</option>
+                      <option value="Ryzen 7">Ryzen 7</option>
                       <option value="Pentium">Pentium</option>
                       <option value="Dual Core">Dual Core</option>
                       <option value="Core 2 Duo">Core 2 Duo</option>
@@ -206,6 +165,62 @@
                       <input type="text" class="form-control" name="va" id="va" placeholder="Input UPS Capacity">
                   </div>
 
+
+
+                    <div class="form-group port">
+                    <label for="port">Number of Port</label>
+                      <select class="form-control" id="port" name="port">
+                      <option><?php echo $row['port'] ?></option>
+                      <option value="8">8 Port</option>
+                      <option value="16">16 Port</option>
+                      <option value="24">24 Port</option>
+                      <option value="48">48 Port</option>
+                      <option value="64">64 Port</option>
+                      <option value="128">128 Port</option>
+                    </select>
+                  </div>  
+
+                  <div class="form-group port_type">
+                    <label for="port_type">Port Type(POE / Non POE)</label>
+                      <select class="form-control" id="port_type" name="port_type">
+                      <option><?php echo $row['port_type'] ?></option>
+                      <option value="POE">POE</option>
+                      <option value="Non POE">Non POE</option>
+                    </select>
+                  </div>
+
+
+
+                   <div class="form-group cam_type">
+                    <label for="cam_type">Camera Type</label>
+                      <select class="form-control" id="cam_type" name="cam_type">
+                      <option><?php echo $row['cam_type'] ?></option>
+                      <option value="Bullet">Bullet Camera</option>
+                      <option value="Dome">Dome Camera</option>
+                    </select>
+                  </div>
+
+
+                   <div class="form-group cam_res">
+                    <label for="cam_res">Camera Resolution</label>
+                      <select class="form-control" id="cam_res" name="cam_res">
+                      <option><?php echo $row['cam_res'] ?></option>
+                      <option value="2">2 Megapixel</option>
+                      <option value="4">4 Megapixel</option>
+                      <option value="5">5 Megapixel</option>
+                      <option value="8">8 Megapixel</option>
+                    </select>
+                  </div>
+
+                 
+
+                  <div class="form-group ip">
+                    <label for="ip">IP Address</label>
+                      <input type="text" class="form-control" name="ip" id="ip" placeholder="Input IP Address" value="<?php echo $row['ip'] ?>">
+                  </div> 
+ 
+
+
                   <div class="form-group">
                     <label for="user">User Name</label>
                       <input type="text" class="form-control" name="user" id="user" placeholder="Enter Asset Users Name" value="<?php echo $row['user'] ?>">
@@ -225,23 +240,15 @@
                     <label for="dept">User Department</label>
                       <select class="form-control" id="dept" name="dept">
                       <option><?php echo $row['dept'] ?></option>
-                      <option value="Admin">Admin</option>
-                      <option value="Accounts">Accounts</option>
-                      <option value="Care & Clean">Care & Clean</option>
-                      <option value="Carparking">Carparking</option>
-                      <option value="Civil">Civil</option>
-                      <option value="Electrical">Electrical</option>
-                      <option value="Fire">Fire</option>
-                      <option value="IT">IT</option>
-                      <option value="Mechanical">Mechanical</option>
-                      <option value="SCD">SCD</option>
-                      <option value="Security">Security</option>
-                      <option value="Toggi Fun World">Toggi Fun World</option>
-                      <option value="Store">Store</option>
-                      <option value="Food Court">Food Court</option>
-                      <option value="Transport">Transport</option>
-                      <option value="Customar Service">Customar Service</option>
-                      <option value="Branding & Mkt.">Branding & Mkt.</option>
+                      <?php
+                        if ($dept->num_rows > 0) {
+                            while ($rows = $dept->fetch_assoc()) {
+                                echo '<option value="' . $rows['dept_name'] . '">' . $rows['dept_name'] . '</option>';
+                            }
+                        } else {
+                            echo '<option value="">No Department Available</option>';
+                        }
+                        ?>
                     </select>
                   </div>
 
@@ -272,11 +279,22 @@
                   </div>
 
 
+
+                  <div class="form-group">
+                    <label for="entry_date">Entry Date</label>
+                      <input type="text" class="form-control" name="entry_date" id="entry_date" placeholder="" readonly value="<?php echo date('d-M-Y', strtotime($row['entry_date'])); ?>">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="last_edited">Last Updated on</label>
+                      <input type="text" class="form-control" name="last_edited" id="last_edited" placeholder="" readonly value="<?php echo date('d-M-Y', strtotime($row['last_edited'])); ?>">
+                  </div>
+
+
                   <div class="form-group remarks">
                     <label for="remarks">Remarks</label>
                       <textarea class="form-control" name="remarks" id="remarks"><?php echo $row['remarks'] ?></textarea>
-                  </div>           
-
+                  </div> 
 
 
                 </div>

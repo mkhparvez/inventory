@@ -15,7 +15,7 @@
         </div>
         <div class="info">  
           <a href="#" class="d-block"> <?php if (isset($_SESSION['mName'])) { echo $_SESSION['mName']; } ?></a>
-          <a href="#" class="d-block"> Department : <?php if (isset($_SESSION['dept'])) { echo $_SESSION['dept']; } ?></a>
+          <a href="#" class="d-block"> Department : <?php if (isset($_SESSION['dept'])) { echo $_SESSION['dept']; } ?></a> 
         </div>
       </div>
 
@@ -39,14 +39,20 @@
 
           <li class="nav-header">Controls Area</li>
 
+<?php if ($_SESSION['role'] == 1): ?>
           <li class="nav-item">
             <a href="usercontrol.php" class="nav-link">
               <i class="nav-icon fas fa-users-cog"></i>
               <p>
-                Users List
+                User Management
               </p>
             </a>
           </li>
+
+  <?php endif; ?>
+
+
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cubes"></i>
@@ -57,12 +63,14 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <?php if ($_SESSION['role'] != 3): ?>
               <li class="nav-item">
                 <a href="addproducts.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add Asset</p>
                 </a>
               </li>
+                <?php endif; ?>
               <li class="nav-item">
                 <a href="manageproduct.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -78,17 +86,19 @@
               <p>
                 Asset Transfer
                 <i class="fas fa-angle-left right"></i>
-                <span class="badge badge-info right">3</span>
+                <span class="badge badge-info right">4</span>
               </p>
             </a>
             <ul class="nav nav-treeview">
 
+ <?php if ($_SESSION['role'] != 3): ?>
               <li class="nav-item">
                 <a href="asset_transfer.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Asset Transfer</p>
                 </a>
               </li>
+ <?php endif; ?>
 
               <li class="nav-item">
                 <a href="transfer_history.php" class="nav-link">
@@ -97,15 +107,31 @@
                 </a>
               </li>
 
+ <?php if ($_SESSION['role'] != 3): ?>
               <li class="nav-item">
                 <a href="gatepass.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Gatepass</p>
                 </a>
               </li>
+
+
+
+
+              <li class="nav-item">
+                <a href="reports/gate_pass_report.php" target="_blank" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gate Pass Report</p>
+                </a>
+              </li>
+
+ <?php endif; ?>
               </li>
             </ul>
           </li>
+
+
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file-alt"></i>
@@ -147,7 +173,126 @@
               </li> -->
               </li>
             </ul>
+          </li> 
+
+      
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+             <i class="nav-icon fa-solid fa-tower-broadcast"></i>
+              <!-- <i class="nav-icon fas fa-random"></i> -->
+              <p> 
+                Ping Tools
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">3</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+<?php if ($_SESSION['role'] != 3): ?>
+              <li class="nav-item">
+                <a href="ping_add.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>New Entry</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="manage_ping.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Ping Devices</p>
+                </a>
+              </li>
+
+ <?php endif; ?>
+
+              <li class="nav-item">
+                <a href="bcdl.php" target="_blank" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Show Ping Monitor</p>
+                </a>
+              </li>
+
+              </li>
+            </ul>
           </li>
+
+
+
+  <?php if ($_SESSION['role'] == 1): ?>
+
+   <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-id-card"></i>
+              <p>
+                ID Card
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">6</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="new_id_card_entry.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>New User Entry</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="manage_id_card.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage ID Cards</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="print_id_card.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ID Card Batch Print</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="print_id_card_two.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>ID Card Batch Print Two Line</p>
+                </a>
+              </li>
+
+            <li class="nav-item">
+                <a href="id_dept.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Departments</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="id_desig.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Designation</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="authority.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Authority</p>
+                </a>
+              </li>
+<!--               <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Sales</p>
+                </a>
+              </li> -->
+            </ul>
+          </li>
+          
+  <?php endif; ?>     
+
+
+
+
+
 
 
           <li class="nav-item">
@@ -160,12 +305,16 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+
+<?php if ($_SESSION['role'] != 3): ?>              
               <li class="nav-item">
                 <a href="addconnection.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Add New Connection</p>
                 </a>
               </li>
+ <?php endif; ?>
+ 
               <li class="nav-item">
                 <a href="active_con.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -187,7 +336,50 @@
             </ul>
           </li>
 
- <!--          <li class="nav-item">
+
+
+         
+
+
+
+  <?php if ($_SESSION['role'] == 1): ?>
+
+   <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa-solid fa-screwdriver-wrench"></i>
+              <p>
+                Setup
+                <i class="fas fa-angle-left right"></i>
+                <span class="badge badge-info right">6</span>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="productTypes.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Asset</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="department.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Department</p>
+                </a>
+              </li>
+<!--               <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Sales</p>
+                </a>
+              </li> -->
+            </ul>
+          </li>
+          
+  <?php endif; ?>              
+
+
+<!--          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-shopping-bag"></i>
               <p>
@@ -220,7 +412,16 @@
               </p>
             </a>
           </li>
- -->          
+ -->      
+
+
+
+
+
+
+
+
+
           <li class="nav-item">
             <a href="logout.php" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>

@@ -108,6 +108,34 @@
 
               <div class="col-md-2">
                 <div class="form-group">
+                  <input type="text" readonly id="user" class="form-control" placeholder="User">
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" id="new_user" class="form-control" placeholder="New User">
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" readonly name="pre_designation" id="pre_designation" class="form-control" placeholder="Designation">
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <input type="text" name="curr_designation" id="curr_designation" class="form-control" placeholder="New User Designation">
+                </div>
+                </div>
+           </div>
+
+
+            <div class="row">
+
+              <div class="col-md-2">
+                <div class="form-group">
                   <input type="text" readonly id="pre_loc" class="form-control" placeholder="Location">
                 </div>
               </div>
@@ -247,7 +275,7 @@
               </div>
  -->
 <div class="form-group">
-                  <a href="reports/multicell-table.php?id=" class="btn btn-primary" id="print-btn" target="_blank">Print</a>
+                  <a href="reports/gate_pass.php?id=" class="btn btn-primary" id="print-btn" target="_blank">Print</a>
                 </div>
 
 

@@ -51,13 +51,20 @@
 
     include "classes/shop.php";
                       $shop = new Shop;
-                      if (isset($_GET['active'])) {
+                         if (isset($_GET['active'])) {
                         $id =$_GET['active'];
-                        $shop->active($id); 
+
+                        if ($_SESSION['role'] != 3) {
+                        $shop->active($id);
+                        } 
                       }
+
                       if (isset($_GET['inactive'])) {
                         $id =$_GET['inactive'];
-                        $shop->inactive($id); 
+                        if ($_SESSION['role'] != 3) {
+                         $shop->inactive($id); 
+                        } 
+                       
                       }
                       if (isset($_GET['id'])) {
                         $id =$_GET['id'];

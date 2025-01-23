@@ -47,12 +47,14 @@
             <div class="info-box">
               <span class="info-box-icon bg-info elevation-1"><i class="fa-solid fa-computer"></i></span>
 
-              <div class="info-box-content">
+               <div class="info-box-content">
+                <a style="color:#fff" href="reports/items.php?id=<?php echo "cpu";  ?>"  target="_blank">
                 <span class="info-box-text">Total Computer</span>
                 <span class="info-box-number">
-
                   <?php echo $row["cpu"]; ?>
+                  <small></small>
                 </span>
+                </a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -64,8 +66,13 @@
               <span class="info-box-icon bg-danger elevation-1"><i class="fa-solid fa-laptop"></i></span>
 
               <div class="info-box-content">
+                <a style="color:#fff" href="reports/items.php?id=<?php echo "laptop";  ?>"  target="_blank">
                 <span class="info-box-text">Laptop</span>
-                <span class="info-box-number"><?php echo $row["laptop"]; ?></span>
+                <span class="info-box-number">
+                  <?php echo $row["laptop"]; ?>
+                  <small></small>
+                </span>
+                </a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -80,9 +87,14 @@
             <div class="info-box mb-3">
               <span class="info-box-icon bg-success elevation-1"><i class="fa-solid fa-display"></i></span>
 
-              <div class="info-box-content">
+               <div class="info-box-content">
+                <a style="color:#fff" href="reports/items.php?id=<?php echo "monitor";  ?>"  target="_blank">
                 <span class="info-box-text">Monitor</span>
-                <span class="info-box-number"><?php echo $row["monitor"]; ?></span>
+                <span class="info-box-number">
+                  <?php echo $row["monitor"]; ?>
+                  <small></small>
+                </span>
+                </a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -94,8 +106,13 @@
               <span class="info-box-icon bg-warning elevation-1"><i class="fa-solid fa-print"></i></span>
 
               <div class="info-box-content">
+                <a style="color:#fff" href="reports/items.php?id=<?php echo "printer";  ?>"  target="_blank">
                 <span class="info-box-text">Printer</span>
-                <span class="info-box-number"><?php echo $row["printer"]; ?></span>
+                <span class="info-box-number">
+                  <?php echo $row["printer"]; ?>
+                  <small></small>
+                </span>
+                </a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -111,12 +128,14 @@
             <div class="info-box">
               <span class="info-box-icon bg-info elevation-1"><i class="fa-solid fa-computer-mouse"></i></span>
 
-              <div class="info-box-content">
+               <div class="info-box-content">
+                <a style="color:#fff" href="reports/items.php?id=<?php echo "mouse";  ?>"  target="_blank">
                 <span class="info-box-text">Mouse</span>
                 <span class="info-box-number">
                   <?php echo $row["mouse"]; ?>
                   <small></small>
                 </span>
+                </a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -128,8 +147,13 @@
               <span class="info-box-icon bg-danger elevation-1"><i class="fa-solid fa-keyboard"></i></span>
 
               <div class="info-box-content">
+                <a style="color:#fff" href="reports/items.php?id=<?php echo "keyboard";  ?>"  target="_blank">
                 <span class="info-box-text">Keyboard</span>
-                <span class="info-box-number"><?php echo $row["keyboard"]; ?></span>
+                <span class="info-box-number">
+                  <?php echo $row["keyboard"]; ?>
+                  <small></small>
+                </span>
+                </a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -145,8 +169,13 @@
               <span class="info-box-icon bg-success elevation-1"><i class="fa-solid fa-plug-circle-bolt"></i></span>
 
               <div class="info-box-content">
+                <a style="color:#fff" href="reports/items.php?id=<?php echo "ups";  ?>"  target="_blank">
                 <span class="info-box-text">UPS</span>
-                <span class="info-box-number"><?php echo $row["ups"]; ?></span>
+                <span class="info-box-number">
+                  <?php echo $row["ups"]; ?>
+                  <small></small>
+                </span>
+                </a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -158,8 +187,13 @@
               <span class="info-box-icon bg-warning elevation-1"><i class="fa-solid fa-cash-register"></i></span>
 
               <div class="info-box-content">
+                <a style="color:#fff" href="reports/items.php?id=<?php echo "cash_drawer";  ?>"  target="_blank">
                 <span class="info-box-text">Cash Drawer</span>
-                <span class="info-box-number"><?php echo $row["cash_drawer"]; ?></span>
+                <span class="info-box-number">
+                  <?php echo $row["cash_drawer"]; ?>
+                  <small></small>
+                </span>
+                </a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -176,11 +210,13 @@
               <span class="info-box-icon bg-danger elevation-1"><i class="fa-solid fa-tv"></i></span>
 
               <div class="info-box-content">
+                <a style="color:#fff" href="reports/items.php?id=<?php echo "pos";  ?>"  target="_blank">
                 <span class="info-box-text">POS Terminal</span>
                 <span class="info-box-number">
                   <?php echo $row["pos"]; ?>
                   <small></small>
                 </span>
+                 </a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -192,11 +228,13 @@
               <span class="info-box-icon bg-success elevation-1"><i class="fa-regular fa-square-check"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Workable</span>
+                 <a style="color:#fff" href="reports/functional.php"  target="_blank">
+                <span class="info-box-text">Functional</span>
                 <span class="info-box-number">
                   <?php echo $row["useable"]; ?>
                   <small></small>
                 </span>
+                </a>
               </div>
               <!-- /.info-box-content -->
             </div>

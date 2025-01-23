@@ -59,12 +59,20 @@
                 <div class="card-body">
 
               
-              <?php 
+              <?php
               include 'classes/products.php';
+              include 'classes/setup.php';
               $product = new Product;
+              $setup = new Setup; 
               if (isset($_POST['transfer'])) {
                echo $product->transfer($_POST);
               }
+
+
+                 // Fetch departments
+                  $dept = $setup->findDept();
+
+
                ?>
 
                   <div class="form-group">
@@ -148,25 +156,16 @@
                   <div class="form-group">
                     <label for="new_dept">User Department</label>
                       <select class="form-control" id="new_dept" name="new_dept">
-                      <option>Select Option</option>
-                      <option value="1">Admin</option>
-                      <option value="2">Accounts</option>
-                      <option value="3">Care & Clean</option>
-                      <option value="4">Carparking</option>
-                      <option value="5">Civil</option>
-                      <option value="6">Electrical</option>
-                      <option value="7">Fire</option>
-                      <option value="8">IT</option>
-                      <option value="9">Mechanical</option>
-                      <option value="10">SCD</option>
-                      <option value="11">Security</option>
-                      <option value="12">Toggi Fun World</option>
-                      <option value="13">Store</option>
-                      <option value="14">Food Court</option>
-                      <option value="15">Transport</option>
-                      <option value="16">Customar Service</option>
-                      <option value="17">Branding & Mkt.</option>
-                      <option value="20">No Department</option>
+                      <option>Select Department</option>
+                      <?php
+                        if ($dept->num_rows > 0) {
+                            while ($rows = $dept->fetch_assoc()) {
+                                echo '<option value="' . $rows['id'] . '">' . $rows['dept_name'] . '</option>';
+                            }
+                        } else {
+                            echo '<option value="">No Department Available</option>';
+                        }
+                        ?>
                     </select>
                   </div>
 

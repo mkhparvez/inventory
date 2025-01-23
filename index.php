@@ -23,10 +23,10 @@
     </div>
     <div class="card-body">
       <?php 
-          include "Classes/Branch.php";
-          $branch = new Branch;
+          include "Classes/user_login.php";
+          $user_login = new Login;
           if (isset($_POST['login'])) {
-             echo $branch->login($_POST);
+             echo $user_login->login($_POST);
           }
       ?>
        <!-- <div class="alert alert-success"><strong>Success: </strong>Registration Complated</div> -->

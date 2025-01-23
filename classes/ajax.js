@@ -450,12 +450,12 @@ jQuery(document).ready(function() {
 	 $(document).ready(function() {
     jQuery("#inv_id").trigger("keyup");
     var gp_id = $('#gp_id').val();
-    var url = 'reports/multicell-table.php?id=' + gp_id;
+    var url = 'reports/gate_pass.php?id=' + gp_id;
     $('#print-btn').attr('href', url);
     
     $('#gp_id').on('input', function() {
         var gp_id = $(this).val();
-        var url = 'reports/multicell-table.php?id=' + gp_id;
+        var url = 'reports/gate_pass.php?id=' + gp_id;
         $('#print-btn').attr('href', url);
     });
 });

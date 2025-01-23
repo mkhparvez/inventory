@@ -22,3 +22,8 @@
     #result p:hover{
         background: lightcoral;
     }
+
+
+#fields label {
+    padding-left: 15px;
+}

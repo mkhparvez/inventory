@@ -60,34 +60,42 @@
 
               <?php 
               include 'classes/products.php';
+              include 'classes/setup.php';
               $product = new Product;
+              $setup = new Setup;
               if (isset($_POST['submit'])) {
                echo $product->addNewProduct($_POST);
               }
+
+
+               // Fetch departments
+                  $dept = $setup->findDept();
+                  $product_type = $setup->allProducts_types();
+                 
                ?>
 
                   <div class="form-group">
                     <label for="product_cat">Product Category</label>
                     <select class="form-control" id="product_cat" name="product_cat">
-                      <option>Select Option</option>
-                      <option value="1">CPU</option>
-                      <option value="2">Laptop</option>
-                      <option value="3">Monitor</option>
-                      <option value="4">Printer</option>
-                      <option value="5">Mouse</option>
-                      <option value="6">Keyboard</option>
-                      <option value="7">UPS</option>
-                      <option value="8">Cash Drawer</option>
-                      <option value="9">POS Terminal</option>
-                      <option value="10">Scanner</option>
-                      <option value="11">Barcode Scanner</option>
-                      <option value="12">Photocopier</option>
-                      <option value="13">External HDD</option>
-                      <option value="14">External SSD</option>
-                      <option value="15">Pendrive</option>
-                      <option value="16">Camera</option>
-
-                    </select>
+                      <option value="0">Select Option</option>
+                        <?php
+                        // Populate the dropdown
+                        if ($product_type->num_rows > 0) {
+                            while ($row_product = $product_type->fetch_assoc()) {
+                                // Check if the current category matches the one in the database
+                                $selected = ($row_product['type_name'] == $row_product['id']) ? 'selected' : '';
+                                echo '<option value="' . $row_product['id'] . '" ' . $selected . '>' . $row_product['type_name'] . '</option>';
+                            }
+                        } else {
+                            echo '<option value="">Not Found</option>';
+                        }
+                        ?>
+                      </select>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="inv_id">Inventory Id</label>
+                    <input type="text" class="form-control" name="inv_id" id="inv_id" placeholder="Enter Inventory Id">
                   </div>
                   <div class="form-group brand">
                     <label for="brand">Brand</label>
@@ -101,10 +109,6 @@
                     <label for="sl_no">Serial Number</label>
                     <input type="text" class="form-control" name="sl_no" id="slNo" placeholder="Enter Serial Number">
                   </div>
-                  <div class="form-group">
-                    <label for="inv_id">Inventory Id</label>
-                    <input type="text" class="form-control" name="inv_id" id="inv_id" placeholder="Enter Inventory Id">
-                  </div>
                   <div class="form-group processor">
                     <label for="processor">Processor Type</label>
                       <select class="form-control" id="processor" name="processor">
@@ -114,6 +118,8 @@
                       <option value="Core i5">Core i5</option>
                       <option value="Core i3">Core i3</option>
                       <option value="Ryzen 3">Ryzen 3</option>
+                      <option value="Ryzen 5">Ryzen 5</option>
+                      <option value="Ryzen 7">Ryzen 7</option>
                       <option value="Pentium">Pentium</option>
                       <option value="Dual Core">Dual Core</option>
                       <option value="Core 2 Duo">Core 2 Duo</option>
@@ -141,7 +147,7 @@
                       <input type="text" class="form-control" name="hdd" id="hdd" placeholder="Enter HDD/SSD Size">
                   </div> 
 
-                  <div class="form-group mouse">
+                  <div class="form-group mouseKeyboard" id="mouseKeyboard">
                     <label for="mouse">Mouse</label>                      
                       <input type="checkbox" id="mouse" name="mouse" value="1">
                     <label for="keyboard">Keyboard</label>                      
@@ -161,10 +167,75 @@
                       <input type="text" class="form-control" name="va" id="va" placeholder="Input UPS Capacity">
                   </div>  
 
-                  <div class="form-group user">
+                  
+                  
+                    <div class="form-group port">
+                    <label for="port">Number of Port/Channel</label>
+                      <select class="form-control" id="port" name="port">
+                      <option>Select Option</option>
+                      <option value="8">8 Port</option>
+                      <option value="16">16 Port</option>
+                      <option value="24">24 Port</option>
+                      <option value="48">48 Port</option>
+                      <option value="64">64 Port</option>
+                      <option value="128">128 Port</option>
+                    </select>
+                  </div>  
+
+                  <div class="form-group port_type">
+                    <label for="port_type">Port Type(POE / Non POE)</label>
+                      <select class="form-control" id="port_type" name="port_type">
+                      <option>Select Option</option>
+                      <option value="POE">POE</option>
+                      <option value="Non POE">Non POE</option>
+                    </select>
+                  </div>
+
+
+
+                   <div class="form-group cam_type">
+                    <label for="cam_type">Camera Type</label>
+                      <select class="form-control" id="cam_type" name="cam_type">
+                      <option>Select Option</option>
+                      <option value="Bullet">Bullet Camera</option>
+                      <option value="Dome">Dome Camera</option>
+                    </select>
+                  </div>
+
+
+                   <div class="form-group cam_res">
+                    <label for="cam_res">Camera Resolution</label>
+                      <select class="form-control" id="cam_res" name="cam_res">
+                      <option>Select Option</option>
+                      <option value="2">2 Megapixel</option>
+                      <option value="4">4 Megapixel</option>
+                      <option value="5">5 Megapixel</option>
+                      <option value="8">8 Megapixel</option>
+                    </select>
+                  </div>
+
+                 
+
+                  <div class="form-group ip">
+                    <label for="ip">IP Address</label>
+                      <input type="text" class="form-control" name="ip" id="ip" placeholder="Input IP Address">
+                  </div> 
+ 
+
+          
+                  <div class="form-group search-box user">
                     <label for="user">User Name</label>
                       <input type="text" class="form-control" name="user" id="user" placeholder="Enter Asset Users Name">
+                      <div id="result">
                   </div>
+                  </div>
+
+                  <!-- <div class="form-group search-box">
+                    <label for="new_user">New User</label>
+                      <input type="text" class="form-control" name="new_user" id="new_user" placeholder="Enter Asset Users Name">
+                      <div id="result">
+                      </div>
+                  </div> -->
 
                   <div class="form-group user_designation">
                     <label for="user_designation">User Designation</label>
@@ -180,26 +251,16 @@
                   <div class="form-group dept_id">
                     <label for="dept_id">User Department</label>
                       <select class="form-control" id="dept_id" name="dept_id">
-                      <option>Select Option</option>
-                      <option value="1">Admin</option>
-                      <option value="2">Accounts</option>
-                      <option value="3">Care & Clean</option>
-                      <option value="4">Carparking</option>
-                      <option value="5">Civil</option>
-                      <option value="5">Civil</option>
-                      <option value="6">Electrical</option>
-                      <option value="7">Fire</option>
-                      <option value="8">IT</option>
-                      <option value="9">Mechanical</option>
-                      <option value="10">SCD</option>
-                      <option value="11">Security</option>
-                      <option value="12">Toggi Fun World</option>
-                      <option value="13">Store</option>
-                      <option value="14">Food Court</option>
-                      <option value="15">Transport</option>
-                      <option value="16">Customar Service</option>
-                      <option value="17">Branding & Mkt.</option>
-                      
+                      <option>Select Department</option>
+                      <?php
+                        if ($dept->num_rows > 0) {
+                            while ($rows = $dept->fetch_assoc()) {
+                                echo '<option value="' . $rows['id'] . '">' . $rows['dept_name'] . '</option>';
+                            }
+                        } else {
+                            echo '<option value="">No Department Available</option>';
+                        }
+                        ?>
                     </select>
                   </div>
 

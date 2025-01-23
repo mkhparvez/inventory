@@ -47,12 +47,18 @@
                 <!-- form start -->
               <form method="POST">
                 <div class="card-body">
+                  <?php 
+                                            // Check if `POST` is submitted or if `GET` parameter exists
+                                            $inv_id = isset($_POST['inv_id']) ? $_POST['inv_id'] : (isset($_GET['id']) ? $_GET['id'] : '');
+
+                                            // Display the input box with the current `inv_id`
+                                            ?>
 
 
                 <div class="form-group row">
                   <div class="col-xs-2">
                     <!-- <label for="ex1">col-xs-2</label> -->
-                    <input class="form-control" name="inv_id" type="text" value="<?php if (isset($_POST['submit'])) ?>">
+                    <input class="form-control" name="inv_id" type="text" value="<?php  echo $inv_id; ?>">
 
                     <!-- { echo $_POST['inv_id'];} -->
 
@@ -63,10 +69,12 @@
                 </div>
 
               <?php 
+              // If `inv_id` is present, process the history display logic
+               if (!empty($inv_id)) {
               include 'classes/products.php';
               $product = new Product;
-               if (isset($_POST['submit'])) {  
-              $inv_id = $_POST['inv_id'];   
+              //  if (isset($_POST['submit'])) {  
+              // $inv_id = $_POST['inv_id'];   
               $obj = $product->findProduct($inv_id);
               $row = $obj;
 
@@ -127,7 +135,7 @@
         $obj = $product->history($inv_id,1);
           if($obj->num_rows > 0){
            $his_row_p = $obj->fetch_assoc();{
-              $datetime = $his_row_p['trnsfr_date'];
+              $datetime = $row['entry_date'];
               $date = date('d-M-Y',strtotime($datetime));
 
         ?>
@@ -187,7 +195,6 @@
       }
 
        }
-
 
         }
 

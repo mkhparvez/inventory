@@ -70,26 +70,27 @@
                       <th>Email</th>
                       <th>Phone</th>
                       <th>Status</th>
+                      <th>Role</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php 
-                      include "classes/branch.php";
-                      $branch = new branch;
+                      include "classes/user_login.php";
+                      $Login = new Login;
                       if (isset($_GET['active'])) {
                         $id =$_GET['active'];
-                        $branch->active($id); 
+                        $Login->active($id); 
                       }
                       if (isset($_GET['inactive'])) {
                         $id =$_GET['inactive'];
-                        $branch->inactive($id); 
+                        $Login->inactive($id); 
                       }
                       if (isset($_GET['id'])) {
                         $id =$_GET['id'];
-                        $branch->delete($id); 
+                        $Login->delete($id); 
                       }
-                      $obj = $branch->allBranch();
+                      $obj = $Login->allLogin();
                       if($obj->num_rows > 0){ $sl=1;
                         while($row = $obj->fetch_assoc()){ 
                           if ($row["status"] == 1) {
@@ -108,17 +109,37 @@
                               <td><?php echo $row["email"]; ?></td>
                               <td><?php echo $row["phone"]; ?></td>
                               <td><?php echo $status ?></td>
+                              <td>
+                              <select class="form-control" id="role" name="role" disabled>
+                         <?php  if ($row['role']==1) {
+                           $role="Admin";
+                         } elseif ($row['role']==2) {
+                           $role="Editor";
+                         } elseif ($row['role']==3) {
+                           $role="Viewer";
+                         }
+                          ?>
 
-                              <td><a href="branchedit.php?id=<?php echo $row['id'];  ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                      <option><?php echo $role ?></option>
+                      <option value="1">Admin</option>
+                      <option value="2">Editor</option>
+                      <option value="3">Viewer</option>
+                    </select>
+                    </td>
 
-                              <button data-toggle="modal" data-target="#delete" class="btn btn-danger btn-sm ml-1"><i class="fa fa-trash"></i></button></td>
+                              <td><a href="Loginedit.php?id=<?php echo $row['id'];  ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+
+                              <button data-toggle="modal" data-target="#delete<?php echo $row["id"] ?>" class="btn btn-danger btn-sm ml-1"><i class="fa fa-trash"></i></button></td>
+
+                              
+
 
                             </tr>
                           </tbody>
                       <?php $sl++; ?>
 
                         <!-- Delete Modal -->
-<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete<?php echo $row["id"] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -128,7 +149,7 @@
         </button>
       </div>
       <div class="modal-body">
-        Are sure want to delete this Branch?
+        Are sure want to delete this Login?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -68,11 +68,11 @@
                       <th>Asset Name</th>
                       <th>Inventory Id</th>
                       <th>Specification</th>
-                      <th>Serial No</th>
+                      <th>Brand, Model & <br> Serial No.</th>
                       <th>Username</th>
                       <th style="display:none;">PF</th>
                       <th>Department</th>
-                      <th>Action</th>
+                      <th style="width: 105px">Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -89,11 +89,11 @@
 
                           if ($row["product_cat"] == 1) {
                             $product_cat = 'CPU';
-                            $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."HDD-".$row["hdd"];
+                            $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."<br> HDD-".$row["hdd"];
                           }
                           elseif ($row["product_cat"] == 2) {
                             $product_cat = 'Laptop';
-                            $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."HDD-".$row["hdd"];
+                            $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."<br> HDD-".$row["hdd"];
                           }
                           elseif ($row["product_cat"] == 3) {
                             $product_cat = 'Monitor';
@@ -106,9 +106,21 @@
                                       $spec =  $row["toner"];
                                   } else {
                                       $spec = 'Toner : '. $row["toner"];
+                                  }   
+                                   
+
+                                  if (empty($row["ip"]) || $row["ip"] === "NULL") {
+                                      $spec =  $row["toner"];
+                                  } else {
+                                      // $spec = 'Toner : '. $row["toner"] '.'<br> IP-'.$row["ip"]';
+                                      $spec = 'Toner: ' . $row["toner"] . '<br> IP: ' . $row["ip"];
+
+                                      // $spec = $spec =  $row["cam_res"]." MP, ".$row["cam_type"]." Camera,  "."<br> IP-".$row["ip"];
                                   }       
 
                           }
+
+
                           elseif ($row["product_cat"] == 5) {
                             $product_cat = 'Mouse';
                             $spec = "";
@@ -127,7 +139,7 @@
                           }
                           elseif ($row["product_cat"] == 9) {
                             $product_cat = 'POS Terminal';
-                            $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."HDD-".$row["hdd"];
+                            $spec = $row["processor"].", "."RAM-".$row["ram"]."GB".", "."<br> HDD-".$row["hdd"];
                           }
                           elseif ($row["product_cat"] == 10) {
                             $product_cat = 'Scanner';
@@ -141,21 +153,38 @@
                             $product_cat = 'Photocopier';
                             $spec = "N/A";
                           }
+
                           elseif ($row["product_cat"] == 13) {
+                            $product_cat = 'Camera';
+                            $spec = $spec =  $row["cam_res"]." MP, ".$row["cam_type"]." Camera,  "."<br> IP-".$row["ip"];
+                          }
+                          elseif ($row["product_cat"] == 14) {
+                            $product_cat = 'Switch';
+                            $spec = $spec =  $row["port"]." Port ".$row["port_type"].",  "."<br> IP-".$row["ip"];
+                          }
+                          elseif ($row["product_cat"] == 15) {
+                            $product_cat = 'Router';
+                            $spec = "N/A";
+                          }
+                          elseif ($row["product_cat"] == 16) {
+                            $product_cat = 'DVR';
+                            $spec = "N/A";
+                          }
+                          elseif ($row["product_cat"] == 17) {
+                            $product_cat = 'NVR';
+                            $spec = "N/A";
+                          }
+                          elseif ($row["product_cat"] == 18) {
                             $product_cat = 'External HDD';
                             $spec =$row["hdd"];
                           }
-                          elseif ($row["product_cat"] == 14) {
+                          elseif ($row["product_cat"] == 19) {
                             $product_cat = 'External SSD';
                             $spec =$row["hdd"];
                           }
-                          elseif ($row["product_cat"] == 15) {
+                          elseif ($row["product_cat"] == 20) {
                             $product_cat = 'Pendrive';
                             $spec =$row["hdd"];
-                          }
-                          elseif ($row["product_cat"] == 16) {
-                            $product_cat = 'Camera';
-                            $spec = "N/A";
                           }
                           else{
                             $product_cat = 'Not Defiend';
@@ -166,24 +195,45 @@
                          
                             <tr>
                               <td><?php echo $sl ?></td>
-                              <td><?php echo $product_cat ?></td>
+                              <td><?php echo $product_cat //."<br>".$row["brand"]." ".$row["model"];//?></td>
                               <td><?php echo $row["inv_id"]; ?></td>
 
                               <td><?php echo $spec ?></td>
 
+                              <td><?php echo $row["brand"]." ".$row["model"]."<br> SN: ". $row["sl_no"]; ?></td>
+                              
+                             
+                              <td>
+                                  <?php 
+                                  if (empty($row["user"])) {
+                                      echo $row["location"];
+                                  } else {
+                                      echo $row["user"];
+                                  }
+                                  ?>
+                              </td>
 
-                              <td><?php echo $row["sl_no"]; ?></td>
-                              <td><?php echo $row["user"]; ?></td>
                               <td style="display:none;"><?php echo $row["PF"]; ?></td>
                               <td><?php echo $row["dept"]; ?></td>
-                              <td><a href="productEdit.php?id=<?php echo $row['inv_id'];  ?>" class="btn btn-info btn-sm"><i class="fa fa-edit"></i></a>
+                              <td>
+<!-- 
+                                <a href="product_details.php?id=<?php echo $row['inv_id']; ?>" class="btn btn-info btn-sm"  style="margin-right: 2px;">
+                                   <i class="fa-solid fa-circle-info"></i>
+                                </a>
+ -->
+                                <a href="transfer_history.php?id=<?php echo $row['inv_id']; ?>" class="btn btn-info btn-sm"  style="margin-right: 2px;">
+                                   <i class="fa-solid fa-circle-info"></i>
+                                </a>
 
-                               <!--  <button data-toggle="modal" data-target="#<?php echo $row["inv_id"] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td> -->
+                                <?php if ($_SESSION['role'] != 3): ?>
 
-                               <a href="asset_transfer.php?id=<?php echo $row['inv_id'];  ?>" class="btn btn-danger btn-sm"><i class="fa-solid fa-arrow-right-long"></i></a>
-
-                                <!-- <button data-toggle="modal" data-target="#<?php echo $row["inv_id"] ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button> -->
-
+                                <a href="productEdit.php?id=<?php echo $row['inv_id']; ?>" class="btn btn-warning btn-sm" style=" margin-right: 2px;">
+                                    <i class="fa fa-edit"></i>
+                                </a>                              
+                                <a href="asset_transfer.php?id=<?php echo $row['inv_id']; ?>" class="btn btn-danger btn-sm" style="margin-right: 2px;">
+                                   <i class="fa-solid fa-arrow-right-long"></i>
+                                </a>
+                                 <?php endif; ?>
                               </td>
 
                       <?php $sl++; ?>
@@ -255,6 +305,22 @@
       include "includes/scripts.php";
     ?>
 <!-- REQUIRED SCRIPTS -->
+
+<script>
+$(document).ready(function() {
+    // Initialize your DataTable
+    var table = $('#assets').DataTable();
+
+    // Get the 'search' parameter from the URL
+    var urlParams = new URLSearchParams(window.location.search);
+    var searchParam = urlParams.get('search');
+
+    // If the 'search' parameter exists, use it to filter the DataTable
+    if (searchParam) {
+        table.search(searchParam).draw(); // Apply the search term and redraw the table
+    }
+});
+</script>
 
 </body>
 </html>

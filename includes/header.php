@@ -1,10 +1,20 @@
 <?php 
 session_start();
-if(!isset($_SESSION['id']))
-{
-    // not logged in
+if (!isset($_SESSION['id'])) {
+    // Store the current URL (including query parameters) in a session variable
+    $_SESSION['redirect_after_login'] = $_SERVER['REQUEST_URI'];
+    
+    // Redirect to login page
     header('Location: index.php');
     exit();
+} else {
+    // If redirect exists, use it, then clear the session variable
+    if (isset($_SESSION['redirect_after_login'])) {
+        $redirect_url = $_SESSION['redirect_after_login'];
+        unset($_SESSION['redirect_after_login']); // Clear the session data
+        header("Location: $redirect_url");
+        exit();
+    }
 }
 
  ?>
